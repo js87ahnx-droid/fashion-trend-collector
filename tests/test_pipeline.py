@@ -21,7 +21,7 @@ def msg(payload, stop_reason="end_turn"):
 
 
 class FakeClient:
-    """분류 요청(tools 없음)과 상세 요청(web_fetch 도구)을 구분해 응답한다."""
+    """분류 요청과 상세 요청을 응답 형식(상세엔 insufficient 칸)으로 구분해 응답한다. brief 글 상세는 도구 없이 온다."""
 
     def __init__(self, classify_fn=None, detail_fn=None):
         self.classify_fn = classify_fn or (lambda kw: {"results": []})
@@ -33,13 +33,17 @@ class FakeClient:
     def _create(self, **kw):
         with self.lock:
             self.calls.append(kw)
-        if kw.get("tools"):
+        if is_detail(kw):
             return self.detail_fn(kw)
         out = self.classify_fn(kw)
         return out if isinstance(out, SimpleNamespace) else msg(out)
 
     def classify_calls(self):
-        return [c for c in self.calls if not c.get("tools")]
+        return [c for c in self.calls if not is_detail(c)]
+
+
+def is_detail(kw):
+    return "insufficient" in kw["output_config"]["format"]["schema"]["properties"]
 
 
 def r(id_, title, source="feed", region="global", outlet="WWD", **kw):
@@ -79,13 +83,13 @@ def test_classify_filters_and_sorts_by_pick():
         {"id": "hn-9", "skip": False, "cat": "brand", "headline": "없는 id", "tag": "", "why": "", "pick": 5, "replaces": ""},
     ]
     client = FakeClient(lambda kw: {"results": res})
-    stored = [{"id": "gn-1", "cat": "brand", "headline": "예전 팁"}]
+    stored = [{"id": "gn-1", "cat": "brand", "headline": "예전 팁", "brief": True}]
     out, skipped = classify.classify(cands, client, stored)
     assert [(o["id"], o["pick"], o["replaces"]) for o in out] == [("hn-4", 10, "gn-1"), ("hn-1", 4, None)]
     assert skipped == ["hn-2", "hn-3"]                     # 응답에 없는 id는 어느 쪽에도 없음
     assert out[0]["tag"] == "참고"
     prompt = client.calls[0]["messages"][0]["content"]
-    assert "gn-1 | brand | 예전 팁" in prompt and client.calls[0]["fallbacks"] == "default"
+    assert "gn-1 | brand | true | 예전 팁" in prompt and client.calls[0]["fallbacks"] == "default"
 
 
 def test_classify_excludes_superseded_from_stored():
@@ -175,7 +179,14 @@ def test_run_end_to_end(tmp_path, monkeypatch):
 
 
 def test_run_replacement_marks_old(tmp_path):
-    main.run(NOW, tmp_path, FakeClient(label_all()), sources=[("feeds", Good)])
+    """S4 AC③ — 저장된 brief 글을 원문을 읽은 새 글이 replaces로 대체."""
+    class BriefFirst:
+        @staticmethod
+        def fetch(ctx):
+            return [r("hn-10", "Burberry sales firm in China", brief=True)]
+
+    one = {"points": ["제목 기준 한 줄"], "so_what": [], "extra": "", "figure": None, "terms": []}
+    main.run(NOW, tmp_path, FakeClient(label_all(), lambda kw: msg(one)), sources=[("feeds", BriefFirst)])
 
     class Newer:
         @staticmethod
@@ -235,7 +246,7 @@ def test_buzz_and_terms_saved_and_prompts_ask_plain_language(tmp_path, monkeypat
     assert items["hn-10"]["detail"]["terms"] == terms
     cls = client.classify_calls()[0]["messages"][0]["content"]
     det = [c for c in client.calls if c.get("tools")][0]["messages"][0]["content"]
-    assert "세계적으로" in cls and "비전문가" in cls and "buzz" in cls
+    assert "패션 회사" in cls and "brief" in cls and "buzz" in cls
     assert "terms" in det and "~해요/~합니다" in det
     assert "buzz" in classify.CLASSIFY_SCHEMA["properties"]["results"]["items"]["required"]
     assert "terms" in detail.SCHEMA["required"]
@@ -251,3 +262,57 @@ def test_status_lists_every_outlet(tmp_path, monkeypatch):
     monkeypatch.setattr(http, "get_text", lambda url, **kw: "<rss><channel></channel></rss>")
     st = main.run(NOW, tmp_path, None)
     assert st["sources"]["feeds"]["outlets"] == {"A매체": {"fetched": 0}, "B매체": {"fetched": 0}}
+
+
+
+# --- S4: 분류 ---
+
+def test_prompt_carries_brief_values_and_replace_rule():
+    """S4 AC② — 후보·저장 글의 brief 값과 'brief 글은 replaces' 문구가 프롬프트에 들어간다."""
+    client = FakeClient()
+    classify.classify([r("g-1", "BoF title", source="gnews", brief=True), r("f-2", "WWD title")], client,
+                      [{"id": "s-1", "cat": "brand", "headline": "저장 brief", "brief": True},
+                       {"id": "s-2", "cat": "retail", "headline": "저장 일반"}])
+    prompt = client.calls[0]["messages"][0]["content"]
+    lines = {json.loads(l)["id"]: json.loads(l) for l in prompt.splitlines() if l.startswith("{")}
+    assert lines["g-1"]["brief"] is True and lines["f-2"]["brief"] is False
+    assert lines["g-1"]["outlet"] == "WWD" and lines["g-1"]["region"] == "global"
+    assert "s-1 | brand | true | 저장 brief" in prompt and "s-2 | retail | false | 저장 일반" in prompt
+    assert "저장된 글이 brief=true이고 이 글이 brief=false면 skip 대신 replaces" in prompt
+
+
+def test_new_brief_replacing_is_skipped_not_saved(tmp_path):
+    """S4 AC②-2 — 새 brief 글이 저장된 글을 replaces로 가리키면 저장하지 않고 건너뛴 글로 기억."""
+    main.run(NOW, tmp_path, FakeClient(label_all()), sources=[("feeds", Good)])
+
+    class BriefDup:
+        @staticmethod
+        def fetch(ctx):
+            return [r("g-9", "Same story via BoF", source="gnews", brief=True)]
+
+    main.run(NOW + timedelta(hours=3), tmp_path, FakeClient(label_all(replaces="hn-10")), sources=[("gnews", BriefDup)])
+    items = {i["id"]: i for i in store.load_items(tmp_path / "items.json")}
+    assert "g-9" not in items and "superseded_by" not in items["hn-10"]
+    assert "g-9" in json.loads((tmp_path / "skipped.json").read_text(encoding="utf-8"))
+
+
+def test_normal_item_cannot_replace_normal_item():
+    """대체는 저장된 brief 글만 — 일반 글끼리는 replaces를 버린다."""
+    client = FakeClient(label_all(replaces="s-2"))
+    out, _ = classify.classify([r("f-3", "x")], client, [{"id": "s-2", "cat": "retail", "headline": "일반"}])
+    assert out[0]["replaces"] is None
+
+
+def test_brief_never_picked(tmp_path):
+    """S4 AC④ — 가짜 응답이 brief 글에 높은 pick을 줘도 저장본엔 pick 없음."""
+    class Mixed:
+        @staticmethod
+        def fetch(ctx):
+            return [r("g-1", "BoF scoop", source="gnews", brief=True), r("f-1", "WWD story")]
+
+    one = {"points": ["한 줄"], "so_what": [], "extra": "", "figure": None, "terms": []}
+    client = FakeClient(label_all(pick=9), lambda kw: msg(one if "g-1" in kw["messages"][0]["content"] else DETAIL))
+    main.run(NOW, tmp_path, client, sources=[("feeds", Mixed)])
+    items = {i["id"]: i for i in store.load_items(tmp_path / "items.json")}
+    assert "pick" not in items["g-1"] and items["g-1"]["brief"] is True
+    assert items["f-1"]["pick"] == 9

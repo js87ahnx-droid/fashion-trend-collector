@@ -174,6 +174,8 @@ def add_items(existing: list[dict], new: list[dict], now: datetime) -> tuple[lis
         item = {k: raw.get(k) for k in REQUIRED + OPTIONAL}
         item["collected_at"] = stamp
         item["brief"] = item.get("brief") is True or None   # 원문을 읽은 글이면 필드 생략
+        if item["brief"]:
+            item["pick"] = None                              # 원문을 못 읽은 글은 오늘의 픽 후보가 아니다
         item["detail"] = clean_detail(item.get("detail"), brief=bool(item["brief"]))
         item["buzz"] = item.get("buzz") is True or None   # 화제가 아니면 필드 생략
         old = by_id.get(item.get("replaces") or "")
