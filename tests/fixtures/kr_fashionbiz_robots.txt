@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /my/*
+Disallow: /payment
+Disallow: /plan
+
+# Host
+Host: https://fashionbiz.co.kr
+
+# Sitemaps
+Sitemap: https://fashionbiz.co.kr/sitemap.xml
+Sitemap: https://fashionbiz.co.kr/server-sitemap.xml

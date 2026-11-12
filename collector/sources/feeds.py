@@ -27,6 +27,7 @@ class Feed:
     tz: timezone = timezone.utc   # 날짜에 시간대가 안 적힌 피드의 시간대
     fetchable: bool = True        # False면 원문을 열지 않는 brief 글 (robots.txt가 Claude 수집기를 막은 매체)
     style: bool = False           # 스타일 잡지 — 비즈니스 단어가 있는 글만 남김
+    category: str | None = None   # 이 RSS 분류(<category>)가 붙은 글만 남김 — 단어 필터 대신
 
 
 H48 = timedelta(hours=48)
@@ -35,7 +36,9 @@ FEEDS: tuple[Feed, ...] = (
     Feed("wwd", "https://wwd.com/feed/", "WWD", "global", 5, H48),
     Feed("glossy", "https://www.glossy.co/feed/", "Glossy", "global", 5, H48),
     Feed("fashionista", "https://fashionista.com/.rss/full/", "Fashionista", "global", 5, H48),
-    Feed("vogue", "https://www.vogue.com/feed/rss", "Vogue", "global", 5, H48, fetchable=False, style=True),
+    # Vogue Business는 vogue.com/business로 옮겨 와 Vogue RSS에 "Business" 분류로 섞여 나온다(2026-11-13 확인).
+    Feed("vogue", "https://www.vogue.com/feed/rss", "Vogue Business", "global", 5, H48, fetchable=False,
+         category="Business"),
     Feed("hypebeast", "https://hypebeast.com/feed", "Hypebeast", "global", 5, H48, style=True),
     Feed("ktnews", "https://www.ktnews.com/rss/allArticle.xml", "한국섬유신문", "kr", 8, H48, KST),
     Feed("voguekr", "https://www.vogue.co.kr/feed/", "보그코리아", "kr", 5, H48, KST, fetchable=False, style=True),
@@ -101,6 +104,7 @@ def parse(xml_text: str, tz: timezone = timezone.utc) -> list[dict]:
             "published": _date(e.findtext("pubDate"), tz),
             "summary": e.findtext("description") or e.findtext(CONTENT) or "",
             "comments": (e.findtext("comments") or "").strip(),
+            "categories": [(c.text or "").strip() for c in e.findall("category")],
         })
     for e in root.iter(f"{ATOM}entry"):
         link = next((l.get("href") for l in e.findall(f"{ATOM}link") if l.get("rel", "alternate") == "alternate"), "")
@@ -111,6 +115,7 @@ def parse(xml_text: str, tz: timezone = timezone.utc) -> list[dict]:
             "published": _date(e.findtext(f"{ATOM}published") or e.findtext(f"{ATOM}updated"), tz),
             "summary": e.findtext(f"{ATOM}content") or e.findtext(f"{ATOM}summary") or "",
             "comments": "",
+            "categories": [c.get("term", "") for c in e.findall(f"{ATOM}category")],
         })
     return out
 
@@ -143,6 +148,8 @@ def fetch_feed(feed: Feed, ctx: Context, counts: dict | None = None) -> list[dic
         seen += 1
         if feed.style and not is_business(e["title"], e["summary"]):
             continue
+        if feed.category and not any(c == feed.category or c.startswith(feed.category + " /") for c in e["categories"]):
+            continue
         if len(out) < feed.max_items:
             out.append(r)
     if counts is not None:
@@ -159,7 +166,8 @@ def fetch(ctx: Context) -> list[dict]:
             counts: dict = {}
             got = fetch_feed(feed, ctx, counts)
             out += got
-            outlets[feed.outlet] = {"fetched": len(got)} | ({"before_filter": counts["before_filter"]} if feed.style else {})
+            filtered = feed.style or feed.category
+            outlets[feed.outlet] = {"fetched": len(got)} | ({"before_filter": counts["before_filter"]} if filtered else {})
         except Exception as e:
             errors.append(f"{feed.key}: {e}")
             outlets[feed.outlet] = {"fetched": 0, "error": f"{type(e).__name__}: {e}"[:200]}

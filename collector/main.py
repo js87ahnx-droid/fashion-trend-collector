@@ -9,12 +9,12 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import classify, detail, store
-from .sources import feeds
+from .sources import feeds, gnews, krsite
 from .sources.base import Context
 
 log = logging.getLogger("collector")
 
-SOURCES = [("feeds", feeds)]
+SOURCES = [("feeds", feeds), ("krsite", krsite), ("gnews", gnews)]
 DATA = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data"))
 SKIP_MEMORY = timedelta(days=8)   # 피드 최대 수집 창(7일)보다 길게
 GROUP = {"feed": "feeds"}   # 글의 source 값 → status.sources 키 (krsite·gnews는 이름이 같음)

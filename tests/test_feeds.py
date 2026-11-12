@@ -80,7 +80,7 @@ FIRST = {   # 매체: (첫 글 제목 앞부분, 주소 앞부분, region)
     "wwd": ("Kathryn Hahn Breaks Up", "https://wwd.com/footwear-news/", "global"),
     "glossy": ("Brands are banking on live shopping", "https://www.glossy.co/beauty/", "global"),
     "fashionista": ("Must Read: PVH Corp.", "https://fashionista.com/2026/11/pvh-corp-layoffs", "global"),
-    "vogue": ("40+ Affordable Jewelry Brands", "https://www.vogue.com/article/", "global"),
+    "vogue": ("The Great Bear Rainforest", "https://www.vogue.com/article/", "global"),
     "hypebeast": ("Subtitle Launches Godzilla", "https://hypebeast.com/2026/11/", "global"),
     "ktnews": ("외국인 방한 이천만 시대", "https://www.ktnews.com/news/articleView.html?idxno=150147", "kr"),
     "voguekr": ("켄달 제너, 헤일리 비버가", "https://www.vogue.co.kr/2026/11/12/", "kr"),
@@ -91,8 +91,9 @@ FIRST = {   # 매체: (첫 글 제목 앞부분, 주소 앞부분, region)
 
 def test_nine_feeds_configured():
     assert set(BY_KEY) == set(FIRST)
-    assert {f.outlet for f in feeds.FEEDS if not f.fetchable} == {"Vogue", "보그코리아", "W코리아"}
-    assert {f.outlet for f in feeds.FEEDS if f.style} == {"Vogue", "Hypebeast", "보그코리아", "W코리아", "바자코리아"}
+    assert {f.outlet for f in feeds.FEEDS if not f.fetchable} == {"Vogue Business", "보그코리아", "W코리아"}
+    assert {f.outlet for f in feeds.FEEDS if f.style} == {"Hypebeast", "보그코리아", "W코리아", "바자코리아"}
+    assert BY_KEY["vogue"].category == "Business"
     assert all(f.url.startswith("https://") and f.max_age == feeds.timedelta(hours=48) for f in feeds.FEEDS)
     assert BY_KEY["ktnews"].max_items == 8
 
@@ -102,7 +103,7 @@ def test_fixture_parses_per_outlet(key):
     """S2 AC① — 매체마다 실제 응답으로 제목·주소·날짜·region·outlet 확인 (필터 없이 to_raw만)."""
     feed = BY_KEY[key]
     entries = feeds.parse(read(f"rss_{key}.xml"), feed.tz)
-    assert len(entries) == 3 and all(e["published"] for e in entries)
+    assert len(entries) >= 3 and all(e["published"] for e in entries)
     r = feeds.to_raw(entries[0], feed)
     title, url, region = FIRST[key]
     assert r["title"].startswith(title) and r["url"].startswith(url)
@@ -178,7 +179,8 @@ def test_outlet_status_has_before_filter_only_for_style(monkeypatch):
     feeds.fetch(ctx)
     got = ctx.notes["outlets"]["feeds"]
     assert set(got) == {f.outlet for f in feeds.FEEDS}
-    assert "before_filter" in got["Vogue"] and "before_filter" not in got["WWD"]
+    assert "before_filter" in got["Vogue Business"] and "before_filter" not in got["WWD"]
+    assert got["Vogue Business"] == {"fetched": 2, "before_filter": 4}
     assert got["WWD"]["fetched"] == 3 and got["한국섬유신문"]["fetched"] == 3
 
 
@@ -192,3 +194,11 @@ def test_block_page_reported_as_fetch_error(monkeypatch):
 
 def test_user_agent_has_no_word_collector():
     assert "collector" not in http.UA.lower() and "mozilla" not in http.UA.lower()
+
+
+def test_vogue_keeps_only_business_category(monkeypatch):
+    """Vogue RSS에서 'Business' 분류(=Vogue Business) 글만, 원문 미확인(brief)으로."""
+    monkeypatch.setattr(http, "get_text", lambda url, **kw: read("rss_vogue.xml"))
+    got = feeds.fetch_feed(BY_KEY["vogue"], Context(now=FIX_NOW))
+    assert [r["title"][:21] for r in got] == ["The Great Bear Rainfo", "Burberry Retail Sales"]
+    assert all(r["outlet"] == "Vogue Business" and r["brief"] is True for r in got)

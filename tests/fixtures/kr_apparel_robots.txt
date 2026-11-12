@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /common/
+Disallow: /shopma/guin_list/
+Disallow: /shopma/guin_view/
+Disallow: /Job/guin_list/
+Disallow: /Job/guin_view/
+
+User-agent: Daumoa-image
+Disallow:
+
+User-agent: Daumoa
+Disallow:
+
+User-agent: Yeti
+Disallow:
+
+Sitemap: https://www.apparelnews.co.kr/news_sitemap.xml
