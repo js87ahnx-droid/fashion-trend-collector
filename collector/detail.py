@@ -30,14 +30,13 @@ PROMPT = """너는 AI에 관심 있는 일반 직장인을 위한 큐레이터�
 - 원문에 없는 사실·숫자를 지어내지 않는다. 확인 못 한 부분은 쓰지 않는다.
 - headline: 원문을 읽고 우리 헤드라인이 틀렸거나 과장됐으면 고친 헤드라인(한국어 45자 이내), 맞으면 그대로.
 - points: 핵심 3개, 각 한 문장 (80자 이내)
-- steps: 독자가 따라 할 단계 3~6개, 각 120자 이내 (명령어·프롬프트·설정은 원문에 있을 때만, `백틱`으로 감싼다).
-  따라 할 게 없으면 빈 배열. 인터뷰·인사이트면 '내 일에 적용하는 법'으로.
+- so_what: 이 소식이 국내 패션 회사에 무엇을 뜻하는지 1~3개, 각 120자 이내.
 - extra: 맥락·주의점·대안 등 보강 설명 1~3문장, 300자 이내. 없으면 "".
 - figure: 이해를 확실히 돕는 경우에만 하나, 아니면 type="none".
   compare=전/후 또는 A/B 비교(before·after 각 70자 이내, 라벨 각 12자 이내), flow=단계 흐름(steps 2~5개, 각 12자 이내),
   bars=원문에 있는 수치 비교(bars 2~6개, unit), quote=화자의 핵심 주장 요지(text는 직접 인용이 아닌 요지, speaker).
   쓰지 않는 필드는 빈 문자열·빈 배열·0으로.
-- terms: 본문(headline·points·steps·extra)에 남은 전문용어 중 일반인이 모를 만한 것 0~3개.
+- terms: 본문(headline·points·so_what·extra)에 남은 전문용어 중 일반인이 모를 만한 것 0~3개.
   term은 용어 그대로, meaning은 일상 비유를 곁들인 한 문장 풀이(60자 이내). 없으면 빈 배열.
 
 글:
@@ -54,7 +53,7 @@ SCHEMA = {
         "insufficient": {"type": "boolean"},
         "headline": {"type": "string"},
         "points": {"type": "array", "items": {"type": "string"}},
-        "steps": {"type": "array", "items": {"type": "string"}},
+        "so_what": {"type": "array", "items": {"type": "string"}},
         "extra": {"type": "string"},
         "figure": {
             "type": "object",
@@ -93,7 +92,7 @@ SCHEMA = {
             },
         },
     },
-    "required": ["insufficient", "headline", "points", "steps", "extra", "figure", "terms"],
+    "required": ["insufficient", "headline", "points", "so_what", "extra", "figure", "terms"],
     "additionalProperties": False,
 }
 
@@ -107,7 +106,7 @@ def write(item: dict, client) -> dict:
     prompt = PROMPT.format(style=STYLE, title=item["title"], headline=item["headline"], cat=item["cat"], url=item["url"],
                            body=(item.get("body") or item.get("excerpt") or "(없음)")[:3000])
     messages = [{"role": "user", "content": prompt}]
-    tools = {} if item.get("source") == "threads" else {"tools": [WEB_FETCH]}   # 스레드 글은 페이지를 열지 않는다
+    tools = {} if item.get("brief") else {"tools": [WEB_FETCH]}   # brief 글은 원문 페이지를 열지 않는다
     for _ in range(MAX_CONTINUE):
         resp = client.beta.messages.create(
             model=classify.MODEL,

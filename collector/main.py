@@ -1,4 +1,4 @@
-"""매시간 진입점: 수집 → AI 필터 → 중복 제거 → 분류 → 상세 작성 → 저장(대체 반영) → 정리."""
+"""3시간마다 진입점: 수집 → 광고 필터 → 중복 제거 → 분류 → 상세 작성 → 저장(대체 반영) → 정리."""
 from __future__ import annotations
 
 import json
@@ -9,16 +9,15 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import classify, detail, store
-from .sources import feeds, gn, gpters, hn, threadprofile, websearch
+from .sources import feeds
 from .sources.base import Context
 
 log = logging.getLogger("collector")
 
-SOURCES = [("gn", gn), ("hn", hn), ("gpters", gpters), ("feeds", feeds), ("websearch", websearch), ("threads", threadprofile)]
+SOURCES = [("feeds", feeds)]
 DATA = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data"))
 SKIP_MEMORY = timedelta(days=8)   # 피드 최대 수집 창(7일)보다 길게
-GROUP = {"gnp": "gn", "reddit": "websearch", "web": "websearch",
-         "pod": "feeds", "ph": "feeds", "nl": "feeds", "news": "feeds"}
+GROUP = {"feed": "feeds"}   # 글의 source 값 → status.sources 키 (krsite·gnews는 이름이 같음)
 
 
 def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources=SOURCES) -> dict:
@@ -28,16 +27,9 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
     # 분류에서 빠졌거나 근거가 부족했던 글 — 다시 보내지 않는다 (화면이 읽지 않는 별도 파일)
     prev_skipped = json.loads(skipped_path.read_text(encoding="utf-8")) if skipped_path.exists() else {}
     skipped = {k: v for k, v in prev_skipped.items() if now - store.parse_iso(v) < SKIP_MEMORY}
-    prev_status = store.load_status(status_path)
     if client is None and os.environ.get("ANTHROPIC_API_KEY"):
         client = classify.make_client()
-    ctx = Context(
-        now=now,
-        known_ids={it["id"] for it in items} | set(skipped),
-        run_index=int(now.timestamp() // 3600),
-        search_api_key=os.environ.get("SEARCH_API_KEY") or None,
-        threads_searched_at=prev_status.get("threads_searched_at"),
-    )
+    ctx = Context(now=now, known_ids={it["id"] for it in items} | set(skipped))
 
     # 1. 수집 — 소스별로 실패를 가둔다
     report: dict[str, dict] = {}
@@ -51,20 +43,17 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
         except Exception as e:
             report[name] = {"fetched": 0, "error": f"{type(e).__name__}: {e}"[:300]}
             log.warning("수집 실패 %s: %s", name, e)
-    if ctx.notes.get("feeds") and "feeds" in report:
-        report["feeds"]["note"] = "; ".join(ctx.notes["feeds"])[:300]
-    if ctx.notes.get("gpters") and "gpters" in report:
-        report["gpters"]["note"] = ctx.notes["gpters"][:300]
-    if ctx.notes.get("threads") and "threads" in report:
-        report["threads"]["note"] = ctx.notes["threads"][:300]
-    if not ctx.search_api_key and "websearch" in report:
-        report["websearch"]["note"] = "SEARCH_API_KEY 없음 — 건너뜀"
+    for name in report:
+        if ctx.notes.get(name):
+            report[name]["note"] = "; ".join(ctx.notes[name])[:300]
+        if name in ctx.notes.get("outlets", {}):
+            report[name]["outlets"] = ctx.notes["outlets"][name]
 
-    # 2~3. AI 필터, 중복 제거, 우선순위
+    # 2~3. 광고 필터, 중복 제거, 우선순위
     filtered = classify.prefilter(cands)
     fresh = [c for c in store.dedupe_candidates(filtered, items) if c["id"] not in skipped]
     fresh = store.rank_for_run(fresh)[: classify.MAX_TO_CLASSIFY]
-    log.info("후보 %d → AI 필터 %d → 신규 %d", len(cands), len(filtered), len(fresh))
+    log.info("후보 %d → 광고 필터 %d → 신규 %d", len(cands), len(filtered), len(fresh))
 
     # 4~5. 분류 → 상세 → 저장
     added: list[dict] = []
@@ -94,8 +83,7 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
     new_status = {
         "last_run": store.iso(now),
         "sources": report,
-        "threads_searched_at": ctx.notes.get("threads_searched_at") or prev_status.get("threads_searched_at"),
-        "run": {"candidates": len(cands), "ai_filtered": len(filtered), "new": len(fresh), "labeled": labeled_n,
+        "run": {"candidates": len(cands), "ad_filtered": len(filtered), "new": len(fresh), "labeled": labeled_n,
                 "added": len(added), "total": len(items), "skip_memory": len(skipped), **({"note": " / ".join(notes)} if notes else {})},
     }
     store.save_json(items_path, store.items_doc(items))

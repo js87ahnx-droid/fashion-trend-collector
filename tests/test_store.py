@@ -1,15 +1,17 @@
+import json
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from collector import store
 
 NOW = datetime(2026, 10, 30, 10, 37, tzinfo=timezone.utc)
-DETAIL = {"points": ["하나", "둘", "셋"], "steps": ["해보기"], "extra": "", "figure": None}
+DETAIL = {"points": ["하나", "둘", "셋"], "so_what": ["의미"], "extra": "", "figure": None}
 
 
 def item(i, **kw):
     base = {
-        "id": f"hn-{i}", "title": f"t{i}", "url": f"https://example.com/{i}", "source": "hn",
-        "cat": "tip", "headline": f"헤드라인 {i}", "tag": "5분", "detail": DETAIL, "score": 1,
+        "id": f"hn-{i}", "title": f"t{i}", "url": f"https://example.com/{i}", "source": "feed",
+        "region": "global", "outlet": "WWD", "cat": "brand", "headline": f"헤드라인 {i}", "tag": "5분", "detail": DETAIL, "score": 1,
         "collected_at": store.iso(NOW),
     }
     base.update(kw)
@@ -23,7 +25,7 @@ def test_existing_id_skipped():
 
 
 def test_same_url_keeps_higher_score():
-    a = item(1, id="gn-1", source="gn", url="https://blog.dev/post", score=3)
+    a = item(1, id="gn-1", outlet="Glossy", url="https://blog.dev/post", score=3)
     b = item(2, id="hn-2", url="https://www.blog.dev/post/", score=90)
     out = store.dedupe_candidates([a, b], [])
     assert [c["id"] for c in out] == ["hn-2"]
@@ -34,9 +36,10 @@ def test_url_already_stored_is_skipped():
     assert store.dedupe_candidates([item(2, url="https://blog.dev/post")], existing) == []
 
 
-def test_rank_interleaves_sources_by_score():
+def test_rank_interleaves_outlets_by_score():
+    """S1 AC⑧ — 같은 source=feed라도 매체(outlet)가 다르면 번갈아 뽑힌다."""
     cands = [item(1, score=900), item(2, score=500), item(3, score=700),
-             item(4, id="gn-4", source="gn", score=None), item(5, id="gn-5", source="gn", score=None)]
+             item(4, id="gn-4", outlet="Glossy", score=None), item(5, id="gn-5", outlet="Glossy", score=None)]
     assert [c["id"] for c in store.rank_for_run(cands)] == ["hn-1", "gn-4", "hn-3", "gn-5", "hn-2"]
 
 
@@ -46,7 +49,7 @@ def test_run_cap():
 
 
 def test_rejects_missing_v2_fields_and_bad_values():
-    bad = [item(1, url="http://x.com"), item(2, cat="model"), item(3, headline=""),
+    bad = [item(1, url="http://x.com"), item(2, cat="tip"), item(3, headline=""),
            item(4, detail={"points": ["하나뿐"]}), item(5, detail=None)]
     _, added = store.add_items([], bad + [item(6)], NOW)
     assert [a["id"] for a in added] == ["hn-6"]
@@ -118,3 +121,44 @@ def test_terms_cleaned():
     assert len(d["terms"]) == 3 and d["terms"][0]["term"] == "MCP"
     assert len(d["terms"][1]["term"]) == 20 and len(d["terms"][1]["meaning"]) == 80
     assert store.clean_detail(DETAIL)["terms"] == []
+
+
+# --- S1: 패션 데이터 모델 ---
+
+def test_region_and_outlet_required():
+    """S1 AC③"""
+    bad = [item(1, region=None), item(2, region="us"), item(3, outlet=""), item(4, outlet=None)]
+    _, added = store.add_items([], bad + [item(5, region="kr")], NOW)
+    assert [a["id"] for a in added] == ["hn-5"]
+
+
+def test_brief_item_saved_with_single_point():
+    """S1 AC④ — brief 글은 핵심 1개·so_what 비어도 저장, brief가 아니면 같은 detail로 저장 안 됨."""
+    one = {"points": ["제목이 말하는 내용"], "so_what": [], "extra": "", "figure": None}
+    _, added = store.add_items([], [item(1, brief=True, detail=one), item(2, detail=one)], NOW)
+    assert [a["id"] for a in added] == ["hn-1"]
+    assert added[0]["detail"]["points"] == ["제목이 말하는 내용"]
+
+
+def test_brief_detail_drops_fields_outside_evidence():
+    d = {"points": ["a", "b", "c"], "so_what": ["x"], "extra": "덧붙임", "terms": [{"term": "t", "meaning": "m"}],
+         "figure": {"type": "flow", "steps": ["a", "b"]}}
+    assert store.clean_detail(d, brief=True) == {"points": ["a"], "so_what": [], "extra": "", "figure": None, "terms": []}
+    assert store.clean_detail({"points": []}, brief=True) is None
+
+
+def test_new_fields_survive_add_items():
+    """S1 AC⑤ — region·outlet·brief는 저장 뒤에도 남고, brief=False는 필드를 생략한다."""
+    _, added = store.add_items([], [item(1, region="kr", outlet="한국섬유신문", brief=True,
+                                         detail={"points": ["하나"]}), item(2, brief=False)], NOW)
+    assert (added[0]["region"], added[0]["outlet"], added[0]["brief"]) == ("kr", "한국섬유신문", True)
+    assert added[1]["region"] == "global" and "brief" not in added[1]
+
+
+def test_repo_empty_data_files_load():
+    """S1 AC⑥ (일부) — 저장소의 빈 data/items.json 형식이 그대로 읽힌다."""
+    data = Path(__file__).resolve().parents[1] / "data"
+    assert store.load_items(data / "items.json") == []
+    assert json.loads((data / "items.json").read_text(encoding="utf-8")) == store.items_doc([])
+    for name in ("status.json", "skipped.json", "failures.json"):
+        assert json.loads((data / name).read_text(encoding="utf-8")) == {}

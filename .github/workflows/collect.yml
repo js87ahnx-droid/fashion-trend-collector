@@ -4,11 +4,6 @@ on:
   schedule:
     - cron: "37 * * * *"     # 매시 37분 (정각 혼잡 회피)
   workflow_dispatch:
-    inputs:
-      rewrite:
-        description: "저장된 글을 쉬운 말로 다시 쓰기 (문체 변경 때 한 번)"
-        type: boolean
-        default: false
   push:
     branches: [main]
     paths: ["web/**", ".github/workflows/collect.yml"]
@@ -39,24 +34,10 @@ jobs:
       - name: Test
         run: python -m pytest -q
 
-      - name: Rewrite stored items
-        if: github.event_name == 'workflow_dispatch' && inputs.rewrite
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python -m collector.rewrite
-
-      - name: Install browser when Threads is due
-        if: github.event_name != 'push'
-        run: |
-          if python -m collector.sources.threadprofile data; then
-            pip install playwright && playwright install --with-deps chromium || echo "브라우저 설치 실패 — 스레드만 건너뜀"
-          fi
-
       - name: Collect
         if: github.event_name != 'push'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY }}
         run: python -m collector.main
 
       - name: Commit data
@@ -64,7 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/items.json data/status.json data/skipped.json
+          git add data/items.json data/status.json data/skipped.json data/failures.json
           git commit -m "data: $(date -u +%Y-%m-%dT%H:%MZ) 수집" || exit 0
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break; sleep 5; done
 

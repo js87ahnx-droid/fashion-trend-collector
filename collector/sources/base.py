@@ -5,7 +5,6 @@ import html
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from urllib.parse import urlparse
 
 MAX_PER_SOURCE = 30
 
@@ -14,21 +13,21 @@ MAX_PER_SOURCE = 30
 class Context:
     now: datetime
     known_ids: set[str] = field(default_factory=set)
-    run_index: int = 0          # 회차 번호 — 검색 키워드 순환에 사용
-    search_api_key: str | None = None
-    threads_searched_at: str | None = None   # 마지막으로 스레드 프로필을 연 시각
-    notes: dict = field(default_factory=dict)   # 소스가 남기는 부분 실패 메모 (status에 기록)
+    notes: dict = field(default_factory=dict)   # 소스가 남기는 부분 실패 메모·매체별 건수 (status에 기록)
 
 
-def raw(*, id, title, url, source, score=None, comments=None, excerpt="", published_at=None) -> dict:
+def raw(*, id, title, url, source, region, outlet, brief=False, score=None, comments=None, excerpt="",
+        published_at=None) -> dict:
     return {
         "id": id,
         "title": clean(title),
         "url": url,
         "source": source,
+        "region": region,
+        "outlet": outlet,
+        "brief": brief,
         "score": score,
         "comments": comments,
-        "origin": urlparse(url).hostname.removeprefix("www.") if url else None,
         "excerpt": clean(excerpt)[:300],
         "body": clean(excerpt)[:3000],   # 상세 작성 때 원문을 못 읽으면 쓰는 대체 본문 (저장하지 않음)
         "published_at": published_at,

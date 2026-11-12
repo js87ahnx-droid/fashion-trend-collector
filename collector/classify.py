@@ -1,4 +1,4 @@
-"""AI 관련 사전 필터 + Claude로 카테고리·헤드라인 분류, 중복·대체 판정."""
+"""광고 사전 필터 + Claude로 카테고리·헤드라인 분류, 중복·대체 판정."""
 from __future__ import annotations
 
 import json
@@ -8,22 +8,13 @@ import re
 from .store import CATS
 
 MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-opus-5-5")
-MAX_TO_CLASSIFY = 40
+MAX_TO_CLASSIFY = 25
 MAX_STORED = 300
 
-# 범용 소스는 AI 관련 낌새가 있는 글만 LLM에 보낸다. 나머지 소스는 이미 AI 주제로 좁혀져 있음.
-GENERAL_SOURCES = {"gn", "gnp", "hn", "pod", "ph", "nl"}
-AI_WORDS = re.compile(
-    r"\b(ai|a\.i\.|llms?|gpt[-\w.]*|chatgpt|openai|anthropic|claude|gemini|llama|mistral|deepseek|qwen|"
-    r"copilot|cursor|codex|agents?|agentic|mcp|rag|prompts?|transformer|diffusion|neural|inference|"
-    r"fine-?tun\w*|embedding\w*|token\w*|model weights|benchmark\w*|hugging ?face|vibe ?coding|evals?|"
-    r"machine learning|deep learning|reinforcement learning|superintelligence|agi|automat\w*)\b"
-    r"|인공지능|에이전트|프롬프트|모델|생성형|챗봇|클로드|챗GPT|챗지피티|제미나이|코딩 ?도구|바이브 ?코딩|머신러닝|딥러닝|LLM|자동화",
-    re.I,
-)
+# 광고에만 쓰는 문구. 업계 기사에 흔한 낱말(할인·이벤트·sale·sales)은 넣지 않는다.
 AD_WORDS = re.compile(
-    r"수강생|수강 ?신청|강의 ?(판매|오픈|모집)|얼리버드|할인 ?코드|쿠폰|월 ?\d+만 ?원|부업|수익화|패시브 ?인컴|"
-    r"\b(coupon|promo code|discount code|affiliate|course launch|enroll now)\b",
+    r"쿠폰 ?(받기|다운|코드|증정)|할인 ?코드|공동구매|구매 ?링크|"
+    r"\b(promo code|discount code|coupon|affiliate link)\b",
     re.I,
 )
 
@@ -98,8 +89,6 @@ def prefilter(cands: list[dict]) -> list[dict]:
     for c in cands:
         text = f"{c['title']} {c.get('excerpt', '')}"
         if AD_WORDS.search(text):
-            continue
-        if c["source"] in GENERAL_SOURCES and not AI_WORDS.search(c["title"] + " " + c.get("excerpt", "")[:200]):
             continue
         out.append(c)
     return out

@@ -6,13 +6,14 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 SCHEMA_VERSION = 2
-SOURCES = ("gn", "gnp", "hn", "reddit", "threads", "gpters", "web", "pod", "ph", "nl", "news")
-CATS = ("tip", "tool", "biz", "voice", "shift")
-MAX_PER_RUN = 10
+SOURCES = ("feed", "krsite", "gnews")
+CATS = ("brand", "retail", "market", "material", "people")
+REGIONS = ("kr", "global")
+MAX_PER_RUN = 5
 RETENTION = timedelta(days=7)
 SUPERSEDED_RETENTION = timedelta(days=3)
-REQUIRED = ("id", "title", "url", "source", "cat", "headline", "tag", "detail", "collected_at")
-OPTIONAL = ("score", "comments", "origin", "why", "pick", "buzz", "replaces")
+REQUIRED = ("id", "title", "url", "source", "region", "outlet", "cat", "headline", "tag", "detail", "collected_at")
+OPTIONAL = ("score", "comments", "why", "pick", "buzz", "brief", "replaces")
 FIGURE_TYPES = ("compare", "flow", "bars", "quote")
 
 
@@ -91,14 +92,18 @@ def clean_figure(fig) -> dict | None:
     return {"type": t, "title": title, "text": text, "speaker": _short(fig.get("speaker"), 40) or ""}
 
 
-def clean_detail(d) -> dict | None:
+def clean_detail(d, brief: bool = False) -> dict | None:
+    """일반 글은 핵심 2~3개가 있어야 통과. brief 글(원문을 읽지 않고 제목·요약만 본 글)은 핵심 1개로 통과하고,
+    근거 밖 내용이 들어갈 수 있는 나머지 칸은 비운다."""
     if not isinstance(d, dict):
         return None
     points = [p for p in (_short(x, 200) for x in d.get("points") or []) if p][:3]
-    steps = [s for s in (_short(x, 320) for x in d.get("steps") or []) if s][:6]
+    if brief:
+        return {"points": points[:1], "so_what": [], "extra": "", "figure": None, "terms": []} if points else None
+    so_what = [s for s in (_short(x, 320) for x in d.get("so_what") or []) if s][:3]
     if len(points) < 2:
         return None
-    return {"points": points, "steps": steps, "extra": _short(d.get("extra"), 900) or "",
+    return {"points": points, "so_what": so_what, "extra": _short(d.get("extra"), 900) or "",
             "figure": clean_figure(d.get("figure")), "terms": clean_terms(d.get("terms"))}
 
 
@@ -116,7 +121,8 @@ def clean_terms(terms) -> list[dict]:
 def valid_item(item: dict) -> bool:
     if any(not item.get(k) for k in REQUIRED):
         return False
-    return item["url"].startswith("https://") and item["source"] in SOURCES and item["cat"] in CATS
+    return (item["url"].startswith("https://") and item["source"] in SOURCES and item["cat"] in CATS
+            and item["region"] in REGIONS)
 
 
 def dedupe_candidates(candidates: list[dict], existing: list[dict]) -> list[dict]:
@@ -143,11 +149,11 @@ def dedupe_candidates(candidates: list[dict], existing: list[dict]) -> list[dict
 
 
 def rank_for_run(candidates: list[dict]) -> list[dict]:
-    """회차 상한을 넘을 때 남길 순서. 점수가 없는 소스가 밀리지 않도록
-    소스별로 (점수+댓글, 게시 최신) 순으로 줄 세운 뒤 한 건씩 번갈아 뽑는다."""
+    """회차 상한을 넘을 때 남길 순서. 한 매체가 자리를 독차지하지 않도록
+    매체(outlet)별로 (점수+댓글, 게시 최신) 순으로 줄 세운 뒤 한 건씩 번갈아 뽑는다."""
     by_source: dict[str, list[dict]] = {}
     for c in candidates:
-        by_source.setdefault(c["source"], []).append(c)
+        by_source.setdefault(c.get("outlet") or c["source"], []).append(c)
     queues = [
         sorted(q, key=lambda c: ((c.get("score") or 0) + (c.get("comments") or 0), c.get("published_at") or ""),
                reverse=True)
@@ -167,7 +173,8 @@ def add_items(existing: list[dict], new: list[dict], now: datetime) -> tuple[lis
     for raw in new:
         item = {k: raw.get(k) for k in REQUIRED + OPTIONAL}
         item["collected_at"] = stamp
-        item["detail"] = clean_detail(item.get("detail"))
+        item["brief"] = item.get("brief") is True or None   # 원문을 읽은 글이면 필드 생략
+        item["detail"] = clean_detail(item.get("detail"), brief=bool(item["brief"]))
         item["buzz"] = item.get("buzz") is True or None   # 화제가 아니면 필드 생략
         old = by_id.get(item.get("replaces") or "")
         if not old or old.get("superseded_by"):
