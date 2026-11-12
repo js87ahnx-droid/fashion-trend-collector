@@ -130,8 +130,8 @@ def test_detail_failure_isolated():
         return msg(DETAIL)
 
     items = [r(f"hn-{i}", "t") | {"headline": "h", "cat": "brand"} for i in (1, 2, 3)]
-    ok, errs, thin = detail.write_all(items, FakeClient(detail_fn=det))
-    assert [o["id"] for o in ok] == ["hn-1", "hn-3"] and "hn-2" in errs[0] and thin == []
+    ok, errs, thin, failed = detail.write_all(items, FakeClient(detail_fn=det))
+    assert [o["id"] for o in ok] == ["hn-1", "hn-3"] and "hn-2" in errs[0] and thin == [] and failed == ["hn-2"]
 
 
 def test_detail_insufficient_reported_separately():
@@ -141,8 +141,8 @@ def test_detail_insufficient_reported_separately():
         return msg(DETAIL | {"insufficient": False})
 
     items = [r(f"hn-{i}", "t") | {"headline": "h", "cat": "brand"} for i in (1, 2)]
-    ok, errs, thin = detail.write_all(items, FakeClient(detail_fn=det))
-    assert [o["id"] for o in ok] == ["hn-1"] and errs == [] and thin == ["hn-2"]
+    ok, errs, thin, failed = detail.write_all(items, FakeClient(detail_fn=det))
+    assert [o["id"] for o in ok] == ["hn-1"] and errs == [] and thin == ["hn-2"] and failed == []
     assert "insufficient" not in ok[0]["detail"]
 
 
@@ -316,3 +316,139 @@ def test_brief_never_picked(tmp_path):
     items = {i["id"]: i for i in store.load_items(tmp_path / "items.json")}
     assert "pick" not in items["g-1"] and items["g-1"]["brief"] is True
     assert items["f-1"]["pick"] == 9
+
+
+
+# --- S5: 상세 ---
+
+def detail_calls_of(client):
+    return [c for c in client.calls if is_detail(c)]
+
+
+def test_detail_models_tools_and_brief_prompt():
+    """S5 AC① — brief 글엔 도구 없음, 일반 글엔 web fetch 1회, 상세는 Sonnet·분류는 Opus."""
+    client = FakeClient(label_all())
+    classify.classify([r("f-1", "x")], client)
+    assert client.calls[0]["model"] == "claude-opus-5-5"
+    one = {"points": ["한 줄"], "so_what": [], "extra": "", "figure": None, "terms": []}
+    client = FakeClient(detail_fn=lambda kw: msg(one if "원문을 열 수 없다" in kw["messages"][0]["content"] else DETAIL))
+    detail.write(r("g-1", "BoF scoop", brief=True, excerpt="요약 문장") | {"headline": "h", "cat": "brand"}, client)
+    detail.write(r("f-1", "WWD story") | {"headline": "h", "cat": "brand"}, client)
+    brief_call, normal_call = client.calls
+    assert "tools" not in brief_call and brief_call["model"] == "claude-sonnet-5-5"
+    assert "요약 문장" in brief_call["messages"][0]["content"] and "근거에 없는 숫자" in brief_call["messages"][0]["content"]
+    assert normal_call["tools"][0]["max_uses"] == 1 and normal_call["tools"][0]["max_content_tokens"] == 4000
+    assert normal_call["model"] == "claude-sonnet-5-5"
+
+
+def test_brief_detail_extra_fields_dropped(tmp_path):
+    """S5 AC② — brief 응답에 so_what·figure·extra·terms가 와도 저장본엔 비어 있음."""
+    class B:
+        @staticmethod
+        def fetch(ctx):
+            return [r("g-1", "BoF scoop", source="gnews", brief=True)]
+
+    full = DETAIL | {"terms": [{"term": "t", "meaning": "m"}], "extra": "추측"}
+    main.run(NOW, tmp_path, FakeClient(label_all(), lambda kw: msg(full)), sources=[("gnews", B)])
+    d = store.load_items(tmp_path / "items.json")[0]["detail"]
+    assert d == {"points": ["핵심 하나"], "so_what": [], "extra": "", "figure": None, "terms": []}
+
+
+class Many:
+    def __init__(self, n_normal=0, n_brief=0, prefix="f"):
+        self.items = [r(f"{prefix}-n{i}", f"normal {i}") for i in range(n_normal)] + \
+                     [r(f"{prefix}-b{i}", f"brief {i}", source="gnews", brief=True) for i in range(n_brief)]
+
+    def fetch(self, ctx):
+        return [i for i in self.items if i["id"] not in ctx.known_ids]
+
+
+def test_daily_cap_counts_calls_not_saves(tmp_path):
+    """S5 AC③ — 24시간 안 상세 호출 38회(저장된 글은 그보다 적어도) + 후보 5건 → 상세 2회만, 이후 40개."""
+    store.save_json(tmp_path / "status.json", {"detail_calls": [store.iso(NOW - timedelta(hours=h % 23 + 0.5)) for h in range(38)]
+                                                + [store.iso(NOW - timedelta(hours=30))]})
+    client = FakeClient(label_all())
+    st = main.run(NOW, tmp_path, client, sources=[("feeds", Many(5))])
+    assert len(detail_calls_of(client)) == 2
+    assert len(st["detail_calls"]) == 40 and st["run"]["deferred"] == 3        # 30시간 전 기록은 빠짐
+    client = FakeClient(label_all())
+    st = main.run(NOW + timedelta(minutes=5), tmp_path, client, sources=[("feeds", Many(5, prefix="g"))])
+    assert client.calls == [] and "하루 상한" in st["run"]["note"]             # 상한이면 분류도 안 함
+
+
+def test_insufficient_and_failures_still_count(tmp_path):
+    """S5 AC③-2 — 근거 부족·예외도 detail_calls에 셈."""
+    def det(kw):
+        text = kw["messages"][0]["content"]
+        if "normal 0" in text:
+            return msg(DETAIL | {"insufficient": True})
+        if "normal 1" in text:
+            raise RuntimeError("fetch 실패")
+        return msg(DETAIL)
+
+    st = main.run(NOW, tmp_path, FakeClient(label_all(), det), sources=[("feeds", Many(3))])
+    assert len(st["detail_calls"]) == 3 and st["run"]["added"] == 1
+
+
+def test_detail_calls_carry_over_runs(tmp_path):
+    """S5 AC③-3 — 1회차 기록이 2회차로 이어지고, 수집 소스가 예외를 내도 이어진다."""
+    main.run(NOW, tmp_path, FakeClient(label_all()), sources=[("feeds", Many(2))])
+    st = main.run(NOW + timedelta(hours=3), tmp_path, FakeClient(label_all()), sources=[("boom", Boom)])
+    assert len(st["detail_calls"]) == 2
+    st = main.run(NOW + timedelta(hours=25), tmp_path, FakeClient(label_all()), sources=[("boom", Boom)])
+    assert st["detail_calls"] == []                                           # 24시간 지나면 빠짐
+
+
+def test_two_failures_then_skipped(tmp_path):
+    """S5 AC③-4 — 같은 글이 두 회차 연속 상세 예외 → 3회차 후보에서 빠짐."""
+    def boom(kw):
+        raise RuntimeError("파싱 오류")
+
+    src = Many(1)
+    main.run(NOW, tmp_path, FakeClient(label_all(), boom), sources=[("feeds", src)])
+    assert "f-n0" not in json.loads((tmp_path / "skipped.json").read_text(encoding="utf-8"))
+    main.run(NOW + timedelta(hours=3), tmp_path, FakeClient(label_all(), boom), sources=[("feeds", src)])
+    assert "f-n0" in json.loads((tmp_path / "skipped.json").read_text(encoding="utf-8"))
+    assert len(json.loads((tmp_path / "failures.json").read_text(encoding="utf-8"))["f-n0"]) == 2
+    client = FakeClient(label_all())
+    main.run(NOW + timedelta(hours=6), tmp_path, client, sources=[("feeds", src)])
+    assert client.calls == []
+
+
+def test_brief_gets_two_slots():
+    """S5 AC③-5 — 일반 8 + brief 3 → 상세 5건 중 brief 2, 일반 3."""
+    labeled = [r(f"n{i}", "x") | {"pick": 9 - i} for i in range(8)] + [r(f"b{i}", "y", brief=True) | {"pick": 0} for i in range(3)]
+    got = main.pick_for_detail(labeled, 5)
+    assert [g["id"] for g in got] == ["n0", "n1", "n2", "b0", "b1"]
+    assert [g["id"] for g in main.pick_for_detail(labeled[7:], 5)] == ["n7", "b0", "b1", "b2"]   # 남는 자리는 서로 채움
+
+
+def test_eight_runs_a_day_never_starve(tmp_path):
+    """S5 AC③-6 — 하루 8회차(회차마다 후보 10건) → 회차마다 상세 5건, 0건인 회차 없음."""
+    per_run = []
+    for k in range(8):
+        client = FakeClient(label_all())
+        main.run(NOW + timedelta(hours=3 * k), tmp_path, client, sources=[("feeds", Many(10, prefix=f"r{k}"))])
+        per_run.append(len(detail_calls_of(client)))
+    assert per_run == [5] * 8
+
+
+def test_usage_recorded_by_model(tmp_path):
+    """사용량 — 회차 합계와 최근 24시간 목록, 응답 모델별 토큰."""
+    def with_usage(payload, model):
+        m = msg(payload)
+        m.model = model
+        m.usage = SimpleNamespace(input_tokens=100, output_tokens=20, cache_read_input_tokens=5,
+                                  server_tool_use=SimpleNamespace(web_fetch_requests=1))
+        return m
+
+    client = FakeClient(lambda kw: with_usage(label_all()(kw), "claude-opus-5-5"),
+                        lambda kw: with_usage(DETAIL, "claude-sonnet-5-5"))
+    st = main.run(NOW, tmp_path, client, sources=[("feeds", Many(2))])
+    u = st["run"]["usage"]
+    assert (u["classify_calls"], u["detail_items"], u["api_requests"], u["web_fetches"]) == (1, 2, 3, 3)
+    assert u["by_model"]["claude-opus-5-5"] == {"input_tokens": 105, "output_tokens": 20}
+    assert u["by_model"]["claude-sonnet-5-5"] == {"input_tokens": 210, "output_tokens": 40}
+    assert st["usage_24h"][0]["usage"] == u
+    st2 = main.run(NOW + timedelta(hours=25), tmp_path, FakeClient(), sources=[("feeds", Many(0))])
+    assert st2["usage_24h"] == []

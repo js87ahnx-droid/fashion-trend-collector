@@ -18,12 +18,39 @@ SOURCES = [("feeds", feeds), ("krsite", krsite), ("gnews", gnews)]
 DATA = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data"))
 SKIP_MEMORY = timedelta(days=8)   # 피드 최대 수집 창(7일)보다 길게
 GROUP = {"feed": "feeds"}   # 글의 source 값 → status.sources 키 (krsite·gnews는 이름이 같음)
+DETAIL_PER_RUN = 5            # 회차당 상세 최대 (5×8회 = 하루 40)
+BRIEF_SLOTS = 2               # 그중 brief 글 몫 — pick이 없어 늘 뒤로 밀리므로 먼저 준다
+DETAIL_PER_DAY = 40           # 최근 24시간 상세 호출 상한(성공·근거 부족·실패 모두 셈) — 수동 실행이 겹칠 때의 안전장치
+FAIL_LIMIT = 2                # 상세가 예외로 이만큼 실패하면 건너뛴 글로 기억
+DAY = timedelta(hours=24)
+
+
+def pick_for_detail(labeled: list[dict], n: int) -> list[dict]:
+    """pick 순으로 정렬된 분류 결과에서 상세 n건. brief 글에 BRIEF_SLOTS자리를 먼저 주고, 남는 자리는 서로 채운다."""
+    briefs = [c for c in labeled if c.get("brief")]
+    normal = [c for c in labeled if not c.get("brief")]
+    take_b = min(BRIEF_SLOTS, len(briefs), n)
+    take_n = min(n - take_b, len(normal))
+    take_b = min(len(briefs), n - take_n)
+    chosen = {id(c) for c in briefs[:take_b] + normal[:take_n]}
+    return [c for c in labeled if id(c) in chosen]
+
+
+def _recent(stamps, now: datetime) -> list:
+    return [t for t in stamps if now - store.parse_iso(t if isinstance(t, str) else t["at"]) < DAY]
 
 
 def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources=SOURCES) -> dict:
     now = now or datetime.now(timezone.utc)
     items_path, status_path, skipped_path = data_dir / "items.json", data_dir / "status.json", data_dir / "skipped.json"
+    failures_path = data_dir / "failures.json"
     items = store.load_items(items_path)
+    prev_status = store.load_status(status_path)
+    detail_calls = _recent(prev_status.get("detail_calls") or [], now)      # 최근 24시간 상세 호출 시각
+    usage_24h = _recent(prev_status.get("usage_24h") or [], now)
+    failures = json.loads(failures_path.read_text(encoding="utf-8")) if failures_path.exists() else {}
+    failures = {k: [t for t in v if now - store.parse_iso(t) < SKIP_MEMORY] for k, v in failures.items()}
+    failures = {k: v for k, v in failures.items() if v}
     # 분류에서 빠졌거나 근거가 부족했던 글 — 다시 보내지 않는다 (화면이 읽지 않는 별도 파일)
     prev_skipped = json.loads(skipped_path.read_text(encoding="utf-8")) if skipped_path.exists() else {}
     skipped = {k: v for k, v in prev_skipped.items() if now - store.parse_iso(v) < SKIP_MEMORY}
@@ -58,17 +85,31 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
     # 4~5. 분류 → 상세 → 저장
     added: list[dict] = []
     notes: list[str] = []
-    labeled_n = 0
+    labeled_n = deferred = 0
+    usage = classify.Usage()
+    room = min(DETAIL_PER_RUN, DETAIL_PER_DAY - len(detail_calls))
     if client is None:
         notes.append("ANTHROPIC_API_KEY 없음 — 분류·저장 건너뜀")
         log.warning(notes[-1])
+    elif fresh and room <= 0:
+        notes.append(f"최근 24시간 상세 {len(detail_calls)}회 — 하루 상한이라 이번 회차는 분류도 건너뜀")
+        log.warning(notes[-1])
     elif fresh:
         try:
-            labeled, judged_out = classify.classify(fresh, client, store.recent(items, now, 24 * 7))
+            labeled, judged_out = classify.classify(fresh, client, store.recent(items, now, 24 * 7), usage)
             labeled_n = len(labeled)
-            written, errors, thin = detail.write_all(labeled[: store.MAX_PER_RUN], client)
-            for sid in judged_out + thin:
+            for sid in judged_out:
                 skipped[sid] = store.iso(now)
+            batch = pick_for_detail(labeled, room)
+            deferred = labeled_n - len(batch)    # 자리가 없어 다음 회차에 다시 분류될 글
+            detail_calls += [store.iso(now)] * len(batch)
+            written, errors, thin, failed = detail.write_all(batch, client, usage)
+            for sid in thin:
+                skipped[sid] = store.iso(now)
+            for fid in failed:
+                failures.setdefault(fid, []).append(store.iso(now))
+                if len(failures[fid]) >= FAIL_LIMIT:
+                    skipped[fid] = store.iso(now)
             if errors:
                 notes.append(f"상세 실패 {len(errors)}건: " + "; ".join(errors)[:300])
             items, added = store.add_items(items, written, now)
@@ -76,6 +117,8 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
         except Exception as e:
             notes.append(f"분류 실패: {type(e).__name__}: {e}"[:300])
             log.warning(notes[-1])
+    if usage.data["api_requests"]:
+        usage_24h.append({"at": store.iso(now), "usage": usage.data})
 
     items = store.prune(items, now)
     for name in report:
@@ -84,11 +127,16 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
         "last_run": store.iso(now),
         "sources": report,
         "run": {"candidates": len(cands), "ad_filtered": len(filtered), "new": len(fresh), "labeled": labeled_n,
-                "added": len(added), "total": len(items), "skip_memory": len(skipped), **({"note": " / ".join(notes)} if notes else {})},
+                "deferred": deferred, "added": len(added), "total": len(items), "skip_memory": len(skipped),
+                "usage": usage.data, **({"note": " / ".join(notes)} if notes else {})},
+        # 공개 파일 — 시각·건수·토큰 수만 둔다
+        "detail_calls": detail_calls,
+        "usage_24h": usage_24h,
     }
     store.save_json(items_path, store.items_doc(items))
     store.save_json(status_path, new_status)
     store.save_json(skipped_path, skipped)
+    store.save_json(failures_path, failures)
     log.info("완료: 추가 %d, 전체 %d", len(added), len(items))
     return new_status
 

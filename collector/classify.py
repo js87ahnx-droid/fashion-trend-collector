@@ -85,6 +85,34 @@ class LLMError(Exception):
     pass
 
 
+class Usage:
+    """회차 사용량 — 모델별 토큰, API 요청 수, web fetch 횟수. 상세는 병렬이라 잠금을 쓴다.
+    입력 토큰에는 캐시 읽기·쓰기 토큰을 더한다(값이 없으면 0). thinking 토큰은 output_tokens에 포함된 값 그대로."""
+
+    def __init__(self):
+        import threading
+
+        self._lock = threading.Lock()
+        self.data = {"classify_calls": 0, "detail_items": 0, "api_requests": 0, "web_fetches": 0, "by_model": {}}
+
+    def count(self, key: str) -> None:
+        with self._lock:
+            self.data[key] += 1
+
+    def add(self, resp) -> None:
+        u = getattr(resp, "usage", None)
+        model = getattr(resp, "model", None) or "unknown"
+        n = lambda k: int(getattr(u, k, 0) or 0)   # noqa: E731
+        with self._lock:
+            self.data["api_requests"] += 1
+            m = self.data["by_model"].setdefault(model, {"input_tokens": 0, "output_tokens": 0})
+            if u is not None:
+                m["input_tokens"] += n("input_tokens") + n("cache_creation_input_tokens") + n("cache_read_input_tokens")
+                m["output_tokens"] += n("output_tokens")
+                stu = getattr(u, "server_tool_use", None)
+                self.data["web_fetches"] += int(getattr(stu, "web_fetch_requests", 0) or 0) if stu else 0
+
+
 def prefilter(cands: list[dict]) -> list[dict]:
     out = []
     for c in cands:
@@ -112,7 +140,7 @@ def final_json(resp) -> dict:
     return json.loads(texts[-1])
 
 
-def ask(client, prompt: str, schema: dict, max_tokens: int, **extra) -> dict:
+def ask(client, prompt: str, schema: dict, max_tokens: int, usage: Usage | None = None, **extra) -> dict:
     resp = client.beta.messages.create(
         model=MODEL,
         max_tokens=max_tokens,
@@ -122,6 +150,9 @@ def ask(client, prompt: str, schema: dict, max_tokens: int, **extra) -> dict:
         messages=[{"role": "user", "content": prompt}],
         **extra,
     )
+    if usage:
+        usage.count("classify_calls")
+        usage.add(resp)
     return final_json(resp)
 
 
@@ -129,7 +160,8 @@ def _clip(s, n: int) -> str:
     return (s or "").strip()[:n]
 
 
-def classify(cands: list[dict], client, stored: list[dict] = ()) -> tuple[list[dict], list[str]]:
+def classify(cands: list[dict], client, stored: list[dict] = (), usage: Usage | None = None
+             ) -> tuple[list[dict], list[str]]:
     """(통과한 글, 판정 결과 건너뛴 id). 통과한 글에는 cat·headline·tag·why·buzz·pick·replaces를 붙여 pick 높은 순.
     stored: 최근 저장된 글 — 같은 소식 재수집을 거르고 대체 관계를 판정하는 데 쓴다.
     응답에서 빠진 id는 어느 쪽에도 넣지 않는다(다음 회차에 다시 판정)."""
@@ -146,7 +178,7 @@ def classify(cands: list[dict], client, stored: list[dict] = ()) -> tuple[list[d
         for c in cands
     ]
     prompt = f"{CLASSIFY_PROMPT}\n저장된 글 (id | cat | brief | headline):\n{stored_txt}\n\n게시글(JSON Lines):\n" + "\n".join(lines)
-    data = ask(client, prompt, CLASSIFY_SCHEMA, 16000)
+    data = ask(client, prompt, CLASSIFY_SCHEMA, 16000, usage)
 
     labels: dict[str, dict] = {}
     for r in data.get("results", []):
