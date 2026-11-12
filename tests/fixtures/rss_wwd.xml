@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>WWD</title>
+	<atom:link href="https://wwd.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://wwd.com</link>
+	<description>Women&#039;s Wear Daily brings you breaking news about the fashion industry, designers, celebrity trend setters, and extensive coverage of fashion week.</description>
+	<lastBuildDate>Thu, 12 Nov 2026 21:43:46 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.9.11</generator>
+
+ 
+<site xmlns="com-wordpress:feed-additions:1">179326381</site>	<item>
+		<title>Kathryn Hahn Breaks Up a Monochrome Gray Look With the Help of Daringly Sharp Snake Print&#160;Pumps</title>
+		<link>https://wwd.com/footwear-news/shoe-trends/kathryn-hahn-hagelstam-snake-print-pumps-1239413554/</link>
+					<comments>https://wwd.com/footwear-news/shoe-trends/kathryn-hahn-hagelstam-snake-print-pumps-1239413554/#respond</comments>
+		
+		<dc:creator><![CDATA[Karla Rodriguez]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 21:43:43 +0000</pubDate>
+				<category><![CDATA[Shoe Trends]]></category>
+		<category><![CDATA[animal print]]></category>
+		<category><![CDATA[Celebrity Shoe Style]]></category>
+		<guid isPermaLink="false">https://wwd.com/?p=1239413554</guid>
+
+					<description><![CDATA[The actress wore the look on "Good Morning America."]]></description>
+		
+					<wfw:commentRss>https://wwd.com/footwear-news/shoe-trends/kathryn-hahn-hagelstam-snake-print-pumps-1239413554/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">1239413554</post-id>	</item>
+<item>
+		<title>Gabby Windey Is Ready to Pay Her Dues in&#160;Hollywood</title>
+		<link>https://wwd.com/eye/people/gabby-windey-the-body-netflix-peaked-1239413668/</link>
+					<comments>https://wwd.com/eye/people/gabby-windey-the-body-netflix-peaked-1239413668/#respond</comments>
+		
+		<dc:creator><![CDATA[Leigh Nordstrom]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 21:40:26 +0000</pubDate>
+				<category><![CDATA[People]]></category>
+		<category><![CDATA[Eye Interview]]></category>
+		<category><![CDATA[Netflix]]></category>
+		<category><![CDATA[WWD Weekend Arts & Culture]]></category>
+		<guid isPermaLink="false">https://wwd.com/?p=1239413668</guid>
+
+					<description><![CDATA[After years in reality TV, the “Traitors” winner is making her scripted acting debut in Netflix’s queer drama “The Body,” with more roles — and a book of comedic essays — on the horizon.]]></description>
+		
+					<wfw:commentRss>https://wwd.com/eye/people/gabby-windey-the-body-netflix-peaked-1239413668/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">1239413668</post-id>	</item>
+<item>
+		<title>Nike Is Finally Making a New Flyknit Sneaker — Here&#8217;s an Official Detailed&#160;Look</title>
+		<link>https://wwd.com/footwear-news/sneaker-news/nike-flyknit-runner-2027-release-date-iv5703-003-1239413961/</link>
+					<comments>https://wwd.com/footwear-news/sneaker-news/nike-flyknit-runner-2027-release-date-iv5703-003-1239413961/#respond</comments>
+		
+		<dc:creator><![CDATA[Riley Jones]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 20:44:20 +0000</pubDate>
+				<category><![CDATA[Sneaker News]]></category>
+		<category><![CDATA[flyknit]]></category>
+		<category><![CDATA[Nike]]></category>
+		<category><![CDATA[Nike Flyknit]]></category>
+		<guid isPermaLink="false">https://wwd.com/?p=1239413961</guid>
+
+					<description><![CDATA[The Flyknit Runner is set to debut for $95.]]></description>
+		
+					<wfw:commentRss>https://wwd.com/footwear-news/sneaker-news/nike-flyknit-runner-2027-release-date-iv5703-003-1239413961/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">1239413961</post-id>	</item>
+</channel>
+</rss>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:webfeeds="http://webfeeds.org/rss/1.0">
+
+<channel>
+	<title>Glossy</title>
+	<atom:link href="https://www.glossy.co/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.glossy.co/</link>
+	<description>The evolution of fashion and beauty</description>
+	<lastBuildDate>Thu, 12 Nov 2026 20:38:26 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.9.11</generator>
+
+ 
+<webfeeds:logo></webfeeds:logo><webfeeds:accentColor>BE9968</webfeeds:accentColor><site xmlns="com-wordpress:feed-additions:1">181450582</site>	<item>
+		<title>Brands are banking on live shopping this holiday season</title>
+		<link>https://www.glossy.co/beauty/the-holiday-playbook-how-brands-are-banking-on-live-shopping-this-holiday-season/?utm_campaign=glossydis&#038;utm_medium=rss&#038;utm_source=general-rss</link>
+		
+		<dc:creator><![CDATA[Danny Parisi]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 16:28:08 +0000</pubDate>
+				<category><![CDATA[Beauty]]></category>
+		<category><![CDATA[Swap_BFCM_G]]></category>
+		<guid isPermaLink="false">https://www.glossy.co/?p=208589</guid>
+
+					<description><![CDATA[This year, more brands are gravitating toward live shopping, a growing channel that is set to play an outsized influence on shopping trends.]]></description>
+										
+					
+		
+		
+			<image>https://www.glossy.co/wp-content/uploads/sites/4/2026/11/Screenshot-2026-11-12-at-10.27.27-AM.png</image>
+<post-id xmlns="com-wordpress:feed-additions:1">208589</post-id>	</item>
+<item>
+		<title>POV Beauty’s Mikayla Nogueira unpacks her creator-brand playbook with CEO and co-founder Ani Hadjinian</title>
+		<link>https://www.glossy.co/podcasts/pov-beautys-mikayla-nogueira-unpacks-her-creator-brand-playbook-with-ceo-and-co-founder-ani-hadjinian/?utm_campaign=glossydis&#038;utm_medium=rss&#038;utm_source=general-rss</link>
+		
+		<dc:creator><![CDATA[Lexy Lebsack]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+				<category><![CDATA[Beauty]]></category>
+		<category><![CDATA[Podcasts]]></category>
+		<guid isPermaLink="false">https://www.glossy.co/?p=208581</guid>
+
+					<description><![CDATA[In this special episode of the Glossy Beauty Podcast, we are taking you directly to the main stage of Glossy's annual Beauty &#38; Wellness Summit for a conversation between POV Beauty founder Mikayla Nogueira, POV Beauty CEO and co-founder Ani Hadjinian, and Glossy editor-in-chief Jill Manoff. ]]></description>
+										
+					
+		
+		
+			<image>https://www.glossy.co/wp-content/uploads/sites/4/2026/11/GB_1140X520-3.jpg</image>
+<post-id xmlns="com-wordpress:feed-additions:1">208581</post-id>	</item>
+<item>
+		<title>Fashion Briefing: How Zara Larsson, Charli XCX and burning suitcases drove a boom in Away&#8217;s aluminum luggage business</title>
+		<link>https://www.glossy.co/fashion/fashion-briefing-how-zara-larsson-charli-xcx-and-burning-suitcases-drove-a-boom-in-aways-aluminum-luggage-business/?utm_campaign=glossydis&#038;utm_medium=rss&#038;utm_source=general-rss</link>
+		
+		<dc:creator><![CDATA[Danny Parisi]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+				<category><![CDATA[Fashion]]></category>
+		<category><![CDATA[Glossy+]]></category>
+		<category><![CDATA[plus]]></category>
+		<guid isPermaLink="false">https://www.glossy.co/?p=208587</guid>
+
+					<description><![CDATA[Sales of aluminum products at Away have increased 20% from 2025 to 2026, making aluminum Away's best-selling and fastest-growing category.]]></description>
+										
+					
+		
+		
+			<image>https://www.glossy.co/wp-content/uploads/sites/4/2026/11/image_17_dff1d8e1-14dc-4a41-9a47-780850481d25.webp</image>
+<post-id xmlns="com-wordpress:feed-additions:1">208587</post-id>	</item>
+</channel>
+</rss>

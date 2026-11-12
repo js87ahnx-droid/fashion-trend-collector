@@ -6,7 +6,9 @@ import time
 import urllib.error
 import urllib.request
 
-UA = "fashion-trend-collector/1.0 (+https://github.com/js87ahnx-droid/fashion-trend-collector)"
+# 이름에 "collector"가 들어가면 한국섬유신문 RSS가 403 페이지를 준다(2026-11-13 확인, 사용자 결정으로 이름만 바꿈).
+# 브라우저로 위장하지 않고 우리 이름·연락 주소는 그대로 밝힌다.
+UA = "fashion-trend-news/1.0 (+https://github.com/js87ahnx-droid)"
 RETRY_STATUS = {429, 500, 502, 503, 504}
 
 
