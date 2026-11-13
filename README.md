@@ -1,9 +1,10 @@
-# AI 동향 수집함
+# 패션 동향 수집함
 
-국내외 커뮤니티의 AI 트렌드·활용 팁을 매시간 수집해 테마별로 묶어 보여주는 정적 대시보드.
+국내외 패션 업계 소식(BoF·Vogue Business·WWD·국내 패션 산업지 등)을 3시간마다 모아
+Claude가 한국어로 정리해 주제별로 보여 주는 정적 사이트. [AI 동향 수집함](https://github.com/js87ahnx-droid/ai-trend-collector)의 코드를 복사해 패션용으로 고쳤다(따로 운영).
 
-- 화면: GitHub Pages (`web/index.html` + `data/*.json`)
-- 수집: GitHub Actions `37 * * * *` → `python -m collector.main` → `data/` 커밋 → Pages 재배포
+- 화면: GitHub Pages (`web/index.html` + `data/items.json`·`data/status.json`)
+- 수집: GitHub Actions `17 */3 * * *` → `python -m collector.main` → `data/` 커밋 → Pages 재배포
 
 ## 설정
 
@@ -11,42 +12,53 @@
 
 | 이름 | 용도 | 없으면 |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | 분류·헤드라인·원문 읽고 상세 작성 (기본 모델 `claude-opus-5-5`) | 수집만 하고 저장 안 함 (`last_run`만 갱신) |
-| `SEARCH_API_KEY` | Brave Search API — Reddit·Threads·웹 보완 | 웹검색 단계 건너뜀 |
+| `ANTHROPIC_API_KEY` | 분류(Opus 5.5)·기사 정리(Sonnet 5.5) | 수집만 하고 저장 안 함 (`last_run`만 갱신) |
 
-모델 교체: 워크플로 `env`에 `ANTHROPIC_MODEL`을 추가.
+모델 교체: 워크플로 `env`에 `ANTHROPIC_MODEL`(분류) 또는 `ANTHROPIC_DETAIL_MODEL`(기사 정리)을 추가.
 
 ## 로컬 실행
 
 ```bash
 python -m venv .venv && .venv/Scripts/pip install -r requirements.txt -r requirements-dev.txt
 .venv/Scripts/python -m pytest -q
-.venv/Scripts/python scripts/live_check.py        # 소스별 실제 수집 건수만 확인 (저장·LLM 없음)
+.venv/Scripts/python scripts/live_check.py        # 매체별 실제 수집 건수만 확인 (저장·LLM 없음)
 .venv/Scripts/python -m collector.main            # 전체 1회차 (DATA_DIR로 출력 위치 변경 가능)
 .venv/Scripts/python scripts/build_site.py && .venv/Scripts/python -m http.server -d _site
 ```
 
-## 수집 소스
+아이콘(로컬에서 한 번, Pillow·Georgia Bold·Edge 필요): `scripts/make_icons.py`로 `web/icon-*.png`를 만들고
+`scripts/check_icon.py`로 `web/icon.svg`와 같은지 확인한다.
 
-| 접두어 | 방법 |
-|---|---|
-| `gn` / `gnp` | 긱뉴스 RSS `news.hada.io/rss/news`. 작성자 `neo`(GN⁺ 봇) 글을 `gnp`로 분류. `/new`, `/plus` HTML은 403이라 쓰지 않음 |
-| `hn` | Hacker News 공식 API, topstories 상위 30 |
-| `gpters` | 게시판 목록(`/c/`)은 robots.txt 차단 → 공간별 `sitemap.xml`의 최근 48시간 글 최대 12건, 게시글 og 메타(제목·설명·게시일)만 읽음 |
-| `reddit` / `threads` / `web` | Brave Search `freshness=pd`, 회차당 6회 호출. 제목·스니펫·URL·게시일만 사용, 원문 미방문 |
-| `threads` | AI 공개 프로필 6곳을 헤드리스 Chromium으로 11시간 간격으로 읽음. 3일 안의 글, 계정당 최대 3건. 로그인 화면·차단이 나오면 우회하지 않고 다음 차례까지 쉼 (개인 용도, 시험 운영) |
-| `news` / `nl` | RSS — AI타임스·OpenAI·구글 AI·TechCrunch AI / The Rundown·One Useful Thing·Simon Willison |
+## 수집 출처
 
-## 운영 체크리스트 대응
+| `source` | 매체 | 방법 | 원문 |
+|---|---|---|---|
+| `feed` | WWD · Glossy · Fashionista | RSS (`collector/sources/feeds.py` `FEEDS`), 48시간, 매체당 5건 | 읽음 |
+| `feed` | Vogue Business | Vogue RSS 중 `Business` 분류 글만 | 안 읽음(brief) — vogue.com robots.txt가 Claude 수집기를 막음 |
+| `feed` | Hypebeast · 바자코리아 | RSS + 비즈니스 단어 필터 | 읽음 |
+| `feed` | 보그코리아 · W코리아 | RSS + 비즈니스 단어 필터 | 안 읽음(brief) — robots.txt가 ClaudeBot을 막음 |
+| `feed` | 한국섬유신문 | RSS, 매체당 8건, http 링크는 https로 | 읽음 |
+| `krsite` | 어패럴뉴스 · 패션엔 · 패션비즈 | 첫 화면 링크(패션비즈는 뉴스 사이트맵) → 기사 메타만 (`krsite.py` `SITES`), 매체당 6건, robots.txt 확인 | 읽음 |
+| `gnews` | The Business of Fashion | 구글 뉴스 RSS `site:businessoffashion.com when:2d` (`gnews.py` `QUERIES`), 6건 | 안 읽음(brief) — 링크는 구글 뉴스 주소 그대로 |
+
+brief 글은 원문을 열지 않고 제목·매체·RSS 요약만으로 한 줄 소개를 쓰며, 화면에 "원문 미확인 · 제목만 소개"로 표시되고 오늘의 픽에 오르지 않는다.
+같은 소식을 원문을 읽은 글이 나중에 다루면 그 글이 brief 글을 대체한다.
+
+User-Agent는 `fashion-trend-news/1.0 (+https://github.com/js87ahnx-droid)` — 이름에 "collector"가 들어가면 한국섬유신문이 막는다. 브라우저로 위장하지 않는다.
+
+## 운영 체크리스트
 
 | 항목 | 위치 |
 |---|---|
-| 소스별 실패 격리 | `collector/main.py` 수집 루프 try/except, GPTERS는 공간별로도 격리 |
-| 소스별 건수·실패 사유 로그 | Actions 로그 + `data/status.json`의 `sources`, 화면 하단 "수집 상태" |
-| LLM 1~2회 / 검색 5~8회 | 분류 1회 + 테마 요약 1회(새 글 있을 때만), `websearch.PER_RUN` 합계 6 |
-| 문서 수 상한 | 회차당 15건(`store.MAX_PER_RUN`), 7일 보관(`store.RETENTION`) |
-| 원문 복사 금지 | 분류 프롬프트에 직접 요약 지시, 저장 필드에 본문 없음 |
-| 요청 한도 | `collector/http.py` 지수 백오프(429·5xx, `Retry-After` 존중), Brave 호출 간 1.1초 |
-| 2시간 정지 시 "지연됨" | `web/index.html` `LATE_MS` |
+| 출처별·매체별 실패 격리 | `collector/main.py` 수집 루프, 각 출처 `fetch`의 매체 루프 |
+| 매체별 건수·실패 사유 | `data/status.json`의 `sources.*.outlets`, 화면 하단 "수집 상태" |
+| LLM 호출 | 분류 회차당 1회(Opus), 상세 글마다 1회(Sonnet, web fetch 1회·4천 토큰) |
+| 비용 상한 | 회차당 상세 5건(그중 brief 2자리, `main.DETAIL_PER_RUN`·`BRIEF_SLOTS`), 최근 24시간 40회(`DETAIL_PER_DAY`, 실패 포함) |
+| 사용량 기록 | `status.json`의 `run.usage`(모델별 토큰) · `usage_24h`(최근 24시간) |
+| 계속 실패하는 글 | 상세 예외 2번이면 건너뜀(`data/failures.json` → `skipped.json`) |
+| 보관 | 7일(`store.RETENTION`), 대체된 글은 3일 |
+| 원문 복사 금지 | 상세 프롬프트에 직접 요약·인용 금지, 저장 필드에 본문 없음 |
+| 요청 한도 | `collector/http.py` 지수 백오프(429·5xx, `Retry-After` 존중) |
+| 6시간 멈추면 "업데이트 늦어짐" | `web/index.html` `LATE_MS` |
 
-공개 저장소의 예약 워크플로는 60일간 저장소 활동이 없으면 GitHub가 멈춥니다. 매시 데이터 커밋이 활동으로 잡히지만, 멈추면 Actions 탭에서 다시 켭니다.
+공개 저장소의 예약 워크플로는 60일간 저장소 활동이 없으면 GitHub가 멈춘다. 데이터 커밋이 활동으로 잡히지만, 멈추면 Actions 탭에서 다시 켠다.

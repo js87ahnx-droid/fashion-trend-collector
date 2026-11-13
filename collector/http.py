@@ -1,7 +1,6 @@
 """표준 라이브러리 HTTP 도우미 — 타임아웃, 지수 백오프 재시도."""
 from __future__ import annotations
 
-import json
 import time
 import urllib.error
 import urllib.request
@@ -36,10 +35,6 @@ def get(url: str, *, headers: dict | None = None, timeout: float = 15, retries: 
         sleep(min(wait, 30))
         delay *= 2
     raise FetchError(f"재시도 소진 {url}")
-
-
-def get_json(url: str, **kw):
-    return json.loads(get(url, **kw))
 
 
 def get_text(url: str, **kw) -> str:

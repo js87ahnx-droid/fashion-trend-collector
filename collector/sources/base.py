@@ -6,9 +6,6 @@ import re
 from dataclasses import dataclass, field
 from datetime import datetime
 
-MAX_PER_SOURCE = 30
-
-
 @dataclass
 class Context:
     now: datetime
