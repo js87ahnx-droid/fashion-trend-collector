@@ -1,6 +1,6 @@
 {
-  "name": "AI 동향 수집함",
-  "short_name": "AI 동향",
+  "name": "패션 동향 수집함",
+  "short_name": "패션 동향",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

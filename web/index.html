@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100f0e" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="AI 동향">
+<meta name="apple-mobile-web-app-title" content="패션 동향">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
-<title>AI 동향 수집함</title>
+<title>패션 동향 수집함</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f6f4;--surface:#fff;--line:#e6e6e3;--text:#17181a;--muted:#62636a;--faint:#9fa0a6;--accent:#2f5bea;--tint:#eef2fe;--hot:#d9480f;--hover:#f7f8fb;--ok:#16a34a;--warn:#c2410c}
-@media (prefers-color-scheme:dark){:root{--bg:#0e0f11;--surface:#16171a;--line:#26272b;--text:#ececee;--muted:#9a9aa3;--faint:#62626b;--accent:#7b9cff;--tint:#1a2240;--hot:#ff8a4c;--hover:#1c1e24;--ok:#22c55e;--warn:#f59e0b}}
+:root{--bg:#f7f6f3;--surface:#fff;--line:#e7e5df;--text:#1a1917;--muted:#64625c;--faint:#a19f98;--accent:#8a3b2e;--tint:#f6ece8;--hot:#c2410c;--hover:#faf8f5;--ok:#16a34a;--warn:#b45309}
+@media (prefers-color-scheme:dark){:root{--bg:#100f0e;--surface:#181715;--line:#2a2825;--text:#eeece8;--muted:#a19e97;--faint:#66635d;--accent:#e39a85;--tint:#2a1d19;--hot:#ff8a4c;--hover:#1f1d1a;--ok:#22c55e;--warn:#f59e0b}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "IBM Plex Sans KR",system-ui,-apple-system,sans-serif}
@@ -103,32 +103,36 @@ code{font-family:"IBM Plex Mono",monospace;background:var(--hover);border:1px so
 .was a{color:var(--muted)}.was s{color:var(--faint)}
 .src{display:inline-block;margin-top:28px;background:var(--accent);color:#fff;padding:9px 16px;border-radius:9px;font-size:14px;font-weight:600}
 .src:hover{filter:brightness(1.08)}
-@media (prefers-color-scheme:dark){.src{color:#0e0f11}}
+@media (prefers-color-scheme:dark){.src{color:#100f0e}}
 details.health{margin-top:36px;font-size:12px;color:var(--muted)}
 details.health summary{cursor:pointer}
 details.health table{border-collapse:collapse;margin-top:6px;width:100%}
 details.health td{padding:3px 8px 3px 0;border-top:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
 .err{color:var(--warn)}
+.flag{display:inline-block;font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:6px;vertical-align:1px;line-height:1.5}
+.lock{display:inline-block;font-size:11px;color:var(--faint);margin-left:6px}
+ul.sowhat{margin:0;padding-left:20px}ul.sowhat li{margin:6px 0}
+details.health td.sub{padding-left:14px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="top"><h1><a href="#/">AI 동향 수집함</a></h1><div class="st" id="status" aria-live="polite"></div></header>
+  <header class="top"><h1><a href="#/">패션 동향 수집함</a></h1><div class="st" id="status" aria-live="polite"></div></header>
   <main id="app"></main>
   <details class="health" id="health"></details>
 </div>
 <script>
-const CATS = [["tip", "활용 팁"], ["tool", "써볼 만한 도구"], ["biz", "사업 아이디어"], ["voice", "전문가 이야기"], ["shift", "업데이트 소식"]];
+const CATS = [["brand", "브랜드·실적"], ["retail", "유통·커머스"], ["market", "마케팅·소비자"], ["material", "소재·생산"], ["people", "인물·인터뷰"]];
 const CAT = Object.fromEntries(CATS);
-const SRC = {gn: "긱뉴스", gnp: "GN⁺", hn: "Hacker News", reddit: "Reddit", threads: "Threads", gpters: "GPTERS",
-             web: "웹", pod: "팟캐스트", ph: "Product Hunt", nl: "뉴스레터", news: "뉴스"};
-const LATE_MS = 2 * 3600e3, POLL_MS = 5 * 60e3, PICK_WINDOW_MS = 48 * 3600e3, CAT_KEY = "ai-trend-cat";
+const REGION = {kr: "국내", global: "해외"};
+// 3시간 주기 두 번 — GitHub 예약 실행은 1시간 넘게 늦는 일이 흔하다
+const LATE_MS = 6 * 3600e3, POLL_MS = 5 * 60e3, PICK_WINDOW_MS = 48 * 3600e3, CAT_KEY = "fashion-trend-cat";
+const BRIEF_LABEL = "원문 미확인 · 제목만 소개";
 const state = {items: [], status: null, loaded: false, error: null, cat: "all"};
 try { const c = localStorage.getItem(CAT_KEY); if (c === "all" || CAT[c]) state.cat = c; } catch (_) {}
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const num = s => esc(s).replace(/\d[\d,.]*/g, d => `<span class="mono">${d}</span>`);
-const rich = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");   // 단계 속 `명령어`만 코드로
 const safeUrl = u => /^https:\/\//i.test(u || "") ? u : null;
 const itemHref = id => `#/item/${encodeURIComponent(id)}`;
 const byId = id => state.items.find(i => i.id === id);
@@ -137,6 +141,8 @@ const visibleAll = () => state.items.filter(i => CAT[i.cat]);
 const t = s => Date.parse(s) || 0;
 const HOT = '<span class="hot">화제</span>';
 const hot = it => it.buzz === true ? HOT : "";
+const flag = it => REGION[it.region] ? `<span class="flag">${REGION[it.region]}</span>` : "";
+const lock = it => it.brief === true ? `<span class="lock">${BRIEF_LABEL}</span>` : "";
 
 function ago(iso, now = Date.now()) {
   const ms = t(iso); if (!ms) return "-";
@@ -167,8 +173,8 @@ function row(it) {
     return `<a class="row old" href="${itemHref(it.id)}"><div class="h"><s>${esc(it.headline)}</s>` +
       (to ? `<span class="to">→ ${esc(to.headline)}</span>` : "") + `</div></a>`;
   }
-  const meta = [it.tag, SRC[it.source] || it.source].filter(Boolean).map(esc).join(" · ");
-  return `<a class="row" href="${itemHref(it.id)}"><div class="h">${isNew(it) ? '<span class="newdot" title="새로 들어옴"></span>' : ""}${hot(it)}${esc(it.headline)}</div><span class="m">${meta}</span></a>`;
+  const meta = `${esc(it.outlet || "")} · ${num(ago(it.collected_at))}`;
+  return `<a class="row" href="${itemHref(it.id)}"><div class="h">${isNew(it) ? '<span class="newdot" title="새로 들어옴"></span>' : ""}${hot(it)}${flag(it)}${esc(it.headline)}${lock(it)}</div><span class="m">${meta}</span></a>`;
 }
 
 function renderNav() {
@@ -179,16 +185,17 @@ function renderNav() {
 
 function renderPicks() {
   const now = Date.now();
-  let pool = live().filter(i => now - t(i.collected_at) < PICK_WINDOW_MS);
-  if (pool.length < 4) pool = live();
+  const cand = live().filter(i => i.brief !== true);   // 원문을 못 읽은 글은 오늘의 픽에 올리지 않는다
+  let pool = cand.filter(i => now - t(i.collected_at) < PICK_WINDOW_MS);
+  if (pool.length < 4) pool = cand;
   const picks = pool.slice().sort((a, b) => ((b.pick ?? 0) - (a.pick ?? 0)) || ((b.buzz === true) - (a.buzz === true)) ||
     (t(b.collected_at) - t(a.collected_at))).slice(0, 4);
   if (!picks.length) return "";
   const [a, ...rest] = picks;
-  return `<a class="hero" href="${itemHref(a.id)}"><div class="k">오늘 먼저 볼 것 · ${esc(CAT[a.cat])}${a.buzz === true ? ` · ${HOT}` : ""}</div>` +
+  return `<a class="hero" href="${itemHref(a.id)}"><div class="k">오늘 먼저 볼 것 · ${esc(REGION[a.region] || "")} · ${esc(CAT[a.cat])}${a.buzz === true ? ` · ${HOT}` : ""}</div>` +
     `<div class="h">${esc(a.headline)}</div>${a.why ? `<div class="w">${esc(a.why)}</div>` : ""}</a>` +
     (rest.length ? `<div class="subs">${rest.map((it, i) => `<a href="${itemHref(it.id)}"><span class="no mono">${i + 2}</span>` +
-      `<span class="h">${hot(it)}${esc(it.headline)}</span><span class="c">${esc(CAT[it.cat])}</span></a>`).join("")}</div>` : `<div class="subs"></div>`);
+      `<span class="h">${hot(it)}${flag(it)}${esc(it.headline)}</span><span class="c">${esc(CAT[it.cat])}</span></a>`).join("")}</div>` : `<div class="subs"></div>`);
 }
 
 function section(name, list, showCount) {
@@ -197,7 +204,7 @@ function section(name, list, showCount) {
 }
 
 function renderIndex() {
-  if (!state.items.length) return renderNav() + `<div class="empty">아직 정리된 글이 없어요. 수집이 돌면 바로 쓸 수 있는 팁·도구·전문가 이야기가 여기에 쌓입니다.</div>`;
+  if (!state.items.length) return renderNav() + `<div class="empty">아직 정리된 글이 없어요. 수집이 돌면 국내외 패션 업계 소식이 여기에 쌓입니다.</div>`;
   if (state.cat === "all") {
     return renderNav() + renderPicks() + CATS.map(([k, n]) => {
       const g = sortItems(visibleAll().filter(i => i.cat === k));
@@ -229,7 +236,7 @@ function figure(f) {
 
 function terms(list) {
   const ok = (list || []).filter(x => x && x.term && x.meaning);
-  return ok.length ? `<section class="blk"><h3>모르는 말 풀이</h3><dl class="terms">${ok.map(x => `<dt>${esc(x.term)}</dt><dd>${esc(x.meaning)}</dd>`).join("")}</dl></section>` : "";
+  return ok.length ? `<section class="blk"><h3>어려운 말 풀이</h3><dl class="terms">${ok.map(x => `<dt>${esc(x.term)}</dt><dd>${esc(x.meaning)}</dd>`).join("")}</dl></section>` : "";
 }
 
 function renderDetail(id) {
@@ -239,20 +246,24 @@ function renderDetail(id) {
   const url = safeUrl(it.url);
   const to = it.superseded_by && byId(it.superseded_by);
   const was = it.replaces && byId(it.replaces);
-  const meta = [it.tag, SRC[it.source] || it.source].filter(Boolean).map(esc).join(" · ");
+  const meta = [it.outlet, it.tag].filter(Boolean).map(esc).join(" · ");
+  const brief = it.brief === true;
   return `<a class="back" href="#/">← 목록으로</a>
-<div class="dk">${esc(CAT[it.cat])}${it.buzz === true ? ` · ${HOT}` : ""}</div>
+<div class="dk">${esc(REGION[it.region] || "")} · ${esc(CAT[it.cat])}${it.buzz === true ? ` · ${HOT}` : ""}</div>
 <h2 class="dh">${it.superseded_by ? `<s>${esc(it.headline)}</s>` : esc(it.headline)}</h2>
 <div class="dm">${meta} · ${num(ago(it.collected_at))} 수집</div>
 <div class="orig">원래 제목: ${esc(it.title)}</div>
-${it.superseded_by ? `<div class="notice">더 나은 내용으로 대체됐어요${to ? ` → <a href="${itemHref(to.id)}">${esc(to.headline)}</a>` : ""}</div>` : ""}
-<section class="blk"><h3>한 줄로 말하면</h3><ul class="sum">${d.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></section>
+${it.superseded_by ? `<div class="notice">원문을 읽은 기사로 대체됐어요${to ? ` → <a href="${itemHref(to.id)}">${esc(to.headline)}</a>` : ""}</div>` : ""}
+${brief ? `<div class="notice">${BRIEF_LABEL} — 유료이거나 수집을 막은 매체라 원문을 읽지 않고 제목·요약만 보고 썼어요.</div>
+<section class="blk"><h3>무슨 소식인가요</h3><ul class="sum">${d.points.slice(0, 1).map(p => `<li>${esc(p)}</li>`).join("")}</ul></section>
+${url ? `<a class="src" href="${esc(url)}" target="_blank" rel="noopener noreferrer">원문에서 읽기 ↗</a>` : ""}` :
+`<section class="blk"><h3>무슨 일인가요</h3><ul class="sum">${d.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></section>
 ${figure(d.figure)}
-${d.steps?.length ? `<section class="blk"><h3>${it.cat === "voice" ? "나에게 적용하면" : "따라 해보기"}</h3><ol class="steps">${d.steps.map(s => `<li>${rich(s)}</li>`).join("")}</ol></section>` : ""}
-${d.extra ? `<section class="blk"><h3>알아두면 좋은 점</h3><div class="extra">${esc(d.extra)}</div></section>` : ""}
+${d.so_what?.length ? `<section class="blk"><h3>업계에 주는 의미</h3><ul class="sowhat">${d.so_what.map(x => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
+${d.extra ? `<section class="blk"><h3>배경</h3><div class="extra">${esc(d.extra)}</div></section>` : ""}
 ${terms(d.terms)}
-${was ? `<section class="blk"><h3>이 글이 대신하는 이전 글</h3><div class="was"><a href="${itemHref(was.id)}"><s>${esc(was.headline)}</s></a></div></section>` : ""}
-${url ? `<a class="src" href="${esc(url)}" target="_blank" rel="noopener noreferrer">원문 읽기 ↗</a>` : ""}`;
+${was ? `<section class="blk"><h3>이 기사가 대신하는 이전 소개</h3><div class="was"><a href="${itemHref(was.id)}"><s>${esc(was.headline)}</s></a></div></section>` : ""}
+${url ? `<a class="src" href="${esc(url)}" target="_blank" rel="noopener noreferrer">원문 읽기 ↗</a>` : ""}`}`;
 }
 
 function renderHealth() {
@@ -260,7 +271,10 @@ function renderHealth() {
   if (!s?.sources) { el.innerHTML = ""; return; }
   const rows = Object.entries(s.sources).map(([name, r]) =>
     `<tr><td class="mono">${esc(name)}</td><td>${num(r.fetched ?? 0)}건 수집 · ${num(r.kept ?? 0)}건 저장</td>` +
-    `<td class="${r.error ? "err" : ""}">${esc(r.error || r.note || "정상")}</td></tr>`).join("");
+    `<td class="${r.error ? "err" : ""}">${esc(r.error || r.note || "정상")}</td></tr>` +
+    Object.entries(r.outlets || {}).map(([o, c]) =>
+      `<tr><td class="sub">└ ${esc(o)}</td><td>${"before_filter" in c ? `${num(c.before_filter)}건 중 ` : ""}${num(c.fetched ?? 0)}건</td>` +
+      `<td class="${c.error ? "err" : ""}">${esc(c.error || (c.fetched ? "정상" : c.before_filter ? "업계 기사 없음(모두 걸러짐)" : "새 글 없음"))}</td></tr>`).join("")).join("");
   el.innerHTML = `<summary>수집 상태 (마지막 회차)</summary>${s.run?.note ? `<p class="err">${esc(s.run.note)}</p>` : ""}<table>${rows}</table>`;
 }
 
@@ -282,7 +296,7 @@ function render() {
     if (r.view === "item") window.scrollTo(0, 0);
     else if (lastView) window.scrollTo(0, indexScroll);
     const it = r.view === "item" && byId(r.id);
-    document.title = it ? `${it.headline} — AI 동향 수집함` : "AI 동향 수집함";
+    document.title = it ? `${it.headline} — 패션 동향 수집함` : "패션 동향 수집함";
   }
   lastView = key;
 }
