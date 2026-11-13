@@ -163,3 +163,43 @@ def test_gnews_fixture_all_brief_and_48h(monkeypatch):
     again = gnews.fetch(Context(now=NOW))
     assert [r["id"] for r in again] == [r["id"] for r in got]
     assert ctx.notes["outlets"]["gnews"] == {"The Business of Fashion": {"fetched": gnews.PER_QUERY}}
+
+
+
+# --- S9 리뷰 반영 ---
+
+def test_one_article_failure_keeps_rest_of_site(monkeypatch):
+    """기사 하나가 404여도 그 매체의 다른 글은 남고, 실패는 상태 메모로."""
+    web = fake_web([])
+    first = krsite._apparel_links(read("kr_apparel_list.html"))[0][1]
+
+    def flaky(url, **kw):
+        if url == first:
+            raise http.FetchError(f"HTTP 404 {url}")
+        return web(url, **kw)
+
+    monkeypatch.setattr(http, "get_text", flaky)
+    ctx = Context(now=NOW)
+    out = krsite.fetch(ctx)
+    ap = [r for r in out if r["outlet"] == "어패럴뉴스"]
+    assert len(ap) == krsite.PER_SITE and all(r["url"] != first for r in ap)
+    assert any("404" in n for n in ctx.notes["krsite"])
+
+
+@pytest.mark.parametrize("err,blocked", [("HTTP 404 x", False), ("HTTP 403 x", True), ("HTTP 503 x", True),
+                                         ("TimeoutError x", True)])
+def test_robots_unreachable_is_conservative(monkeypatch, err, blocked):
+    """robots.txt가 없으면(404) 허용, 못 받으면(403·5xx·시간 초과) 그 회차는 읽지 않음."""
+    web = fake_web([])
+
+    def get_text(url, **kw):
+        if url.endswith("/robots.txt"):
+            raise http.FetchError(err)
+        return web(url, **kw)
+
+    monkeypatch.setattr(http, "get_text", get_text)
+    if blocked:
+        with pytest.raises(http.FetchError, match="robots.txt를 못 받아"):
+            krsite.fetch_site(SITE["apparel"], Context(now=NOW))
+    else:
+        assert len(krsite.fetch_site(SITE["apparel"], Context(now=NOW))) == krsite.PER_SITE

@@ -120,11 +120,14 @@ def meta(page: str, prop: str) -> str:
 
 
 def robots_for(site: Site) -> urllib.robotparser.RobotFileParser:
+    """robots.txt가 없으면(404) 막힌 곳 없음. 그 밖의 이유로 못 받으면(403·5xx·시간 초과) 보수적으로 그 회차는 읽지 않는다."""
     rp = urllib.robotparser.RobotFileParser()
     try:
         rp.parse(http.get_text(f"{site.base}/robots.txt", timeout=15).splitlines())
-    except http.FetchError:
-        rp.parse([])            # robots.txt가 없으면 막힌 곳 없음
+    except http.FetchError as e:
+        if "HTTP 404" not in str(e):
+            raise http.FetchError(f"robots.txt를 못 받아 건너뜀: {e}") from e
+        rp.parse([])
     return rp
 
 
@@ -144,7 +147,11 @@ def fetch_site(site: Site, ctx: Context) -> list[dict]:
         listed = _date(listed_dates.get(num))
         if listed and ctx.now - listed > MAX_AGE:
             break                           # 번호 순(최신 먼저)이라 뒤는 더 오래됨
-        page = http.get_text(url, timeout=25)
+        try:
+            page = http.get_text(url, timeout=25)
+        except http.FetchError as e:        # 기사 하나(삭제·시간 초과)가 매체 전체를 날리지 않게
+            ctx.notes.setdefault("krsite_articles", []).append(f"{site.key} {num}: {e}"[:150])
+            continue
         pub = site.date(page, {"date": listed_dates.get(num)})
         title = meta(page, "og:title")
         if pub and ctx.now - pub > MAX_AGE:
@@ -170,5 +177,5 @@ def fetch(ctx: Context) -> list[dict]:
             outlets[site.outlet] = {"fetched": 0, "error": f"{type(e).__name__}: {e}"[:200]}
     if errors and len(errors) == len(SITES):
         raise http.FetchError("; ".join(errors))
-    ctx.notes["krsite"] = errors
+    ctx.notes["krsite"] = errors + ctx.notes.pop("krsite_articles", [])   # 기사 단위 실패도 상태 메모로
     return out

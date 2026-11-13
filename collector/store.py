@@ -41,7 +41,7 @@ def items_doc(items: list[dict]) -> dict:
 
 def load_status(path: Path) -> dict:
     if not path.exists():
-        return {"last_run": None, "themes": [], "sources": {}}
+        return {"last_run": None, "sources": {}}
     return json.loads(path.read_text(encoding="utf-8"))
 
 

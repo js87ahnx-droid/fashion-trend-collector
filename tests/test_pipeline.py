@@ -452,3 +452,28 @@ def test_usage_recorded_by_model(tmp_path):
     assert st["usage_24h"][0]["usage"] == u
     st2 = main.run(NOW + timedelta(hours=25), tmp_path, FakeClient(), sources=[("feeds", Many(0))])
     assert st2["usage_24h"] == []
+
+
+
+# --- S9 리뷰 반영 ---
+
+def test_rejected_detail_counts_as_failure(tmp_path):
+    """상세는 왔지만 핵심이 1줄뿐이라 저장 검증에서 떨어진 일반 글 — 두 번이면 건너뛴 글로."""
+    bad = {"points": ["하나뿐"], "so_what": [], "extra": "", "figure": None, "terms": []}
+    src = Many(1)
+    st = main.run(NOW, tmp_path, FakeClient(label_all(), lambda kw: msg(bad)), sources=[("feeds", src)])
+    assert st["run"]["added"] == 0 and "형식 불량" in st["run"]["note"]
+    main.run(NOW + timedelta(hours=3), tmp_path, FakeClient(label_all(), lambda kw: msg(bad)), sources=[("feeds", src)])
+    assert "f-n0" in json.loads((tmp_path / "skipped.json").read_text(encoding="utf-8"))
+    client = FakeClient(label_all())
+    main.run(NOW + timedelta(hours=6), tmp_path, client, sources=[("feeds", src)])
+    assert client.calls == []
+
+
+def test_brief_slots_shrink_first_when_room_is_small():
+    """하루 상한 막판(자리 1~3)에는 일반 글이 먼저."""
+    labeled = [r(f"n{i}", "x") | {"pick": 9 - i} for i in range(4)] + [r(f"b{i}", "y", brief=True) | {"pick": 0} for i in range(3)]
+    assert [g["id"] for g in main.pick_for_detail(labeled, 1)] == ["n0"]
+    assert [g["id"] for g in main.pick_for_detail(labeled, 3)] == ["n0", "n1", "n2"]
+    assert [g["id"] for g in main.pick_for_detail(labeled, 4)] == ["n0", "n1", "n2", "b0"]
+    assert [g["id"] for g in main.pick_for_detail(labeled[3:], 3)] == ["n3", "b0", "b1"]   # 일반 글이 모자라면 brief로 채움

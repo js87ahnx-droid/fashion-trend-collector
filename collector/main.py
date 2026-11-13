@@ -16,7 +16,7 @@ log = logging.getLogger("collector")
 
 SOURCES = [("feeds", feeds), ("krsite", krsite), ("gnews", gnews)]
 DATA = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data"))
-SKIP_MEMORY = timedelta(days=8)   # 피드 최대 수집 창(7일)보다 길게
+SKIP_MEMORY = timedelta(days=8)   # 수집 창(48시간)·보관(7일)보다 길게 — 건너뛴 글이 다시 들어오지 않게
 GROUP = {"feed": "feeds"}   # 글의 source 값 → status.sources 키 (krsite·gnews는 이름이 같음)
 DETAIL_PER_RUN = 5            # 회차당 상세 최대 (5×8회 = 하루 40)
 BRIEF_SLOTS = 2               # 그중 brief 글 몫 — pick이 없어 늘 뒤로 밀리므로 먼저 준다
@@ -29,7 +29,8 @@ def pick_for_detail(labeled: list[dict], n: int) -> list[dict]:
     """pick 순으로 정렬된 분류 결과에서 상세 n건. brief 글에 BRIEF_SLOTS자리를 먼저 주고, 남는 자리는 서로 채운다."""
     briefs = [c for c in labeled if c.get("brief")]
     normal = [c for c in labeled if not c.get("brief")]
-    take_b = min(BRIEF_SLOTS, len(briefs), n)
+    # 자리가 줄면(하루 상한 막판) brief 몫부터 줄인다: 5자리 → brief 2, 4 → 1, 3 이하 → 0 (남으면 아래에서 채움)
+    take_b = min(BRIEF_SLOTS, len(briefs), max(0, n - (DETAIL_PER_RUN - BRIEF_SLOTS)))
     take_n = min(n - take_b, len(normal))
     take_b = min(len(briefs), n - take_n)
     chosen = {id(c) for c in briefs[:take_b] + normal[:take_n]}
@@ -106,13 +107,17 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
             written, errors, thin, failed = detail.write_all(batch, client, usage)
             for sid in thin:
                 skipped[sid] = store.iso(now)
-            for fid in failed:
+            items, added = store.add_items(items, written, now)
+            # 상세는 왔지만 저장 검증(핵심 줄 수 등)에서 떨어진 글도 실패로 센다 — 안 그러면 매 회차 다시 상세를 부른다
+            rejected = [w["id"] for w in written if w["id"] not in {a["id"] for a in added}]
+            if rejected:
+                notes.append(f"상세 형식 불량으로 저장 안 됨 {len(rejected)}건: " + ", ".join(rejected)[:200])
+            for fid in failed + rejected:
                 failures.setdefault(fid, []).append(store.iso(now))
                 if len(failures[fid]) >= FAIL_LIMIT:
                     skipped[fid] = store.iso(now)
             if errors:
                 notes.append(f"상세 실패 {len(errors)}건: " + "; ".join(errors)[:300])
-            items, added = store.add_items(items, written, now)
             log.info("분류 통과 %d → 상세 %d → 저장 %d", labeled_n, len(written), len(added))
         except Exception as e:
             notes.append(f"분류 실패: {type(e).__name__}: {e}"[:300])
