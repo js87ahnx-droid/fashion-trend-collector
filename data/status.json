@@ -1,8 +1,8 @@
 {
- "last_run": "2026-11-14T06:20:25Z",
+ "last_run": "2026-11-14T11:22:09Z",
  "sources": {
   "feeds": {
-   "fetched": 41,
+   "fetched": 40,
    "outlets": {
     "WWD": {
      "fetched": 5
@@ -14,7 +14,7 @@
      "fetched": 5
     },
     "Vogue Business": {
-     "fetched": 4,
+     "fetched": 3,
      "before_filter": 30
     },
     "Pambianco (IT)": {
@@ -22,7 +22,7 @@
     },
     "FashionUnited (IT)": {
      "fetched": 5,
-     "before_filter": 29
+     "before_filter": 21
     },
     "Il Sole 24 Ore (IT)": {
      "fetched": 1
@@ -44,7 +44,7 @@
     },
     "바자코리아": {
      "fetched": 0,
-     "before_filter": 10
+     "before_filter": 1
     }
    },
    "kept": 0
@@ -86,8 +86,8 @@
   }
  },
  "run": {
-  "candidates": 70,
-  "ad_filtered": 70,
+  "candidates": 69,
+  "ad_filtered": 69,
   "new": 25,
   "labeled": 0,
   "deferred": 0,
@@ -101,7 +101,7 @@
    "web_fetches": 0,
    "by_model": {}
   },
-  "note": "ANTHROPIC_API_KEY 없음 — 분류·저장 건너뜀"
+  "note": "분류 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch2jbjbEwKtacWaBz8My2'}"
  },
  "detail_calls": [],
  "usage_24h": []
