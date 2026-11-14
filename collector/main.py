@@ -55,7 +55,7 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
     # 분류에서 빠졌거나 근거가 부족했던 글 — 다시 보내지 않는다 (화면이 읽지 않는 별도 파일)
     prev_skipped = json.loads(skipped_path.read_text(encoding="utf-8")) if skipped_path.exists() else {}
     skipped = {k: v for k, v in prev_skipped.items() if now - store.parse_iso(v) < SKIP_MEMORY}
-    if client is None and os.environ.get("ANTHROPIC_API_KEY"):
+    if client is None and classify.has_credentials():
         client = classify.make_client()
     ctx = Context(now=now, known_ids={it["id"] for it in items} | set(skipped))
 
@@ -90,7 +90,7 @@ def run(now: datetime | None = None, data_dir: Path = DATA, client=None, sources
     usage = classify.Usage()
     room = min(DETAIL_PER_RUN, DETAIL_PER_DAY - len(detail_calls))
     if client is None:
-        notes.append("ANTHROPIC_API_KEY 없음 — 분류·저장 건너뜀")
+        notes.append("ANTHROPIC_API_KEY·CLAUDE_CODE_OAUTH_TOKEN 없음 — 분류·저장 건너뜀")
         log.warning(notes[-1])
     elif fresh and room <= 0:
         notes.append(f"최근 24시간 상세 {len(detail_calls)}회 — 하루 상한이라 이번 회차는 분류도 건너뜀")

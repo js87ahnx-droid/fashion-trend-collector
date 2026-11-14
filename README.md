@@ -12,7 +12,10 @@ Claude가 한국어로 정리해 주제별로 보여 주는 정적 사이트. [A
 
 | 이름 | 용도 | 없으면 |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | 분류(Opus 5.5)·기사 정리(Sonnet 5.5) | 수집만 하고 저장 안 함 (`last_run`만 갱신) |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Max 구독 토큰(`claude setup-token`으로 만듦). 워크플로가 Claude Code를 설치해 `claude -p`로 분류(Opus 5.5)·기사 정리(Sonnet 5.5) — `collector/cc_client.py` | 수집만 하고 저장 안 함 (`last_run`만 갱신) |
+
+로컬이나 다른 곳에서 `ANTHROPIC_API_KEY`가 있으면 그쪽(Anthropic SDK)을 먼저 쓴다(`classify.make_client`). 워크플로는 API 키를 넘기지 않는다.
+구독 토큰을 자동 실행에 쓰는 것은 구독 약관상 회색 지대다(자동화 접근은 API 키를 권함) — 개인 용도로만 쓴다.
 
 모델 교체: 워크플로 `env`에 `ANTHROPIC_MODEL`(분류) 또는 `ANTHROPIC_DETAIL_MODEL`(기사 정리)을 추가.
 

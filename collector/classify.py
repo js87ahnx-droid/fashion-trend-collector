@@ -94,7 +94,8 @@ class Usage:
         import threading
 
         self._lock = threading.Lock()
-        self.data = {"classify_calls": 0, "detail_items": 0, "api_requests": 0, "web_fetches": 0, "by_model": {}}
+        self.data = {"classify_calls": 0, "detail_items": 0, "api_requests": 0, "web_fetches": 0, "by_model": {},
+                     "cost_usd": 0.0}   # Claude Code가 알려 주는 API 환산 비용(구독이면 실제 청구 아님)
 
     def count(self, key: str) -> None:
         with self._lock:
@@ -106,6 +107,7 @@ class Usage:
         n = lambda k: int(getattr(u, k, 0) or 0)   # noqa: E731
         with self._lock:
             self.data["api_requests"] += 1
+            self.data["cost_usd"] = round(self.data["cost_usd"] + float(getattr(resp, "cost_usd", 0) or 0), 4)
             m = self.data["by_model"].setdefault(model, {"input_tokens": 0, "output_tokens": 0})
             if u is not None:
                 m["input_tokens"] += n("input_tokens") + n("cache_creation_input_tokens") + n("cache_read_input_tokens")
@@ -125,9 +127,18 @@ def prefilter(cands: list[dict]) -> list[dict]:
 
 
 def make_client():
+    """ANTHROPIC_API_KEY가 있으면 Anthropic SDK, 없고 CLAUDE_CODE_OAUTH_TOKEN(Max 구독 토큰)이 있으면 Claude Code(`claude -p`)."""
+    if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"):
+        from .cc_client import ClaudeCodeClient
+
+        return ClaudeCodeClient()
     import anthropic
 
     return anthropic.Anthropic(max_retries=3)
+
+
+def has_credentials() -> bool:
+    return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"))
 
 
 def final_json(resp) -> dict:
