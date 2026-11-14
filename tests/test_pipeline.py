@@ -423,6 +423,18 @@ def test_brief_gets_two_slots():
     assert [g["id"] for g in main.pick_for_detail(labeled[7:], 5)] == ["n7", "b0", "b1", "b2"]   # 남는 자리는 서로 채움
 
 
+def test_brief_first_slot_goes_to_korean():
+    """brief 2자리 중 1자리는 국내 brief(예: 어패럴뉴스)에 먼저 — 해외 brief가 앞에 많아도."""
+    labeled = ([r(f"n{i}", "x") | {"pick": 9 - i} for i in range(5)]
+               + [r(f"g{i}", "해외", brief=True) | {"pick": 0} for i in range(4)]
+               + [r("k0", "국내", brief=True, region="kr", outlet="어패럴뉴스") | {"pick": 0},
+                  r("k1", "국내2", brief=True, region="kr", outlet="어패럴뉴스") | {"pick": 0}])
+    got = [g["id"] for g in main.pick_for_detail(labeled, 5)]
+    assert got == ["n0", "n1", "n2", "g0", "k0"]                       # 국내 1 + 해외 1 (국내가 둘이어도 1자리만 우선)
+    only_global = [c for c in labeled if c["region"] != "kr"]
+    assert [g["id"] for g in main.pick_for_detail(only_global, 5)] == ["n0", "n1", "n2", "g0", "g1"]
+
+
 def test_eight_runs_a_day_never_starve(tmp_path):
     """S5 AC③-6 — 하루 8회차(회차마다 후보 10건) → 회차마다 상세 5건, 0건인 회차 없음."""
     per_run = []

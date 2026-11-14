@@ -29,6 +29,10 @@ def pick_for_detail(labeled: list[dict], n: int) -> list[dict]:
     """pick 순으로 정렬된 분류 결과에서 상세 n건. brief 글에 BRIEF_SLOTS자리를 먼저 주고, 남는 자리는 서로 채운다."""
     briefs = [c for c in labeled if c.get("brief")]
     normal = [c for c in labeled if not c.get("brief")]
+    # brief 몫 중 첫 자리는 국내 글(어패럴뉴스 등)에 먼저 — 해외 brief 매체가 많아 국내 소식이 밀리지 않게 (2026-11-14 사용자 결정)
+    kr = next((c for c in briefs if c.get("region") == "kr"), None)
+    if kr is not None:
+        briefs = [kr] + [c for c in briefs if c is not kr]
     # 자리가 줄면(하루 상한 막판) brief 몫부터 줄인다: 5자리 → brief 2, 4 → 1, 3 이하 → 0 (남으면 아래에서 채움)
     take_b = min(BRIEF_SLOTS, len(briefs), max(0, n - (DETAIL_PER_RUN - BRIEF_SLOTS)))
     take_n = min(n - take_b, len(normal))
