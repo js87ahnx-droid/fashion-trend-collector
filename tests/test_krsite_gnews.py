@@ -11,7 +11,8 @@ from collector.sources.base import Context
 
 FX = Path(__file__).parent / "fixtures"
 NOW = datetime(2026, 11, 13, 1, 0, tzinfo=timezone.utc)
-SITE = {s.key: s for s in krsite.SITES}
+SITE = {s.key: s for s in krsite.SITES + (krsite.APPAREL,)}
+ALL_SITES = krsite.SITES + (krsite.APPAREL,)   # 국내에서 돌릴 때 — 예약 실행 목록엔 어패럴뉴스가 없다
 
 
 def read(name):
@@ -130,6 +131,7 @@ def test_krsite_failure_isolated_and_outlets(monkeypatch):
         return web(url, **kw)
 
     monkeypatch.setattr(http, "get_text", flaky)
+    monkeypatch.setattr(krsite, "SITES", ALL_SITES)
     ctx = Context(now=NOW)
     out = krsite.fetch(ctx)
     got = ctx.notes["outlets"]["krsite"]
@@ -179,6 +181,7 @@ def test_one_article_failure_keeps_rest_of_site(monkeypatch):
         return web(url, **kw)
 
     monkeypatch.setattr(http, "get_text", flaky)
+    monkeypatch.setattr(krsite, "SITES", ALL_SITES)
     ctx = Context(now=NOW)
     out = krsite.fetch(ctx)
     ap = [r for r in out if r["outlet"] == "어패럴뉴스"]
@@ -209,8 +212,9 @@ def test_robots_unreachable_is_conservative(monkeypatch, err, blocked):
 # --- 프랑스·이탈리아 (구글 뉴스) ---
 
 EU_NOW = datetime(2026, 11, 14, 0, 0, tzinfo=timezone.utc)
+APPAREL_NOW = datetime(2026, 11, 14, 12, 0, tzinfo=timezone.utc)
 EU_FIX = {"fr.fashionnetwork.com": "gnews_fn_fr.xml", "lesechos.fr": "gnews_lesechos.xml", "it.fashionnetwork.com": "gnews_fn_it.xml",
-          "businessoffashion.com": "gnews_bof.xml"}
+          "businessoffashion.com": "gnews_bof.xml", "apparelnews.co.kr": "gnews_apparel.xml"}
 
 
 def test_eu_queries_language_outlet_and_title_tail(monkeypatch):
@@ -223,7 +227,7 @@ def test_eu_queries_language_outlet_and_title_tail(monkeypatch):
     monkeypatch.setattr(http, "get_text", get_text)
     ctx = Context(now=EU_NOW)
     got = gnews.fetch(ctx)
-    assert len(calls) == len(gnews.QUERIES) == 4
+    assert len(calls) == len(gnews.QUERIES) == 5
     assert any("hl=fr&gl=FR&ceid=FR:fr" in c for c in calls) and any("hl=it&gl=IT&ceid=IT:it" in c for c in calls)
     by = {}
     for r in got:
@@ -232,4 +236,17 @@ def test_eu_queries_language_outlet_and_title_tail(monkeypatch):
     fr = by["FashionNetwork (FR)"]
     assert fr[0]["title"] == "Frasers : jeu de chaises musicales à la direction"        # ' - FashionNetwork France' 꼬리 뗌
     assert len(fr) <= 4 and len(by.get("Les Echos (FR)", [])) <= 3
-    assert all(r["brief"] is True and r["region"] == "global" for r in got)
+    assert all(r["brief"] is True and r["region"] == ("kr" if r["outlet"] == "어패럴뉴스" else "global") for r in got)
+
+
+
+def test_apparelnews_via_google_news_is_korean_brief(monkeypatch):
+    """어패럴뉴스는 해외 IP를 막아 구글 뉴스(한국어판)로 제목만 — 국내(kr)·원문 미확인, 꼬리 ' - 어패럴뉴스' 뗌."""
+    calls = []
+    q = next(q for q in gnews.QUERIES if q.outlet == "어패럴뉴스")
+    monkeypatch.setattr(http, "get_text", lambda url, **kw: calls.append(url) or read("gnews_apparel.xml"))
+    got = gnews.fetch_query(q, Context(now=APPAREL_NOW))
+    assert "hl=ko&gl=KR&ceid=KR:ko" in calls[0] and "site:apparelnews.co.kr" in unquote(calls[0])
+    assert got and all(r["region"] == "kr" and r["brief"] is True and r["outlet"] == "어패럴뉴스" for r in got)
+    assert not any(r["title"].endswith("어패럴뉴스") for r in got)
+    assert krsite.APPAREL not in krsite.SITES                                   # 예약 실행에선 직접 읽지 않음

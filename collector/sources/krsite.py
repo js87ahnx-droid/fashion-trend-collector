@@ -1,6 +1,7 @@
 """국내 패션 산업지(RSS 없음) — 첫 화면·뉴스 사이트맵에서 기사 주소를 얻고, 기사 페이지의 메타(제목·설명·게시일)만 읽는다.
 
 - 어패럴뉴스: 첫 화면의 /news/news_view/?idx= 링크, 게시일은 기사 페이지 JSON-LD datePublished
+  (해외 IP를 막아 GitHub 예약 실행에선 쓰지 않음 — APPAREL 참고)
 - 패션엔: 첫 화면의 /board/read_new.php?table=&number= 링크, 게시일은 DC.date.issued 메타(날짜만)
 - 패션비즈: 첫 화면이 자바스크립트로 그려져 링크가 없음 → robots.txt가 알려 주는 뉴스 사이트맵(server-sitemap.xml)
 모든 곳 robots.txt에 Claude 수집기 차단 없음(2026-11-13 확인). 막힌 경로는 robots.txt를 읽어 건너뛴다.
@@ -105,8 +106,12 @@ def _date_listed(page: str, listed: dict) -> datetime | None:
     return _date(listed.get("date"))
 
 
+# 어패럴뉴스는 해외 IP 접속을 받지 않는다(2026-11-14 GitHub 서버(미국)에서 연결 시간 초과, 국내 PC에선 열림).
+# 그래서 예약 실행 목록(SITES)에서는 빼고 구글 뉴스로 제목만 받는다(gnews.py). 국내에서 돌릴 때를 위해 정의는 남긴다.
+APPAREL = Site("apparel", "어패럴뉴스", "https://www.apparelnews.co.kr", "https://www.apparelnews.co.kr/",
+               _apparel_links, _date_jsonld)
+
 SITES: tuple[Site, ...] = (
-    Site("apparel", "어패럴뉴스", "https://www.apparelnews.co.kr", "https://www.apparelnews.co.kr/", _apparel_links, _date_jsonld),
     Site("fashionn", "패션엔", "https://www.fashionn.com", "https://www.fashionn.com/", _fashionn_links, _date_dc),
     Site("fashionbiz", "패션비즈", "https://fashionbiz.co.kr", "https://fashionbiz.co.kr/server-sitemap.xml",
          _fashionbiz_links, _date_listed),

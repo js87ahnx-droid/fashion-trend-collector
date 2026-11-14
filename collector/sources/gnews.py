@@ -3,6 +3,7 @@
 - BoF: RSS 403, robots.txt가 다수 수집기를 막고 AI 학습 거부, 유료 기사
 - FashionNetwork 프랑스·이탈리아: RSS 403, robots.txt가 Claude 수집기 일부를 막음 (2026-11-14 확인)
 - Les Echos(럭셔리): RSS 403, 유료 기사
+- 어패럴뉴스: 해외 IP 접속을 막아 GitHub 서버에서 열리지 않음(2026-11-14 진단) — region="kr"
 (Vogue Business는 구글 뉴스 결과에 제목이 비어 와서 쓰지 않고, Vogue RSS의 Business 분류로 받는다 — feeds.py)
 
 기사 페이지와 구글 링크는 열지 않는다. 제목·매체·날짜만 쓰는 brief 글이다. 링크는 구글 뉴스 주소 그대로.
@@ -29,6 +30,7 @@ class Query:
     hl: str = "en-US"  # 구글 뉴스 언어·나라
     gl: str = "US"
     per_query: int = 6
+    region: str = "global"
 
 
 QUERIES: tuple[Query, ...] = (
@@ -36,6 +38,8 @@ QUERIES: tuple[Query, ...] = (
     Query("site:fr.fashionnetwork.com when:2d", "FashionNetwork (FR)", "fr", "FR", 4),
     Query("site:lesechos.fr luxe when:2d", "Les Echos (FR)", "fr", "FR", 3),
     Query("site:it.fashionnetwork.com when:2d", "FashionNetwork (IT)", "it", "IT", 4),
+    # 어패럴뉴스는 해외 IP(GitHub 서버) 접속을 막아 직접 읽을 수 없다(2026-11-14 진단) → 구글 뉴스로 제목만.
+    Query("site:apparelnews.co.kr when:2d", "어패럴뉴스", "ko", "KR", 6, "kr"),
 )
 
 
@@ -76,7 +80,7 @@ def fetch_query(query: Query, ctx: Context) -> list[dict]:
         id_ = "gnews-" + hashlib.sha1((e["guid"] or e["link"]).encode()).hexdigest()[:10]
         if id_ in ctx.known_ids:
             continue
-        out.append(raw(id=id_, title=e["title"], url=e["link"], source="gnews", region="global",
+        out.append(raw(id=id_, title=e["title"], url=e["link"], source="gnews", region=query.region,
                        outlet=query.outlet, brief=True, published_at=e["published"].isoformat()))
         if len(out) >= query.per_query:
             break
