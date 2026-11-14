@@ -155,10 +155,17 @@ def test_new_fields_survive_add_items():
     assert added[1]["region"] == "global" and "brief" not in added[1]
 
 
-def test_repo_empty_data_files_load():
-    """S1 AC⑥ (일부) — 저장소의 빈 data/items.json 형식이 그대로 읽힌다."""
+def test_empty_data_files_load(tmp_path):
+    """S1 AC⑥ (일부) — 처음 만든 빈 data/ 형식이 그대로 읽힌다. 저장소의 data/는 운영 중 실제 데이터로 바뀌므로 tmp에서 확인."""
+    store.save_json(tmp_path / "items.json", {"schema": 2, "items": []})
+    assert store.load_items(tmp_path / "items.json") == []
+    assert store.load_status(tmp_path / "status.json") == {"last_run": None, "sources": {}}
+
+
+def test_repo_data_files_are_valid_json():
+    """저장소 data/ 파일은 (비었든 운영 데이터든) 깨지지 않은 JSON이고 items.json은 현재 형식."""
     data = Path(__file__).resolve().parents[1] / "data"
-    assert store.load_items(data / "items.json") == []
-    assert json.loads((data / "items.json").read_text(encoding="utf-8")) == store.items_doc([])
+    doc = json.loads((data / "items.json").read_text(encoding="utf-8"))
+    assert doc.get("schema") == store.SCHEMA_VERSION and isinstance(doc.get("items"), list)
     for name in ("status.json", "skipped.json", "failures.json"):
-        assert json.loads((data / name).read_text(encoding="utf-8")) == {}
+        assert isinstance(json.loads((data / name).read_text(encoding="utf-8")), dict)
