@@ -1,0 +1,20 @@
+name: diag-apparel   # 임시 — 어패럴뉴스가 GitHub 서버에서 막히는지 확인 후 삭제
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe apparelnews and others from the runner
+        run: |
+          UA="fashion-trend-news/1.0 (+https://github.com/js87ahnx-droid)"
+          for u in https://www.apparelnews.co.kr/robots.txt https://www.apparelnews.co.kr/ "https://www.apparelnews.co.kr/news/news_view/?idx=228961" http://www.apparelnews.co.kr/ https://apparelnews.co.kr/ https://www.fashionn.com/robots.txt; do
+            curl -s -o /dev/null -m 20 -A "$UA" -w "%{http_code} connect=%{time_connect}s total=%{time_total}s ip=%{remote_ip} $u\n" "$u" || echo "FAIL($?) $u"
+          done
+          echo "--- DNS"; getent hosts www.apparelnews.co.kr || true
+          echo "--- runner IP country"; curl -s -m 10 https://ipinfo.io/country || true
+          echo "--- Google News for site:apparelnews.co.kr"
+          curl -s -m 20 -A "$UA" "https://news.google.com/rss/search?q=site%3Aapparelnews.co.kr%20when%3A2d&hl=ko&gl=KR&ceid=KR:ko" | grep -o "<item>" | wc -l
