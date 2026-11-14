@@ -140,6 +140,190 @@
    "collected_at": "2026-11-14T12:05:29Z",
    "why": "러닝화 브랜드가 그룹 실적을 끌어올리는 흐름을 확인할 수 있어요.",
    "brief": true
+  },
+  {
+   "id": "pambianco-cc3ea8225a",
+   "title": "I gioielli fanno brillare (ancora) i conti di Richemont. Primo semestre a 12,3 miliardi (+16%)",
+   "url": "https://www.pambianconews.com/2026/11/13/i-gioielli-fanno-brillare-ancora-i-conti-di-richemont-primo-semestre-a-123-miliardi-16-500775/",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Pambianco (IT)",
+   "cat": "brand",
+   "headline": "리치몬트, 주얼리 호조로 상반기 매출 123억유로…16% 늘어",
+   "tag": "실적",
+   "detail": {
+    "points": [
+     "리치몬트의 2026년 9월 30일까지 6개월 매출은 123억유로예요.",
+     "전년 같은 기간(106억유로)보다 현재 환율로 16%, 고정 환율로 17% 늘었어요.",
+     "2분기만 보면 현재 환율 기준 14% 성장했어요."
+    ],
+    "so_what": [
+     "럭셔리 상위 그룹의 주얼리 수요가 아직 강하다는 신호일 수 있어요. 주얼리·액세서리 기획 때 참고할 만해요.",
+     "2분기 성장률(14%)이 상반기 전체(16%)보다 낮아요. 성장세가 다소 누그러졌는지 다음 실적에서 확인해 볼 만해요."
+    ],
+    "extra": "원문 본문을 열지 못해 수집된 도입부와 제목만 근거로 정리했어요. 지역별·부문별 수치와 이익은 확인하지 못했어요. 제목은 주얼리가 실적을 이끌었다고 전해요.",
+    "figure": {
+     "type": "bars",
+     "title": "리치몬트 상반기 매출(9월 30일 마감)",
+     "unit": "십억유로",
+     "bars": [
+      {
+       "label": "전년 상반기",
+       "value": 10.6
+      },
+      {
+       "label": "올해 상반기",
+       "value": 12.3
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "고정 환율",
+      "meaning": "환율 변동 효과를 빼고 계산한 성장률이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-14T12:20:17Z",
+   "why": "명품 시장이 주춤해도 주얼리는 강하다는 신호라 카테고리 전략에 참고가 됩니다.",
+   "pick": 8,
+   "buzz": true
+  },
+  {
+   "id": "glossy-9bc06fb5ff",
+   "title": "Luxury Briefing: The coat is the outfit. Can it also be the business?",
+   "url": "https://www.glossy.co/fashion/luxury/luxury-briefing-statement-coats-outerwear/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Glossy",
+   "cat": "market",
+   "headline": "쉬림프스·오터 등, 스테이트먼트 코트로 재구매 만든다",
+   "tag": "아우터",
+   "detail": {
+    "points": [
+     "Auter, Shrimps, Ducie 등이 퍼·스웨이드 코트로 겨울 아우터 수요를 잡고 있어요.",
+     "Shrimps는 Dallas 코트의 핏과 소재는 두고 색만 바꿔 3년째 베스트셀러예요.",
+     "Katerina Kvit는 매출의 65~70%가 아우터이고, 코트 고객이 니트도 함께 사요."
+    ],
+    "so_what": [
+     "대표 실루엣은 고정하고 색만 바꾸면 재구매를 만들 수 있어요. 품절 색을 다시 안 만드는 방식은 희소성에 도움이 될 수 있어요.",
+     "분리형 칼라나 스카프 같은 소품은 코트보다 낮은 가격의 입문 상품이 되고, 객단가도 올릴 수 있어요.",
+     "초반 완판이 반복되면 물량을 늘리는 것도 방법이에요. Shrimps는 스타일을 8개로 늘렸어요."
+    ],
+    "extra": "Miu Miu, Prada, Saint Laurent 런웨이에서 퍼·시어링 등 질감 있는 아우터가 중심이었어요. Trendalytics에 따르면 페이크 퍼 상품 수는 전년 대비 57%, 스웨이드 재킷은 95% 늘었어요. 판매가 아니라 상품 공급량 기준이에요.",
+    "figure": {
+     "type": "flow",
+     "title": "Shrimps식 코트 재구매 만들기",
+     "steps": [
+      "핏·소재 고정",
+      "시즌마다 색 변경",
+      "품절 색 재생산 안 함",
+      "물량 확대"
+     ]
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-14T12:20:17Z",
+   "why": "코트 한 벌을 다시 사게 만드는 상품 전략을 볼 수 있어 겨울 아우터 기획에 참고가 됩니다.",
+   "pick": 5
+  },
+  {
+   "id": "kr-fashionbiz-231098",
+   "title": "'장원영 다운' 판매율 90% 돌파... 아이더, 그래티넘 라이트 다운 흥행",
+   "url": "https://fashionbiz.co.kr/article/231098",
+   "source": "krsite",
+   "region": "kr",
+   "outlet": "패션비즈",
+   "cat": "market",
+   "headline": "아이더 그래티넘 라이트 다운, 인기 컬러 판매율 90% 돌파",
+   "tag": "판매",
+   "detail": {
+    "points": [
+     "아이더 '그래티넘 라이트 다운'이 출시 약 두 달 반 만에 인기 컬러 판매율 90%를 넘었어요.",
+     "라이트 그레이는 90%를 넘어 리오더에 들어갔고, 장원영이 입은 라이트 베이지는 50%를 넘었어요.",
+     "8월 28일 얼리버드로 시작해 9월부터 늘었고, 10월 판매량은 9월의 3배예요."
+    ],
+    "so_what": [
+     "모델 효과에 더해 광고, 팝업, 매장별 프로모션을 함께 돌린 점이 판매 증가에 영향을 줬을 수 있어요.",
+     "'가볍지만 따뜻한' 메시지와 소재 기술이 통했을 수 있어, 비슷한 경량 다운을 기획할 때 참고할 만해요.",
+     "컬러별 판매 속도 차이가 커서, 컬러 구성과 리오더 판단 기준을 점검해 볼 수 있어요."
+    ],
+    "extra": "이 제품은 그래핀 원사 겉감과 그래핀 안감, 머스코비 덕 다운을 쓴 경량 다운이에요. 남녀 공용 6종, 여성용 3종 컬러로 나왔어요. 기사에 가격과 물량 정보는 없어요.",
+    "figure": {
+     "type": "bars",
+     "title": "컬러별 판매율 (출시 약 두 달 반, 이상)",
+     "unit": "%",
+     "bars": [
+      {
+       "label": "라이트 그레이",
+       "value": 90
+      },
+      {
+       "label": "라이트 베이지",
+       "value": 50
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "리오더",
+      "meaning": "잘 팔리는 상품을 추가로 더 생산하는 것이에요."
+     },
+     {
+      "term": "그래핀",
+      "meaning": "열을 고르게 퍼뜨리는 성질이 있는 탄소 소재예요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-14T12:20:17Z",
+   "why": "모델 효과와 경량 다운 수요가 확인된 사례라 겨울 아우터 물량 판단에 참고가 됩니다.",
+   "pick": 5
+  },
+  {
+   "id": "vogue-be06fc8718",
+   "title": "The 5 Wellness Trends That Will Define 2027",
+   "url": "https://www.vogue.com/article/the-5-wellness-trends-that-will-define-2027",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "market",
+   "headline": "2027년 웰니스 트렌드 5가지…맞춤화·빛·덜어내기",
+   "tag": "트렌드",
+   "detail": {
+    "points": [
+     "Vogue Business는 2027년 웰니스를 좌우할 5가지 트렌드를 업계 리더와 애널리스트가 분석했다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-14T12:20:17Z",
+   "why": "웰니스 쪽으로 사업을 넓힐 때 소비자 흐름을 미리 읽는 데 참고가 됩니다.",
+   "brief": true
+  },
+  {
+   "id": "gnews-c8aa210425",
+   "title": "A.W.A.K.E. Mode Founder Natalia Alaverdian Exits as Creative Director",
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOaFBrVXJlQ2dpWnlKdFZScDhtSHF3MW9rVlc3OWtUaVpXdWR3ajBvZlpCaWkzanRNdTRqQlVKTXgtd1B2QnZHMFpXLTR4b2sxQTJwb1Bwa3hZcXdyVHdrcUtmXzYzLVAtMmZrVWFHWFd6Sjh0RzJBRjVWOXBCdkpUaUFOa2Y5UVZBQUpMd2tMX3I2UTN1RnZDZndMYk0zMXg4MWppck5IMTQwbGJWa2c3Sm9UaTlzUzBXN2V3?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "The Business of Fashion",
+   "cat": "brand",
+   "headline": "어웨이크 모드 창업자 알라베르디안, 크리에이티브 디렉터에서 물러나",
+   "tag": "인사",
+   "detail": {
+    "points": [
+     "The Business of Fashion은 A.W.A.K.E. Mode 창업자 나탈리아 알라베르디안이 크리에이티브 디렉터에서 물러난다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-14T12:20:17Z",
+   "why": "디자이너 브랜드에서 창업자가 떠나는 사례로, 브랜드 체제가 어떻게 바뀌는지 지켜볼 만해요.",
+   "brief": true
   }
  ]
 }
