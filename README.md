@@ -39,7 +39,14 @@ python -m venv .venv && .venv/Scripts/pip install -r requirements.txt -r require
 | `feed` | 보그코리아 · W코리아 | RSS + 비즈니스 단어 필터 | 안 읽음(brief) — robots.txt가 ClaudeBot을 막음 |
 | `feed` | 한국섬유신문 | RSS, 매체당 8건, http 링크는 https로 | 읽음 |
 | `krsite` | 어패럴뉴스 · 패션엔 · 패션비즈 | 첫 화면 링크(패션비즈는 뉴스 사이트맵) → 기사 메타만 (`krsite.py` `SITES`), 매체당 6건, robots.txt 확인 | 읽음 |
+| `feed` | Pambianco (IT) | RSS, 매체당 5건 | 읽음 |
+| `feed` | FashionUnited (IT) | RSS 중 `news/business`·`news/retail`·`news/moda` 분류만(보도자료·문화 제외) | 읽음 |
+| `feed` | Il Sole 24 Ore (IT) | RSS(모다), 3건 | 안 읽음(brief) — robots.txt가 anthropic-ai를 막음 |
 | `gnews` | The Business of Fashion | 구글 뉴스 RSS `site:businessoffashion.com when:2d` (`gnews.py` `QUERIES`), 6건 | 안 읽음(brief) — 링크는 구글 뉴스 주소 그대로 |
+| `gnews` | FashionNetwork (FR) · FashionNetwork (IT) | 구글 뉴스(프랑스어·이탈리아어판) `site:fr.fashionnetwork.com` / `site:it.fashionnetwork.com`, 각 4건 | 안 읽음(brief) — RSS 403, robots.txt가 Claude 수집기 일부를 막음 |
+| `gnews` | Les Echos (FR) | 구글 뉴스(프랑스어판) `site:lesechos.fr luxe`, 3건 | 안 읽음(brief) — RSS 403, 유료 |
+
+프랑스·이탈리아 매체는 `region="global"`(화면 표시 "해외")이고, 매체 이름에 (FR)·(IT)를 붙여 구분한다. 분류·상세 프롬프트는 외국어 원문이어도 한국어로 쓰게 한다.
 
 brief 글은 원문을 열지 않고 제목·매체·RSS 요약만으로 한 줄 소개를 쓰며, 화면에 "원문 미확인 · 제목만 소개"로 표시되고 오늘의 픽에 오르지 않는다.
 같은 소식을 원문을 읽은 글이 나중에 다루면 그 글이 brief 글을 대체한다.

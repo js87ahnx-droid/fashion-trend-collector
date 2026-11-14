@@ -150,19 +150,19 @@ def test_split_title_only_matching_tail():
 def test_gnews_fixture_all_brief_and_48h(monkeypatch):
     """S3 AC② — 같은 guid → 같은 id, 48시간 넘은 글 버림, 모두 brief. 회차당 요청 1회(BoF)."""
     calls = []
+    bof = gnews.QUERIES[0]
     monkeypatch.setattr(http, "get_text", lambda url, **kw: calls.append(url) or read("gnews_bof.xml"))
     ctx = Context(now=NOW)
-    got = gnews.fetch(ctx)
-    assert len(calls) == len(gnews.QUERIES) == 1 and "site:businessoffashion.com" in unquote(calls[0])
+    got = gnews.fetch_query(bof, ctx)
+    assert len(calls) == 1 and "site:businessoffashion.com" in unquote(calls[0]) and "hl=en-US" in calls[0]
     titles = [r["title"] for r in got]
     assert titles[0] == "In Fashion’s Holiday Campaigns, the Medium Is the Message"
     assert "Tech Mode" not in titles and "paris-fashion-week" not in titles   # 2월·2021년 글
-    assert len(got) == gnews.PER_QUERY
+    assert len(got) == bof.per_query
     assert all(r["brief"] is True and r["region"] == "global" and r["outlet"] == "The Business of Fashion"
                and r["source"] == "gnews" and r["id"].startswith("gnews-") and len(r["id"]) == 16 for r in got)
-    again = gnews.fetch(Context(now=NOW))
+    again = gnews.fetch_query(bof, Context(now=NOW))
     assert [r["id"] for r in again] == [r["id"] for r in got]
-    assert ctx.notes["outlets"]["gnews"] == {"The Business of Fashion": {"fetched": gnews.PER_QUERY}}
 
 
 
@@ -203,3 +203,33 @@ def test_robots_unreachable_is_conservative(monkeypatch, err, blocked):
             krsite.fetch_site(SITE["apparel"], Context(now=NOW))
     else:
         assert len(krsite.fetch_site(SITE["apparel"], Context(now=NOW))) == krsite.PER_SITE
+
+
+
+# --- 프랑스·이탈리아 (구글 뉴스) ---
+
+EU_NOW = datetime(2026, 11, 14, 0, 0, tzinfo=timezone.utc)
+EU_FIX = {"fr.fashionnetwork.com": "gnews_fn_fr.xml", "lesechos.fr": "gnews_lesechos.xml", "it.fashionnetwork.com": "gnews_fn_it.xml",
+          "businessoffashion.com": "gnews_bof.xml"}
+
+
+def test_eu_queries_language_outlet_and_title_tail(monkeypatch):
+    calls = []
+
+    def get_text(url, **kw):
+        calls.append(url)
+        return read(next(v for k, v in EU_FIX.items() if k in unquote(url)))
+
+    monkeypatch.setattr(http, "get_text", get_text)
+    ctx = Context(now=EU_NOW)
+    got = gnews.fetch(ctx)
+    assert len(calls) == len(gnews.QUERIES) == 4
+    assert any("hl=fr&gl=FR&ceid=FR:fr" in c for c in calls) and any("hl=it&gl=IT&ceid=IT:it" in c for c in calls)
+    by = {}
+    for r in got:
+        by.setdefault(r["outlet"], []).append(r)
+    assert set(ctx.notes["outlets"]["gnews"]) == {q.outlet for q in gnews.QUERIES}
+    fr = by["FashionNetwork (FR)"]
+    assert fr[0]["title"] == "Frasers : jeu de chaises musicales à la direction"        # ' - FashionNetwork France' 꼬리 뗌
+    assert len(fr) <= 4 and len(by.get("Les Echos (FR)", [])) <= 3
+    assert all(r["brief"] is True and r["region"] == "global" for r in got)

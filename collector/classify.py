@@ -19,7 +19,8 @@ AD_WORDS = re.compile(
 )
 
 CLASSIFY_PROMPT = """너는 국내 패션 회사에서 일하는 직장인(기획·MD·마케팅·영업)을 위한 업계 뉴스 큐레이터다.
-독자는 업계 사람이지만 해외 기사 영어나 금융 용어에는 익숙하지 않을 수 있다.
+독자는 업계 사람이지만 해외 기사(영어·프랑스어·이탈리아어)나 금융 용어에는 익숙하지 않을 수 있다.
+게시글 제목·excerpt가 외국어여도 headline·why는 한국어로 쓴다.
 
 각 게시글을 판정하라. 게시글 필드: id, title, outlet(매체), region(kr 국내 / global 해외),
 brief(true면 우리가 원문을 읽지 못하는 글 — 근거는 제목·매체·excerpt뿐), excerpt.

@@ -75,6 +75,7 @@ def test_all_feeds_failing_raises(monkeypatch):
 # --- S2: 실제 피드 9곳 (2026-11-12 받은 응답에서 글 3건씩 남긴 픽스처) ---
 
 FIX_NOW = datetime(2026, 11, 13, 0, 0, tzinfo=timezone.utc)
+EU = {"pambianco", "fashionunited_it", "sole24ore"}
 BY_KEY = {f.key: f for f in feeds.FEEDS}
 FIRST = {   # 매체: (첫 글 제목 앞부분, 주소 앞부분, region)
     "wwd": ("Kathryn Hahn Breaks Up", "https://wwd.com/footwear-news/", "global"),
@@ -90,11 +91,12 @@ FIRST = {   # 매체: (첫 글 제목 앞부분, 주소 앞부분, region)
 
 
 def test_nine_feeds_configured():
-    assert set(BY_KEY) == set(FIRST)
-    assert {f.outlet for f in feeds.FEEDS if not f.fetchable} == {"Vogue Business", "보그코리아", "W코리아"}
+    assert set(BY_KEY) - EU == set(FIRST)
+    assert {f.outlet for f in feeds.FEEDS if not f.fetchable} == {"Vogue Business", "보그코리아", "W코리아", "Il Sole 24 Ore (IT)"}
     assert {f.outlet for f in feeds.FEEDS if f.style} == {"Hypebeast", "보그코리아", "W코리아", "바자코리아"}
-    assert BY_KEY["vogue"].category == "Business"
+    assert BY_KEY["vogue"].categories == ("Business",)
     assert all(f.url.startswith("https://") and f.max_age == feeds.timedelta(hours=48) for f in feeds.FEEDS)
+    assert all(f.region == "global" for f in feeds.FEEDS if f.key in EU)
     assert BY_KEY["ktnews"].max_items == 8
 
 
@@ -174,7 +176,8 @@ def test_style_filter_applies_before_cap_and_only_to_style(monkeypatch):
 
 
 def test_outlet_status_has_before_filter_only_for_style(monkeypatch):
-    monkeypatch.setattr(http, "get_text", lambda url, **kw: read(f"rss_{next(f.key for f in feeds.FEEDS if f.url == url)}.xml"))
+    fix = {"pambianco": "rss_pambianco.xml", "fashionunited_it": "rss_fashionunited_it.xml", "sole24ore": "rss_sole24ore.xml"}
+    monkeypatch.setattr(http, "get_text", lambda url, **kw: read(next(fix.get(f.key, f"rss_{f.key}.xml") for f in feeds.FEEDS if f.url == url)))
     ctx = Context(now=FIX_NOW)
     feeds.fetch(ctx)
     got = ctx.notes["outlets"]["feeds"]
@@ -202,3 +205,34 @@ def test_vogue_keeps_only_business_category(monkeypatch):
     got = feeds.fetch_feed(BY_KEY["vogue"], Context(now=FIX_NOW))
     assert [r["title"][:21] for r in got] == ["The Great Bear Rainfo", "Burberry Retail Sales"]
     assert all(r["outlet"] == "Vogue Business" and r["brief"] is True for r in got)
+
+
+
+# --- 프랑스·이탈리아 (2026-11-14 받은 실제 응답) ---
+
+EU_NOW = datetime(2026, 11, 14, 0, 0, tzinfo=timezone.utc)
+
+
+def test_pambianco_readable_italian_feed(monkeypatch):
+    monkeypatch.setattr(http, "get_text", lambda url, **kw: read("rss_pambianco.xml"))
+    got = feeds.fetch_feed(BY_KEY["pambianco"], Context(now=EU_NOW))
+    assert got and all(r["outlet"] == "Pambianco (IT)" and r["region"] == "global" and r["brief"] is False for r in got)
+
+
+def test_fashionunited_it_keeps_only_business_retail_moda(monkeypatch):
+    """press/(보도자료)·news/cultura는 빼고 news/business·retail·moda만."""
+    monkeypatch.setattr(http, "get_text", lambda url, **kw: read("rss_fashionunited_it.xml"))
+    entries = feeds.parse(read("rss_fashionunited_it.xml"))
+    keep = {" ".join(e["title"].split()) for e in entries if set(e["categories"]) & {"news/business", "news/retail", "news/moda"}}
+    assert keep and len(keep) < len(entries)
+    counts = {}
+    got = feeds.fetch_feed(BY_KEY["fashionunited_it"], Context(now=EU_NOW), counts)
+    assert {r["title"] for r in got} <= keep and counts["before_filter"] >= len(got)
+    assert "The Sicilian Dream" not in " ".join(r["title"] for r in got)      # news/cultura
+
+
+def test_sole24ore_is_brief(monkeypatch):
+    """robots.txt가 anthropic-ai를 막음 → 원문을 열지 않는 brief."""
+    monkeypatch.setattr(http, "get_text", lambda url, **kw: read("rss_sole24ore.xml"))
+    got = feeds.fetch_feed(BY_KEY["sole24ore"], Context(now=EU_NOW))
+    assert got and all(r["brief"] is True for r in got)

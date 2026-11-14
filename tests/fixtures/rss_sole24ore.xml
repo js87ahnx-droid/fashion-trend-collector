@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Il Sole 24 ORE - Moda</title>
+    <link>https://www.ilsole24ore.com</link>
+    <description>Il Sole 24 ORE - Moda</description>
+    <copyright>Copyright 2019 - IlSole24ORE.com</copyright>
+    <language>it-IT</language>
+    <pubDate>Fri, 13 Nov 2026 16:44:29 GMT</pubDate>
+    <lastBuildDate>Fri, 13 Nov 2026 16:44:29 GMT</lastBuildDate>
+    <generator>Nile Wellspring</generator>
+    
+    <atom:link href="https://www.ilsole24ore.com/rss/moda.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Seta, lavoro e diritti: il progetto Heritage fa rivivere la visione di San Leucio]]></title>
+      <description><![CDATA[L’innovativa filosofia del Codice Leuciano torna nella visione di Giuseppe Menniti, l’imprenditore che vuole rilanciare il sito borbonico, la sua manifattura e la sua eredità]]></description>
+      <enclosure url="https://i2.res.24o.it/images2010/S24/Documenti/2026/11/12/Immagini/Ritagli/HERitage%20(26)-U35777674567lDS-1440x752@IlSole24Ore-Web.jpg" type="image/jpg" length="0"/>
+      <link>https://www.ilsole24ore.com/art/seta-lavoro-e-diritti-progetto-heritage-fa-rivivere-visione-san-leucio-AJDNJgCC</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[di <a href="https://argomenti.ilsole24ore.com/chiara-beghelli.html">Chiara Beghelli</a>]]></dc:creator>
+      <guid isPermaLink="false">AJDNJgCC</guid>
+      <category domain="https://www.ilsole24ore.com">Moda</category>
+      <pubDate>Wed, 11 Nov 2026 12:09:31 GMT</pubDate>
+    </item>
+<item>
+      <title><![CDATA[Neur|aé (Sisley Paris) debutta nell’hotellerie di lusso]]></title>
+      <description><![CDATA[Il brand ha siglato un accordo con Borgo Pignano Firenze]]></description>
+      <enclosure url="https://i2.res.24o.it/images2010/S24/Documenti/2026/11/13/Immagini/Ritagli/Borgo%20Pignano%20Firenze%203_giardino-kXF-U40034487475HmU-1440x752@IlSole24Ore-Web.jpg" type="image/jpg" length="0"/>
+      <link>https://www.ilsole24ore.com/art/neur-ae-sisley-paris-debutta-nell-hotellerie-lusso-AJUK15DC</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[di <a href="https://argomenti.ilsole24ore.com/marika-gervasio.html">Marika Gervasio</a>]]></dc:creator>
+      <guid isPermaLink="false">AJUK15DC</guid>
+      <category domain="https://www.ilsole24ore.com">Moda</category>
+      <pubDate>Thu, 12 Nov 2026 12:14:21 GMT</pubDate>
+    </item>
+<item>
+      <title><![CDATA[Anche Tod’s cambia direttore creativo: lascia Matteo Tamburini]]></title>
+      <description><![CDATA[Il vorticoso avvicendarsi dei direttori creativi prosegue: il gruppo Tod’s questa sera ha comunicato che Matteo Tamburini lascerà la direzione creativa del marchio Tod’s. Come si legge in una nota...]]></description>
+      <enclosure url="https://i2.res.24o.it/images2010/S24/Documenti/2026/11/11/Immagini/Ritagli/260115-Tods-MatteoTamburini-02-008-U30245868460SMi-1440x752@IlSole24Ore-Web.jpg" type="image/jpg" length="0"/>
+      <link>https://www.ilsole24ore.com/art/anche-tod-s-cambia-direttore-creativo-lascia-matteo-tamburini-AJVC5vBC</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[di <a href="https://argomenti.ilsole24ore.com/redazione-moda.html">Redazione Moda</a>]]></dc:creator>
+      <guid isPermaLink="false">AJVC5vBC</guid>
+      <category domain="https://www.ilsole24ore.com">Moda</category>
+      <pubDate>Tue, 10 Nov 2026 18:50:00 GMT</pubDate>
+    </item>
+</channel>
+</rss>

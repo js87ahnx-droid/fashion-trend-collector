@@ -27,7 +27,7 @@ class Feed:
     tz: timezone = timezone.utc   # 날짜에 시간대가 안 적힌 피드의 시간대
     fetchable: bool = True        # False면 원문을 열지 않는 brief 글 (robots.txt가 Claude 수집기를 막은 매체)
     style: bool = False           # 스타일 잡지 — 비즈니스 단어가 있는 글만 남김
-    category: str | None = None   # 이 RSS 분류(<category>)가 붙은 글만 남김 — 단어 필터 대신
+    categories: tuple[str, ...] = ()   # 이 RSS 분류(<category>) 중 하나가 붙은 글만 남김 — 단어 필터 대신
 
 
 H48 = timedelta(hours=48)
@@ -38,7 +38,14 @@ FEEDS: tuple[Feed, ...] = (
     Feed("fashionista", "https://fashionista.com/.rss/full/", "Fashionista", "global", 5, H48),
     # Vogue Business는 vogue.com/business로 옮겨 와 Vogue RSS에 "Business" 분류로 섞여 나온다(2026-11-13 확인).
     Feed("vogue", "https://www.vogue.com/feed/rss", "Vogue Business", "global", 5, H48, fetchable=False,
-         category="Business"),
+         categories=("Business",)),
+    # 이탈리아·프랑스 (2026-11-14 확인). Pambianco·FashionUnited IT는 Claude 차단 없음.
+    # Il Sole 24 Ore는 robots.txt가 anthropic-ai를 막아 brief. FashionNetwork·Les Echos는 gnews.py.
+    Feed("pambianco", "https://www.pambianconews.com/feed/", "Pambianco (IT)", "global", 5, H48),
+    Feed("fashionunited_it", "https://fashionunited.it/rss-news", "FashionUnited (IT)", "global", 5, H48,
+         categories=("news/business", "news/retail", "news/moda")),   # press/(보도자료)·news/cultura 제외
+    Feed("sole24ore", "https://www.ilsole24ore.com/rss/moda.xml", "Il Sole 24 Ore (IT)", "global", 3, H48,
+         fetchable=False),
     Feed("hypebeast", "https://hypebeast.com/feed", "Hypebeast", "global", 5, H48, style=True),
     Feed("ktnews", "https://www.ktnews.com/rss/allArticle.xml", "한국섬유신문", "kr", 8, H48, KST),
     Feed("voguekr", "https://www.vogue.co.kr/feed/", "보그코리아", "kr", 5, H48, KST, fetchable=False, style=True),
@@ -148,7 +155,8 @@ def fetch_feed(feed: Feed, ctx: Context, counts: dict | None = None) -> list[dic
         seen += 1
         if feed.style and not is_business(e["title"], e["summary"]):
             continue
-        if feed.category and not any(c == feed.category or c.startswith(feed.category + " /") for c in e["categories"]):
+        if feed.categories and not any(c == want or c.startswith(want + " /")
+                                       for c in e["categories"] for want in feed.categories):
             continue
         if len(out) < feed.max_items:
             out.append(r)
@@ -166,7 +174,7 @@ def fetch(ctx: Context) -> list[dict]:
             counts: dict = {}
             got = fetch_feed(feed, ctx, counts)
             out += got
-            filtered = feed.style or feed.category
+            filtered = feed.style or feed.categories
             outlets[feed.outlet] = {"fetched": len(got)} | ({"before_filter": counts["before_filter"]} if filtered else {})
         except Exception as e:
             errors.append(f"{feed.key}: {e}")

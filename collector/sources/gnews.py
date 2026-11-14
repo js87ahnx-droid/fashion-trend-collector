@@ -1,13 +1,17 @@
-"""BoF — 자체 RSS가 막혀(403) 구글 뉴스 RSS 검색으로 새 글을 찾는다.
+"""구글 뉴스 RSS 검색으로 새 글만 찾는 매체 — 자체 RSS가 막혔거나 수집기를 막은 곳.
+
+- BoF: RSS 403, robots.txt가 다수 수집기를 막고 AI 학습 거부, 유료 기사
+- FashionNetwork 프랑스·이탈리아: RSS 403, robots.txt가 Claude 수집기 일부를 막음 (2026-11-14 확인)
+- Les Echos(럭셔리): RSS 403, 유료 기사
 (Vogue Business는 구글 뉴스 결과에 제목이 비어 와서 쓰지 않고, Vogue RSS의 Business 분류로 받는다 — feeds.py)
 
-기사 페이지와 구글 링크는 열지 않는다(BoF robots.txt가 다수 수집기를 막고 AI 학습을 거부, 유료 기사).
-제목·매체·날짜만 쓰는 brief 글이다. 링크는 구글 뉴스 주소 그대로(누르면 원문으로 넘어감).
+기사 페이지와 구글 링크는 열지 않는다. 제목·매체·날짜만 쓰는 brief 글이다. 링크는 구글 뉴스 주소 그대로.
 """
 from __future__ import annotations
 
 import hashlib
 import xml.etree.ElementTree as ET
+from dataclasses import dataclass
 from datetime import timedelta
 from urllib.parse import quote
 
@@ -16,14 +20,28 @@ from .base import Context, raw
 from .feeds import _date
 
 MAX_AGE = timedelta(hours=48)
-PER_QUERY = 6
-QUERIES = (   # (질의, 화면에 쓸 기본 매체 이름)
-    ("site:businessoffashion.com when:2d", "The Business of Fashion"),
+
+
+@dataclass(frozen=True)
+class Query:
+    q: str
+    outlet: str        # 화면에 쓸 매체 이름 (구글 뉴스 <source> 값과 달라도 이 이름으로)
+    hl: str = "en-US"  # 구글 뉴스 언어·나라
+    gl: str = "US"
+    per_query: int = 6
+
+
+QUERIES: tuple[Query, ...] = (
+    Query("site:businessoffashion.com when:2d", "The Business of Fashion"),
+    Query("site:fr.fashionnetwork.com when:2d", "FashionNetwork (FR)", "fr", "FR", 4),
+    Query("site:lesechos.fr luxe when:2d", "Les Echos (FR)", "fr", "FR", 3),
+    Query("site:it.fashionnetwork.com when:2d", "FashionNetwork (IT)", "it", "IT", 4),
 )
 
 
-def search_url(q: str) -> str:
-    return f"https://news.google.com/rss/search?q={quote(q)}&hl=en-US&gl=US&ceid=US:en"
+def search_url(query: Query) -> str:
+    lang = query.hl.split("-")[0]
+    return f"https://news.google.com/rss/search?q={quote(query.q)}&hl={query.hl}&gl={query.gl}&ceid={query.gl}:{lang}"
 
 
 def split_title(title: str, source: str) -> str:
@@ -48,9 +66,9 @@ def parse(xml_text: str) -> list[dict]:
     return out
 
 
-def fetch_query(q: str, default_outlet: str, ctx: Context) -> list[dict]:
+def fetch_query(query: Query, ctx: Context) -> list[dict]:
     out = []
-    for e in parse(http.get_text(search_url(q), timeout=25)):
+    for e in parse(http.get_text(search_url(query), timeout=25)):
         if not e["published"] or ctx.now - e["published"] > MAX_AGE:
             continue
         if not e["link"].startswith("https://") or not e["title"]:
@@ -59,8 +77,8 @@ def fetch_query(q: str, default_outlet: str, ctx: Context) -> list[dict]:
         if id_ in ctx.known_ids:
             continue
         out.append(raw(id=id_, title=e["title"], url=e["link"], source="gnews", region="global",
-                       outlet=e["source"] or default_outlet, brief=True, published_at=e["published"].isoformat()))
-        if len(out) >= PER_QUERY:
+                       outlet=query.outlet, brief=True, published_at=e["published"].isoformat()))
+        if len(out) >= query.per_query:
             break
     return out
 
@@ -68,14 +86,14 @@ def fetch_query(q: str, default_outlet: str, ctx: Context) -> list[dict]:
 def fetch(ctx: Context) -> list[dict]:
     out, errors = [], []
     outlets = ctx.notes.setdefault("outlets", {}).setdefault("gnews", {})
-    for q, outlet in QUERIES:
+    for query in QUERIES:
         try:
-            got = fetch_query(q, outlet, ctx)
+            got = fetch_query(query, ctx)
             out += got
-            outlets[outlet] = {"fetched": len(got)}
+            outlets[query.outlet] = {"fetched": len(got)}
         except Exception as e:
-            errors.append(f"{outlet}: {e}")
-            outlets[outlet] = {"fetched": 0, "error": f"{type(e).__name__}: {e}"[:200]}
+            errors.append(f"{query.outlet}: {e}")
+            outlets[query.outlet] = {"fetched": 0, "error": f"{type(e).__name__}: {e}"[:200]}
     if errors and len(errors) == len(QUERIES):
         raise http.FetchError("; ".join(errors))
     ctx.notes["gnews"] = errors
