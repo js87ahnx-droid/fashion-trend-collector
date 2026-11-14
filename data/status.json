@@ -1,5 +1,5 @@
 {
- "last_run": "2026-11-14T11:22:09Z",
+ "last_run": "2026-11-14T11:55:09Z",
  "sources": {
   "feeds": {
    "fetched": 40,
@@ -99,9 +99,10 @@
    "detail_items": 0,
    "api_requests": 0,
    "web_fetches": 0,
-   "by_model": {}
+   "by_model": {},
+   "cost_usd": 0.0
   },
-  "note": "분류 실패: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch2jbjbEwKtacWaBz8My2'}"
+  "note": "분류 실패: ClaudeCodeError: claude -p 실패: Failed to authenticate. API Error: 401 Invalid bearer token"
  },
  "detail_calls": [],
  "usage_24h": []
