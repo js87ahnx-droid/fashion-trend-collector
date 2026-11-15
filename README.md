@@ -38,16 +38,19 @@ python -m venv .venv && .venv/Scripts/pip install -r requirements.txt -r require
 |---|---|---|---|
 | `feed` | WWD · Glossy · Fashionista | RSS (`collector/sources/feeds.py` `FEEDS`), 48시간, 매체당 5건 | 읽음 |
 | `feed` | Vogue Business | Vogue RSS 중 `Business` 분류 글만 | 안 읽음(brief) — vogue.com robots.txt가 Claude 수집기를 막음 |
-| `feed` | Hypebeast · 바자코리아 | RSS + 비즈니스 단어 필터 | 읽음 |
-| `feed` | 보그코리아 · W코리아 | RSS + 비즈니스 단어 필터 | 안 읽음(brief) — robots.txt가 ClaudeBot을 막음 |
+| `feed` | Hypebeast · 바자코리아 | RSS + 스타일 필터 | 읽음 |
+| `feed` | 보그코리아 · W코리아 | RSS + 스타일 필터 | 안 읽음(brief) — robots.txt가 ClaudeBot을 막음 |
 | `feed` | 한국섬유신문 | RSS, 매체당 8건, http 링크는 https로 | 읽음 |
 | `krsite` | 어패럴뉴스 · 패션엔 · 패션비즈 | 첫 화면 링크(패션비즈는 뉴스 사이트맵) → 기사 메타만 (`krsite.py` `SITES`), 매체당 6건, robots.txt 확인 | 읽음 |
+| `krsite` | 아이즈매거진 | 뉴스 사이트맵 `sitemap-news.xml.gz`(gzip)의 주소·제목·게시 시각 → **사이트맵 제목으로** 스타일 필터 → 통과한 글만 기사 페이지의 `og:description`, 6건 | 읽음 |
 | `feed` | Pambianco (IT) | RSS, 매체당 5건 | 읽음 |
 | `feed` | FashionUnited (IT) | RSS 중 `news/business`·`news/retail`·`news/moda` 분류만(보도자료·문화 제외) | 읽음 |
 | `feed` | Il Sole 24 Ore (IT) | RSS(모다), 3건 | 안 읽음(brief) — robots.txt가 anthropic-ai를 막음 |
 | `gnews` | The Business of Fashion | 구글 뉴스 RSS `site:businessoffashion.com when:2d` (`gnews.py` `QUERIES`), 6건 | 안 읽음(brief) — 링크는 구글 뉴스 주소 그대로 |
 | `gnews` | FashionNetwork (FR) · FashionNetwork (IT) | 구글 뉴스(프랑스어·이탈리아어판) `site:fr.fashionnetwork.com` / `site:it.fashionnetwork.com`, 각 4건 | 안 읽음(brief) — RSS 403, robots.txt가 Claude 수집기 일부를 막음 |
 | `gnews` | Les Echos (FR) | 구글 뉴스(프랑스어판) `site:lesechos.fr luxe`, 3건 | 안 읽음(brief) — RSS 403, 유료 |
+
+**스타일 필터**(`feeds.style_keep`, 스타일 잡지 5곳 — Hypebeast·보그코리아·W코리아·바자코리아·아이즈매거진): (가) 비즈니스 단어(`BIZ_WORDS`: 매출·실적·인수·CEO·매장·리테일…)가 있으면 남김 → (나) 없으면 업계 단어(`INDUSTRY_WORDS`: 협업·콜라보·선임·사임·팝업·진출…, collaboration·launch·appoint·steps down… / 제목의 `A x B` 협업 표기)가 있고 홍보 단어(`PROMO_WORDS`: 세일·할인·발매·래플·응모·추천·최대 N%, sale·restock·release date·colorway·$가격)가 없을 때만 남김 → (다) 그 밖엔 버림. 단어는 제목 + 요약 앞 300자에서 찾고(아이즈매거진은 제목만), 협업 표기는 제목에서만 찾는다. 수집 상태에는 "필터 전 N건 중 M건"으로 보인다.
 
 프랑스·이탈리아 매체는 `region="global"`(화면 표시 "해외")이고, 매체 이름에 (FR)·(IT)를 붙여 구분한다. 분류·상세 프롬프트는 외국어 원문이어도 한국어로 쓰게 한다.
 
