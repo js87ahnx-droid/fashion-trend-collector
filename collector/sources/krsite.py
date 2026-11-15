@@ -4,6 +4,8 @@
   (해외 IP를 막아 GitHub 예약 실행에선 쓰지 않음 — APPAREL 참고)
 - 패션엔: 첫 화면의 /board/read_new.php?table=&number= 링크, 게시일은 DC.date.issued 메타(날짜만)
 - 패션비즈: 첫 화면이 자바스크립트로 그려져 링크가 없음 → robots.txt가 알려 주는 뉴스 사이트맵(server-sitemap.xml)
+- 아이즈매거진(v2, 2026-11-15): 뉴스 사이트맵(sitemap-news.xml.gz, 최근 이틀치)에 주소·제목·게시 시각이 다 있다.
+  스타일 잡지라 사이트맵 제목으로 feeds.style_keep을 먼저 걸고, 통과한 글만 기사 페이지에서 og:description을 읽는다.
 모든 곳 robots.txt에 Claude 수집기 차단 없음(2026-11-13 확인). 막힌 경로는 robots.txt를 읽어 건너뛴다.
 """
 from __future__ import annotations
@@ -17,6 +19,7 @@ from typing import Callable
 
 from .. import http
 from .base import Context, raw
+from .feeds import style_keep
 
 KST = timezone(timedelta(hours=9))
 MAX_AGE = timedelta(hours=48)
@@ -29,8 +32,10 @@ class Site:
     outlet: str
     base: str                                    # https://호스트
     list_url: str
-    links: Callable[[str], list[tuple[str, str]]]   # 목록 문서 → [(기사 번호, https 주소)] 최신 먼저
-    date: Callable[[str, dict], datetime | None]    # (기사 HTML, 목록에서 얻은 값) → 게시 시각
+    links: Callable[[str], list[tuple[str, str]]] | None = None   # 목록 문서 → [(기사 번호, https 주소)] 최신 먼저
+    date: Callable[[str, dict], datetime | None] | None = None    # (기사 HTML, 목록에서 얻은 값) → 게시 시각
+    kind: str = "home"            # "news_sitemap"이면 fetch_news_sitemap (제목·게시 시각을 사이트맵에서)
+    style: bool = False           # 스타일 매체 — 사이트맵 제목으로 style_keep을 건다
 
 
 def _date(s: str | None) -> datetime | None:
@@ -111,11 +116,39 @@ def _date_listed(page: str, listed: dict) -> datetime | None:
 APPAREL = Site("apparel", "어패럴뉴스", "https://www.apparelnews.co.kr", "https://www.apparelnews.co.kr/",
                _apparel_links, _date_jsonld)
 
+# robots.txt는 /admin/만 막는다(2026-11-15 확인) → 원문 읽음.
+EYESMAG = Site("eyesmag", "아이즈매거진", "https://www.eyesmag.com", "https://www.eyesmag.com/sitemap/sitemap-news.xml.gz",
+               kind="news_sitemap", style=True)
+
 SITES: tuple[Site, ...] = (
     Site("fashionn", "패션엔", "https://www.fashionn.com", "https://www.fashionn.com/", _fashionn_links, _date_dc),
     Site("fashionbiz", "패션비즈", "https://fashionbiz.co.kr", "https://fashionbiz.co.kr/server-sitemap.xml",
          _fashionbiz_links, _date_listed),
+    EYESMAG,
 )
+
+CDATA = re.compile(r"^\s*<!\[CDATA\[(.*)\]\]>\s*$", re.S)
+
+
+def _xml_text(s: str) -> str:
+    m = CDATA.match(s or "")
+    return html.unescape(m.group(1) if m else (s or "")).replace(" ", " ").strip()
+
+
+def news_sitemap_entries(doc: str) -> list[dict]:
+    """뉴스 사이트맵 → [{num, url, title, published}] 게시 시각 최신 먼저. 번호·제목·시각 중 하나라도 없으면 뺀다."""
+    out = []
+    for block in SITEMAP_URL.findall(doc):
+        loc = re.search(r"<loc>\s*([^<]+?)\s*</loc>", block)
+        title = re.search(r"<news:title>(.*?)</news:title>", block, re.S)
+        pub = re.search(r"<news:publication_date>([^<]+)</news:publication_date>", block)
+        url = _xml_text(loc.group(1)) if loc else ""
+        num = re.search(r"/posts/(\d+)(?:/|$)", url)
+        when = _date(pub.group(1)) if pub else None
+        if not (num and url.startswith("https://") and title and _xml_text(title.group(1)) and when):
+            continue
+        out.append({"num": num.group(1), "url": url, "title": _xml_text(title.group(1)), "published": when})
+    return sorted(out, key=lambda e: e["published"], reverse=True)
 
 
 def meta(page: str, prop: str) -> str:
@@ -136,11 +169,38 @@ def robots_for(site: Site) -> urllib.robotparser.RobotFileParser:
     return rp
 
 
+def fetch_news_sitemap(site: Site, ctx: Context, rp, doc: str) -> list[dict]:
+    """사이트맵 방식(아이즈매거진). before_filter = 48시간 안·아직 모르는 글 전체 수(상한에서 멈추지 않고 셈).
+    필터에 걸린 글·아는 글·48시간 넘은 글은 기사 페이지를 받지 않는다. 기사 하나의 실패는 그 글만 건너뛴다."""
+    out, seen = [], 0
+    for e in news_sitemap_entries(doc):
+        id_ = f"kr-{site.key}-{e['num']}"
+        if id_ in ctx.known_ids or ctx.now - e["published"] > MAX_AGE:
+            continue
+        seen += 1
+        if len(out) >= PER_SITE or (site.style and not style_keep(e["title"], "")):
+            continue
+        if not e["url"].isascii() or not rp.can_fetch(http.UA, e["url"]):
+            ctx.notes.setdefault("krsite_articles", []).append(f"{site.key} {e['num']}: 읽지 않는 주소"[:150])
+            continue
+        try:
+            page = http.get_text(e["url"], timeout=25)
+        except Exception as err:            # 기사 하나(삭제·시간 초과·주소 오류)가 매체 전체를 날리지 않게
+            ctx.notes.setdefault("krsite_articles", []).append(f"{site.key} {e['num']}: {err}"[:150])
+            continue
+        out.append(raw(id=id_, title=e["title"], url=e["url"], source="krsite", region="kr", outlet=site.outlet,
+                       excerpt=meta(page, "og:description"), published_at=e["published"].isoformat()))
+    ctx.notes.setdefault("krsite_before_filter", {})[site.outlet] = seen
+    return out
+
+
 def fetch_site(site: Site, ctx: Context) -> list[dict]:
     rp = robots_for(site)
     if not rp.can_fetch(http.UA, site.list_url):
         raise http.FetchError(f"robots.txt가 목록 주소를 막음: {site.list_url}")
     doc = http.get_text(site.list_url, timeout=25)
+    if site.kind == "news_sitemap":
+        return fetch_news_sitemap(site, ctx, rp, doc)
     listed_dates = _fashionbiz_sitemap_dates(doc) if site.key == "fashionbiz" else {}
     out = []
     for num, url in site.links(doc):
@@ -177,10 +237,13 @@ def fetch(ctx: Context) -> list[dict]:
             got = fetch_site(site, ctx)
             out += got
             outlets[site.outlet] = {"fetched": len(got)}
+            if site.style:              # 스타일 매체만 "N건 중 M건" (패션엔·패션비즈는 그대로)
+                outlets[site.outlet]["before_filter"] = ctx.notes.get("krsite_before_filter", {}).pop(site.outlet, 0)
         except Exception as e:
             errors.append(f"{site.key}: {e}")
             outlets[site.outlet] = {"fetched": 0, "error": f"{type(e).__name__}: {e}"[:200]}
     if errors and len(errors) == len(SITES):
         raise http.FetchError("; ".join(errors))
+    ctx.notes.pop("krsite_before_filter", None)
     ctx.notes["krsite"] = errors + ctx.notes.pop("krsite_articles", [])   # 기사 단위 실패도 상태 메모로
     return out

@@ -1,5 +1,6 @@
 """S3 — 국내 산업지 직접 읽기(krsite)·구글 뉴스(gnews). 픽스처는 2026-11-13 받은 실제 응답을 줄인 것."""
-from datetime import datetime, timezone
+import gzip
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -23,7 +24,7 @@ def fake_web(calls, robots=None, article=None):
     """주소별로 픽스처를 돌려준다. 요청한 주소를 calls에 남긴다."""
     def get_text(url, **kw):
         calls.append(url)
-        host = {"apparelnews": "apparel", "fashionn": "fashionn", "fashionbiz": "fashionbiz"}
+        host = {"apparelnews": "apparel", "fashionn": "fashionn", "fashionbiz": "fashionbiz", "eyesmag": "eyesmag"}
         key = next((v for k, v in host.items() if k in url), None)
         if url.endswith("/robots.txt"):
             return robots or read(f"kr_{key}_robots.txt")
@@ -33,6 +34,8 @@ def fake_web(calls, robots=None, article=None):
             return read("kr_fashionn_list.html")
         if url.endswith("server-sitemap.xml"):
             return read("kr_fashionbiz_sitemap.xml")
+        if url.endswith("sitemap-news.xml.gz"):
+            return gzip.decompress((FX / "kr_eyesmag_sitemap.xml.gz").read_bytes()).decode("utf-8")
         if key:
             return article or read(f"kr_{key}_article.html")
         raise AssertionError(url)
@@ -135,9 +138,10 @@ def test_krsite_failure_isolated_and_outlets(monkeypatch):
     ctx = Context(now=NOW)
     out = krsite.fetch(ctx)
     got = ctx.notes["outlets"]["krsite"]
-    assert set(got) == {"어패럴뉴스", "패션엔", "패션비즈"}
+    assert set(got) == {"어패럴뉴스", "패션엔", "패션비즈", "아이즈매거진"}
     assert got["패션엔"]["fetched"] == 0 and "503" in got["패션엔"]["error"]
-    assert {r["outlet"] for r in out} == {"어패럴뉴스", "패션비즈"}
+    assert {r["outlet"] for r in out} == {"어패럴뉴스", "패션비즈", "아이즈매거진"}
+    assert "before_filter" not in got["패션비즈"] and "before_filter" not in got["어패럴뉴스"]   # E2 ⑤-3
 
 
 # --- gnews ---
@@ -250,3 +254,139 @@ def test_apparelnews_via_google_news_is_korean_brief(monkeypatch):
     assert got and all(r["region"] == "kr" and r["brief"] is True and r["outlet"] == "어패럴뉴스" for r in got)
     assert not any(r["title"].endswith("어패럴뉴스") for r in got)
     assert krsite.APPAREL not in krsite.SITES                                   # 예약 실행에선 직접 읽지 않음
+
+
+# --- v2 E2: 아이즈매거진(뉴스 사이트맵, 스타일 필터) ---
+
+E_NOW = datetime(2026, 11, 15, 12, 0, tzinfo=timezone.utc)   # 픽스처(11-13 15:32 ~ 11-15 09:55)보다 뒤
+E_SITEMAP = "https://www.eyesmag.com/sitemap/sitemap-news.xml.gz"
+E_KEEP = "https://www.eyesmag.com/posts/165641/roah-cp-company-first-collection"   # "로아 x C.P. 컴퍼니, 첫 협업 컬렉션 공개"
+
+
+def eyes_web(calls, sitemap=None, fail=()):
+    """http.get(바이트) 수준 가짜 — gzip 풀기 경로까지 지나가게 사이트맵은 .gz 바이트 그대로 준다."""
+    def get(url, **kw):
+        calls.append(url)
+        if url in fail:
+            raise http.FetchError(f"HTTP 404 {url}")
+        if url.endswith("/robots.txt"):
+            return read("kr_eyesmag_robots.txt").encode()
+        if url == E_SITEMAP:
+            body = sitemap if sitemap is not None else (FX / "kr_eyesmag_sitemap.xml.gz").read_bytes()
+            return http.ungzip(body)
+        if url.startswith("https://www.eyesmag.com/posts/"):
+            return read("kr_eyesmag_article.html").encode()
+        raise AssertionError(url)
+    return get
+
+
+def sitemap_xml(entries):
+    rows = "".join(
+        f"<url><loc>{u}</loc><news:news><news:publication_date>{d}</news:publication_date>"
+        f"<news:title>{t}</news:title></news:news></url>" for u, t, d in entries)
+    return ('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            f'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">{rows}</urlset>')
+
+
+def test_ungzip_one_or_two_layers_and_plain():
+    """E2 ① gzip 한 겹·두 겹 풀기, gzip 아니면 그대로."""
+    raw_ = b"<urlset/>"
+    assert http.ungzip(gzip.compress(raw_)) == raw_
+    assert http.ungzip(gzip.compress(gzip.compress(raw_))) == raw_
+    assert http.ungzip(raw_) == raw_
+
+
+def test_get_ungzips_real_response(monkeypatch):
+    """E2 ① 실제 urlopen 응답이 gzip 바이트여도 http.get이 풀어서 돌려준다."""
+    class Resp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self):
+            return (FX / "kr_eyesmag_sitemap.xml.gz").read_bytes()
+
+    monkeypatch.setattr(http.urllib.request, "urlopen", lambda req, timeout=None: Resp())
+    assert http.get_text(E_SITEMAP).startswith("<?xml")
+
+
+def test_eyesmag_fixture_fields_and_filter(monkeypatch):
+    """E2 ② 필드 / ③ 필터에 걸린 글은 기사 페이지를 받지 않음 / ④ before_filter."""
+    calls = []
+    monkeypatch.setattr(http, "get", eyes_web(calls))
+    ctx = Context(now=E_NOW)
+    out = krsite.fetch_site(krsite.EYESMAG, ctx)
+    assert [r["url"] for r in out] == [E_KEEP]
+    r = out[0]
+    assert r["id"] == "kr-eyesmag-165641" and r["title"] == "로아 x C.P. 컴퍼니, 첫 협업 컬렉션 공개"
+    assert r["region"] == "kr" and r["outlet"] == "아이즈매거진" and r["source"] == "krsite" and r["brief"] is False
+    assert r["published_at"].startswith("2026-11-14T04:35") and r["excerpt"] == "4가지 제품"
+    articles = [u for u in calls if "/posts/" in u]
+    assert articles == [E_KEEP]                                   # 세일·발매 정보·셀럽 글은 페이지를 받지 않음
+    assert ctx.notes["krsite_before_filter"]["아이즈매거진"] == 6   # 48시간 안·모르는 글 전체
+
+
+def test_eyesmag_known_and_old_not_fetched(monkeypatch):
+    """E2 ③ 아는 id·48시간 넘은 글은 기사 페이지를 받지 않고 before_filter에도 안 듦."""
+    calls = []
+    monkeypatch.setattr(http, "get", eyes_web(calls))
+    ctx = Context(now=E_NOW, known_ids={"kr-eyesmag-165641"})
+    assert krsite.fetch_site(krsite.EYESMAG, ctx) == []
+    assert not [u for u in calls if "/posts/" in u]
+    late = Context(now=E_NOW + timedelta(days=3))
+    assert krsite.fetch_site(krsite.EYESMAG, late) == []
+    assert late.notes["krsite_before_filter"]["아이즈매거진"] == 0
+
+
+def test_eyesmag_cap_order_failure_and_text(monkeypatch):
+    """E2 ⑤ 기사 하나 실패해도 계속, ⑤-2 엔티티·CDATA, ⑤-4 상한 6과 빈자리 채우기, ⑤-5 최신 먼저."""
+    base = "https://www.eyesmag.com/posts/{}/a"
+    entries = [(base.format(100 + i), f"브랜드{i} x 브랜드 협업 공개", f"2026-11-15T0{i}:00:00.000Z") for i in range(9)]
+    xml = sitemap_xml(entries)                                    # 오래된 글부터
+    fail = {base.format(108)}                                     # 가장 최신 글의 페이지가 404
+    calls = []
+    monkeypatch.setattr(http, "get", eyes_web(calls, sitemap=gzip.compress(xml.encode()), fail=fail))
+    ctx = Context(now=E_NOW)
+    out = krsite.fetch_site(krsite.EYESMAG, ctx)
+    nums = [r["id"].rsplit("-", 1)[1] for r in out]
+    assert nums == ["107", "106", "105", "104", "103", "102"]     # 최신 먼저, 실패한 108 자리는 다음 글로 채움
+    assert base.format(101) not in calls and base.format(100) not in calls   # 상한 뒤는 페이지를 안 받음
+    assert any("108" in n and "404" in n for n in ctx.notes["krsite_articles"])
+    assert ctx.notes["krsite_before_filter"]["아이즈매거진"] == 9
+    entries2 = [(base.format(200), "<![CDATA[A &amp; B x C 협업]]>", "2026-11-15T00:00:00.000Z")]
+    monkeypatch.setattr(http, "get", eyes_web([], sitemap=sitemap_xml(entries2).encode()))
+    assert krsite.fetch_site(krsite.EYESMAG, Context(now=E_NOW))[0]["title"] == "A & B x C 협업"
+
+
+def test_eyesmag_non_ascii_url_skipped_not_fatal(monkeypatch):
+    """E2 ⑤ ASCII 아닌 주소는 그 글만 건너뜀."""
+    entries = [("https://www.eyesmag.com/posts/301/한글-주소", "가 x 나 협업", "2026-11-15T01:00:00.000Z"),
+               ("https://www.eyesmag.com/posts/300/ok", "다 x 라 협업", "2026-11-15T00:00:00.000Z")]
+    monkeypatch.setattr(http, "get", eyes_web([], sitemap=sitemap_xml(entries).encode()))
+    ctx = Context(now=E_NOW)
+    out = krsite.fetch_site(krsite.EYESMAG, ctx)
+    assert [r["id"] for r in out] == ["kr-eyesmag-300"]
+    assert any("301" in n for n in ctx.notes["krsite_articles"])
+
+
+def test_eyesmag_missing_description_empty_excerpt(monkeypatch):
+    """E2 ⑤-2 og:description이 없으면 excerpt 빈 문자열."""
+    web = eyes_web([])
+    monkeypatch.setattr(http, "get", lambda url, **kw: b"<html></html>" if "/posts/" in url else web(url, **kw))
+    out = krsite.fetch_site(krsite.EYESMAG, Context(now=E_NOW))
+    assert out and out[0]["excerpt"] == ""
+
+
+def test_eyesmag_status_has_before_filter(monkeypatch):
+    """E2 ④ 상태: 아이즈매거진만 before_filter, 패션엔·패션비즈는 없음. 메모용 임시 키는 남지 않음."""
+    web_text = fake_web([])
+    eyes = eyes_web([])
+    monkeypatch.setattr(http, "get", lambda url, **kw: eyes(url) if "eyesmag" in url else web_text(url).encode())
+    ctx = Context(now=E_NOW)
+    krsite.fetch(ctx)
+    got = ctx.notes["outlets"]["krsite"]
+    assert got["아이즈매거진"] == {"fetched": 1, "before_filter": 6}
+    assert "before_filter" not in got["패션엔"] and "before_filter" not in got["패션비즈"]
+    assert "krsite_before_filter" not in ctx.notes

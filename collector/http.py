@@ -1,6 +1,7 @@
 """표준 라이브러리 HTTP 도우미 — 타임아웃, 지수 백오프 재시도."""
 from __future__ import annotations
 
+import gzip
 import time
 import urllib.error
 import urllib.request
@@ -22,7 +23,7 @@ def get(url: str, *, headers: dict | None = None, timeout: float = 15, retries: 
     for attempt in range(retries):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=hdrs), timeout=timeout) as r:
-                return r.read()
+                return ungzip(r.read())
         except urllib.error.HTTPError as e:
             if e.code not in RETRY_STATUS or attempt == retries - 1:
                 raise FetchError(f"HTTP {e.code} {url}") from e
@@ -35,6 +36,19 @@ def get(url: str, *, headers: dict | None = None, timeout: float = 15, retries: 
         sleep(min(wait, 30))
         delay *= 2
     raise FetchError(f"재시도 소진 {url}")
+
+
+GZIP_MAGIC = bytes([0x1F, 0x8B])
+
+
+def ungzip(body: bytes) -> bytes:
+    """gzip 머리(1f 8b)로 시작하면 푼다. 아이즈매거진 뉴스 사이트맵(.xml.gz)은 파일 자체가 gzip인데 서버가
+    Accept-Encoding: identity에도 Content-Encoding: gzip을 붙여 두 겹일 수 있어 최대 2번 푼다(2026-11-15 확인)."""
+    for _ in range(2):
+        if body[:2] != GZIP_MAGIC:
+            break
+        body = gzip.decompress(body)
+    return body
 
 
 def get_text(url: str, **kw) -> str:
