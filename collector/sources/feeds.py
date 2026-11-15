@@ -26,7 +26,7 @@ class Feed:
     max_age: timedelta
     tz: timezone = timezone.utc   # 날짜에 시간대가 안 적힌 피드의 시간대
     fetchable: bool = True        # False면 원문을 열지 않는 brief 글 (robots.txt가 Claude 수집기를 막은 매체)
-    style: bool = False           # 스타일 잡지 — 비즈니스 단어가 있는 글만 남김
+    style: bool = False           # 스타일 잡지 — style_keep(3단 규칙)을 통과한 글만 남김
     categories: tuple[str, ...] = ()   # 이 RSS 분류(<category>) 중 하나가 붙은 글만 남김 — 단어 필터 대신
 
 
@@ -60,11 +60,36 @@ BIZ_WORDS = re.compile(
     r"|\b(revenue|sales|profits?|acquisitions?|acquires?|acquired|CEO|retail|retailers?|stores?|IPO|earnings|layoffs?)\b",
     re.I,
 )
+# v2(2026-11-15): 비즈니스 단어가 없어도 업계 단어가 있고 홍보 단어가 없으면 남긴다 — style_keep 참고.
+INDUSTRY_WORDS = re.compile(
+    r"협업|콜라보|컬래버|론칭|런칭|팝업|플래그십|크리에이티브 디렉터|선임|임명|사임|퇴임|파트너십|진출|출범"
+    r"|\b(collaborat\w*|collabs?|team(s|ed|ing)? up|link(s|ed|ing)? (up )?with|partner\w*|launch\w*|debut\w*"
+    r"|pop-?ups?|flagships?|creative director|appoint\w*|step(s|ped|ping)? down|expan\w*)",
+    re.I,
+)
+# "세일즈"·"세일러"·"할인점"은 업계 낱말이라 빼고, drop·price·가격은 업계 소식("drops creative director", "가격 인상")에 흔해 넣지 않는다.
+PROMO_WORDS = re.compile(
+    r"세일(?!즈|러)|할인(?!점)|쿠폰|기획전|증정|응모|래플|드로우|발매|출시 정보|최대 ?\d+ ?%|기프트 가이드|선물 가이드|추천"
+    r"|\b(sale|discount\w*|giveaways?|raffles?|restock\w*|release dates?|where to buy|how to buy|gift guides?|colorways?)\b"
+    r"|\$\d",
+    re.I,
+)
+COLLAB_X = re.compile(r"[가-힣A-Za-z.]\s+[xX×]\s+[가-힣A-Za-z]")   # 제목의 "로아 x C.P. 컴퍼니" — 숫자끼리("2 x 4")는 아님
 UNBOUND_PREFIX = re.compile(r"<([A-Za-z][\w.-]*):[A-Za-z]")
 
 
 def is_business(title: str, summary: str) -> bool:
     return bool(BIZ_WORDS.search(f"{title} {clean_text(summary)[:300]}"))
+
+
+def style_keep(title: str, summary: str) -> bool:
+    """스타일 매체 3단 규칙: (가) 비즈니스 단어 → 남김 (나) 업계 단어(제목의 협업 표기 포함) + 홍보 단어 없음 → 남김 (다) 그 밖엔 버림."""
+    text = f"{title} {clean_text(summary)[:300]}"
+    if BIZ_WORDS.search(text):
+        return True
+    if not (INDUSTRY_WORDS.search(text) or COLLAB_X.search(title)):
+        return False
+    return not PROMO_WORDS.search(text)
 
 
 def clean_text(s: str) -> str:
@@ -153,7 +178,7 @@ def fetch_feed(feed: Feed, ctx: Context, counts: dict | None = None) -> list[dic
         if not r or r["id"] in ctx.known_ids:
             continue
         seen += 1
-        if feed.style and not is_business(e["title"], e["summary"]):
+        if feed.style and not style_keep(e["title"], e["summary"]):
             continue
         if feed.categories and not any(c == want or c.startswith(want + " /")
                                        for c in e["categories"] for want in feed.categories):

@@ -236,3 +236,53 @@ def test_sole24ore_is_brief(monkeypatch):
     monkeypatch.setattr(http, "get_text", lambda url, **kw: read("rss_sole24ore.xml"))
     got = feeds.fetch_feed(BY_KEY["sole24ore"], Context(now=EU_NOW))
     assert got and all(r["brief"] is True for r in got)
+
+
+# v2 E1 — 스타일 매체 3단 규칙(style_keep)
+@pytest.mark.parametrize("title,keep", [
+    # ① (가) 비즈니스 단어가 있으면 홍보 단어가 있어도 남김
+    ("블랙프라이데이 세일로 매출 신기록", True),
+    ("XX 매장 단독 발매", True),
+    # ② (나) 업계 단어, 홍보 단어 없음 → 남김
+    ("로아 x C.P. 컴퍼니, 첫 협업 컬렉션 공개", True),
+    ("펜디 X 스킴스 협업", True),
+    ("Rimowa Links With Maison Margiela", True),
+    ("구찌 새 크리에이티브 디렉터 선임", True),
+    ("Kith Expanding to Paris", True),
+    ("Designer Stepping Down", True),
+    ("신임 세일즈 총괄 임명", True),
+    ("할인점 업계와 파트너십", True),
+    # ③ (나) 업계 단어가 있어도 홍보 단어가 있으면 버림
+    ("피스마이너스원 x 헬리녹스, 캠핑 컬렉션 발매 정보", False),
+    ("나이키 x 스투시 협업 스니커 발매", False),
+    ("Brand A x Brand B Collab Restocks", False),
+    ("Collab Sneaker Launches at $180", False),
+    ("협업 기념 래플 응모", False),
+    # ④ (다) 둘 다 없으면 버림
+    ("산산기어, 2026 아카이브 세일 개최", False),
+    ("ASICS Dresses the GEL-CUMULUS in Three Colorways", False),
+    ("2 x 4 레이어드", False),
+    ("청바지에는 롱 코트가 필요합니다", False),
+    # ⑦ 대소문자 무시
+    ("rimowa links with margiela", True),
+])
+def test_style_keep_three_tiers(title, keep):
+    assert feeds.style_keep(title, "") is keep
+
+
+def test_style_keep_summary_path():
+    """⑥ 업계·홍보 단어는 제목+요약 앞 300자, 협업 표기(A x B)는 제목에서만."""
+    assert feeds.style_keep("Winter story", "<p>Kering quarterly revenue up</p>") is True        # 비즈니스 단어가 요약에만
+    assert feeds.style_keep("Brand launches capsule", "Available now for $180") is False         # 홍보가 요약에만
+    assert feeds.style_keep("Brand launches capsule", "See the release date below") is False
+    assert feeds.style_keep("Brand launches capsule", "x" * 300 + " $180") is True               # 300자 밖 홍보는 안 봄
+    assert feeds.style_keep("Winter story", "Rimowa x Margiela") is False                         # 요약의 A x B는 업계 신호 아님
+
+
+def test_style_keep_hypebeast_fixture_counts():
+    """⑧ 실제 Hypebeast 픽스처에서 옛 규칙·새 규칙 통과 수 (판정은 E3에서 실제 글로)."""
+    es = feeds.parse(read("rss_hypebeast.xml"))
+    old = sum(feeds.is_business(e["title"], e["summary"]) for e in es)
+    new = sum(feeds.style_keep(e["title"], e["summary"]) for e in es)
+    assert new >= old   # (가)가 옛 규칙과 같으므로 새 규칙은 옛 규칙을 포함
+    print(f"hypebeast fixture: {len(es)}건 중 옛 {old} → 새 {new}")
