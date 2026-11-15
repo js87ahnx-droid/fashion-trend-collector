@@ -749,6 +749,153 @@
    "collected_at": "2026-11-15T06:28:26Z",
    "why": "아울렛이 F&B로 집객을 강화하는 흐름이라 입점 브랜드가 참고할 만해요.",
    "brief": true
+  },
+  {
+   "id": "kr-eyesmag-165641",
+   "title": "로아 x C.P. 컴퍼니, 첫 협업 컬렉션 공개",
+   "url": "https://www.eyesmag.com/posts/165641/roah-cp-company-first-collection",
+   "source": "krsite",
+   "region": "kr",
+   "outlet": "아이즈매거진",
+   "cat": "market",
+   "headline": "로아, C.P. 컴퍼니와 첫 협업 4종 선보여",
+   "tag": "협업",
+   "detail": {
+    "points": [
+     "로아와 C.P. 컴퍼니가 첫 협업 컬렉션으로 제품 4종을 냈어요.",
+     "중심은 C.P. 컴퍼니 고글 재킷을 재해석한 NUNA 800 필 파워 다운 재킷이에요.",
+     "하이킹 스니커즈 CINGINO, 롱 슬리브 티셔츠, 패커블 백이 함께 나왔어요."
+    ],
+    "so_what": [
+     "고어텍스류 기능성과 브랜드 상징 디테일을 합친 협업이라, 아웃도어·고프코어 수요를 노린 기획의 참고가 될 수 있어요.",
+     "자사 몰, 플래그십, 일부 리테일러를 함께 쓰는 판매 구성은 협업 유통 전략의 한 예가 될 수 있어요."
+    ],
+    "extra": "로아는 하이킹 기반 브랜드이고, C.P. 컴퍼니는 기능성 아우터와 고글 재킷으로 알려진 이탈리아 브랜드예요. 이번 협업은 두 브랜드의 첫 컬렉션이에요.",
+    "figure": {
+     "type": "bars",
+     "title": "협업 제품 가격 (공개된 3종)",
+     "unit": "만 원",
+     "bars": [
+      {
+       "label": "패커블 백",
+       "value": 38
+      },
+      {
+       "label": "롱 슬리브",
+       "value": 51
+      },
+      {
+       "label": "CINGINO",
+       "value": 52
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "필 파워",
+      "meaning": "다운(깃털)의 부풀어 오르는 정도로, 숫자가 높을수록 보온력이 좋아요."
+     },
+     {
+      "term": "패커블",
+      "meaning": "작게 접어서 보관하거나 들고 다닐 수 있는 제품을 말해요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-15T14:06:17Z",
+   "why": "국내 아웃도어 브랜드와 이탈리아 브랜드가 손잡은 사례라, 협업 파트너를 고를 때 참고가 돼요.",
+   "pick": 3
+  },
+  {
+   "id": "gnews-f02f31f800",
+   "title": "What To Listen for at Nike’s High-Stakes Investor Day",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQMngyWXN2Y2ZpeVk1amNtWkRHN3ZiQUpONzhVY25OUVVjeVNrRUVDWUZfQ2FVN2MtUzU3ZHJJR3NXRWpBODRMS0lFZzNZVkZ0V0tiNDZ6Tzc4cm9Pb19sN0x2SGludTBUVDUtblVqUU52WG52eUE0Q1lMeFdKRU1MWjYwMk1QUlJkbmZjVW4yYlhzSGdSVmhtdFNoWEo0VDl3ZjV1TnFIbw?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "The Business of Fashion",
+   "cat": "brand",
+   "headline": "나이키, 중요한 투자자의 날 앞두고 주목할 점",
+   "tag": "전략",
+   "detail": {
+    "points": [
+     "The Business of Fashion은 나이키의 중대한 투자자의 날에서 귀담아들을 대목을 짚는 기사를 냈다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-15T14:06:17Z",
+   "why": "나이키가 투자자들에게 내놓을 전략 방향이 스포츠웨어 시장 흐름에 영향을 줄 수 있어요.",
+   "brief": true
+  },
+  {
+   "id": "gnews-44f29e94c4",
+   "title": "Coach et Ralph Lauren résistent au ralentissement du marché chinois",
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOQVlwZFQtMTUxclNOYVlETENyR1VyNllQT3RGMFc1YkVUbFFkOFFtRzZ6Nml5M3hpUU9PYm9ueDRCQ0w4SHV3X2hoakVNeXpWZjhEUHpJT3ItWHRMaVNUWVI0Q1lBNUswZUE4QklTeTF1UTlVRlFzNzNuMnhMUkRqaHhrT29uQ0FVQkhQOG5jLWhvX3dGYUtoNmlRMUg5eVBDaWJtSHFoSExNSlZicTNKWWIxV3Vidw?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "brand",
+   "headline": "코치·랄프로렌, 중국 시장 둔화에도 버텨",
+   "tag": "중국",
+   "detail": {
+    "points": [
+     "FashionNetwork(프랑스어판)는 코치와 랄프로렌이 중국 시장 둔화 속에서도 버티고 있다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-15T14:06:17Z",
+   "why": "중국 소비가 주춤한 가운데 버티는 브랜드들의 사례를 볼 수 있어요.",
+   "brief": true
+  },
+  {
+   "id": "gnews-976ec5871e",
+   "title": "닥스, 백화점 VIP 마케팅 강화",
+   "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1yUk85ajFRQzJJVnBmN1pYSU5xbC1pMHhLbWxJUWpUNE51c1ROZm9wX0s2WjliT1hyY19QT3pUQzd2VWJ2Ty0yU05ueUhWR21EcUM3akhRY0kzUFBNZW96MjZTRkhXR0IwZmxnWVlISl9BRWFY?oc=5",
+   "source": "gnews",
+   "region": "kr",
+   "outlet": "어패럴뉴스",
+   "cat": "market",
+   "headline": "닥스, 백화점 VIP 마케팅 강화",
+   "tag": "VIP",
+   "detail": {
+    "points": [
+     "어패럴뉴스는 닥스가 백화점 VIP 마케팅을 강화한다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-15T14:06:17Z",
+   "why": "백화점 VIP 고객을 붙잡는 방식이 비슷한 브랜드들의 마케팅에 참고가 돼요.",
+   "brief": true
+  },
+  {
+   "id": "gnews-6ca887f6d8",
+   "title": "Quels sont les facteurs qui font le succès des bijoux de créateur en Chine?",
+   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPT1VHNW8tR2tTazVST1ZCdEhGbDlsSFkwYWJ2a3JmRzdoTVRoX2c2TzdNMzVVVE1OSFMyMmswOGhxazloQlN0X1FaY2pCZEFHTEdtRE85aXMwdW92REpHU3FSWGV3NFpXT0RPSUZkLThwcjhGWTd5SWtYUG1qVHN1Zm4tMTVmcTJVNkdFVmlUeThNUFJ5ekFUQUs1U1FHckEzRDBwYUNHZnRLNGd2bzQyYTJnbXlDdGdtazRPZUVNZDY?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "market",
+   "headline": "중국에서 디자이너 주얼리가 잘 팔리는 이유",
+   "tag": "중국소비",
+   "detail": {
+    "points": [
+     "FashionNetwork 프랑스판은 중국에서 디자이너 주얼리의 성공을 이끄는 요인이 무엇인지 묻는 기사를 냈다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-15T14:06:17Z",
+   "why": "중국 소비자가 디자이너 주얼리를 고르는 이유를 알면 중국 진출 전략에 도움이 돼요.",
+   "brief": true
   }
  ]
 }
