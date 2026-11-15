@@ -166,7 +166,7 @@ def to_raw(entry: dict, feed: Feed) -> dict | None:
 
 
 def fetch_feed(feed: Feed, ctx: Context, counts: dict | None = None) -> list[dict]:
-    """기간 안의 글 → (스타일 잡지면) 비즈니스 단어 필터 → 매체당 최대 건수. counts에 필터 전 건수를 남긴다."""
+    """기간 안의 글 → (스타일 잡지면) style_keep 3단 규칙 → 매체당 최대 건수. counts에 필터 전 건수를 남긴다."""
     out, seen = [], 0
     text = http.get_text(feed.url, timeout=25)
     if not re.search(r"<(rss|feed|rdf:RDF)\b", text[:2000]):

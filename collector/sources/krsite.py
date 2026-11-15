@@ -181,7 +181,8 @@ def fetch_news_sitemap(site: Site, ctx: Context, rp, doc: str) -> list[dict]:
         if len(out) >= PER_SITE or (site.style and not style_keep(e["title"], "")):
             continue
         if not e["url"].isascii() or not rp.can_fetch(http.UA, e["url"]):
-            ctx.notes.setdefault("krsite_articles", []).append(f"{site.key} {e['num']}: 읽지 않는 주소"[:150])
+            why = "ASCII 아닌 주소" if not e["url"].isascii() else "robots.txt가 막음"
+            ctx.notes.setdefault("krsite_articles", []).append(f"{site.key} {e['num']}: {why}"[:150])
             continue
         try:
             page = http.get_text(e["url"], timeout=25)

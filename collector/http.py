@@ -23,7 +23,11 @@ def get(url: str, *, headers: dict | None = None, timeout: float = 15, retries: 
     for attempt in range(retries):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=hdrs), timeout=timeout) as r:
-                return ungzip(r.read())
+                body = r.read()
+            try:
+                return ungzip(body)
+            except (OSError, EOFError, ValueError) as e:   # 잘린 gzip(BadGzipFile·zlib.error 포함)
+                raise FetchError(f"gzip 풀기 실패 {url}: {e}") from e
         except urllib.error.HTTPError as e:
             if e.code not in RETRY_STATUS or attempt == retries - 1:
                 raise FetchError(f"HTTP {e.code} {url}") from e

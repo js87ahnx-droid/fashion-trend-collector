@@ -296,6 +296,23 @@ def test_ungzip_one_or_two_layers_and_plain():
     assert http.ungzip(raw_) == raw_
 
 
+def test_truncated_gzip_is_fetch_error(monkeypatch):
+    """E5 리뷰 — 잘린 gzip은 FetchError로(사이트 단위 오류 메모에 알아볼 수 있게)."""
+    class Resp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self):
+            return gzip.compress(b"<urlset>" * 100)[:30]
+
+    monkeypatch.setattr(http.urllib.request, "urlopen", lambda req, timeout=None: Resp())
+    with pytest.raises(http.FetchError, match="gzip"):
+        http.get(E_SITEMAP)
+
+
 def test_get_ungzips_real_response(monkeypatch):
     """E2 ① 실제 urlopen 응답이 gzip 바이트여도 http.get이 풀어서 돌려준다."""
     class Resp:
