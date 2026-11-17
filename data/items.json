@@ -1355,6 +1355,157 @@
    "collected_at": "2026-11-16T19:35:57Z",
    "why": "일본 주얼리 브랜드가 백화점을 통해 국내에 들어오는 흐름을 확인할 수 있어요.",
    "brief": true
+  },
+  {
+   "id": "kr-fashionbiz-231158",
+   "title": "나이키, 새 '에어' 기술부터 상품군 전반에 혁신... 새로운 미래 제안",
+   "url": "https://fashionbiz.co.kr/article/231158",
+   "source": "krsite",
+   "region": "kr",
+   "outlet": "패션비즈",
+   "cat": "brand",
+   "headline": "나이키, 에어 제조 방식 바꾼 '튠드 에어' 등 신기술 공개",
+   "tag": "기술전략",
+   "detail": {
+    "points": [
+     "나이키가 11월 16일 인베스터 데이 쇼케이스에서 전 종목 차세대 기술과 신제품을 공개했어요.",
+     "튠드 에어는 디지털 잉크로 접합 부위를 정해 부위별 반응을 조절하고, 2027년 말 러닝화에 처음 들어가요.",
+     "새 에어 유닛 개발 기간은 평균 70% 줄고, 시제품 제작은 3주에서 3일로 짧아졌어요."
+    ],
+    "so_what": [
+     "나이키가 기술 개발 속도를 크게 높이고 있어서, 경쟁 제품의 출시 주기가 빨라질 수 있어요.",
+     "러닝·트레이닝·아웃도어·일상 스포츠웨어까지 기술을 넓히는 만큼, 2027년 카테고리별 경쟁 구도를 미리 점검해볼 수 있어요.",
+     "에어를 의류 재킷에 적용하고 기술을 일상 상품으로 넓히는 흐름은 기획·MD의 참고 사례가 될 수 있어요."
+    ],
+    "extra": "이번 발표는 나이키 인베스터 데이와 연계한 쇼케이스예요. 세부 정보는 앞으로 몇 달에 걸쳐 순차적으로 공개될 예정이에요. 신제품 대부분은 2027년 이후에 출시돼요.",
+    "figure": {
+     "type": "compare",
+     "title": "튠드 에어 개발 속도 변화",
+     "before": "시제품 제작에 3주가 걸렸어요.",
+     "after": "시제품 제작 3일, 유닛 개발 기간은 평균 70% 단축",
+     "before_label": "기존",
+     "after_label": "튠드 에어"
+    },
+    "terms": [
+     {
+      "term": "인베스터 데이",
+      "meaning": "기업이 투자자에게 전략과 중장기 계획을 설명하는 행사예요."
+     },
+     {
+      "term": "플랫폼",
+      "meaning": "한 기술을 여러 제품과 종목에 공통으로 적용하는 기반을 뜻해요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-17T03:51:59Z",
+   "why": "나이키가 기술 혁신으로 반등을 노리는 전략이라 스포츠 브랜드 상품 기획에 영향이 커요",
+   "pick": 5
+  },
+  {
+   "id": "glossy-59d89347cd",
+   "title": "Why beauty shoppers are flocking to Trader Joe’s",
+   "url": "https://www.glossy.co/beauty/why-beauty-shoppers-are-flocking-to-trader-joes/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Glossy",
+   "cat": "market",
+   "headline": "美 트레이더 조, 20달러 미만 뷰티로 듀프 수요 흡수",
+   "tag": "소비동향",
+   "detail": {
+    "points": [
+     "트레이더 조 식품 팬덤이 뷰티로 번져 스킨케어 인기가 전년 대비 122.9% 늘었어요.",
+     "전 제품이 20달러 미만이고, 뷰티 진열대는 두세 칸으로 커졌어요.",
+     "고가 브랜드와 성분을 비교하는 듀프 문화와 한정 출시가 구매를 이끌어요."
+    ],
+    "so_what": [
+     "식품점·마트가 자체 브랜드 뷰티를 키우면, 고가 브랜드는 가격 외의 차별점을 더 분명히 내세워야 할 수 있어요.",
+     "장보기 동선에서 뷰티를 접하는 고객이 늘면, 전문 매장이 아닌 채널의 접점도 따져 볼 수 있어요.",
+     "향 중심 신제품과 시즌 한정 출시가 화제를 만든 만큼, 우리 기획에도 참고할 수 있어요."
+    ],
+    "extra": "트레이더 조는 캘리포니아에 본사를 둔 미국 식품 체인이에요. 제품 대부분을 외부 제조사에서 받아 자체 브랜드로 팔아요. 블랑카 CEO는 같은 성분이라도 품질이 같지는 않을 수 있다고 짚었어요.",
+    "figure": {
+     "type": "bars",
+     "title": "트레이더 조 뷰티 인기 지수 (전년 대비 증가율)",
+     "unit": "%",
+     "bars": [
+      {
+       "label": "페이스",
+       "value": 293.5
+      },
+      {
+       "label": "선케어",
+       "value": 123.2
+      },
+      {
+       "label": "스킨케어",
+       "value": 122.9
+      },
+      {
+       "label": "바디",
+       "value": 95
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "듀프",
+      "meaning": "비싼 브랜드 제품과 비슷한 효과나 향을 내는 저렴한 대체품이에요."
+     },
+     {
+      "term": "프라이빗 라벨",
+      "meaning": "유통사가 자체 브랜드로 파는 상품이에요. 생산은 외부 제조사가 맡기도 해요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-17T03:51:59Z",
+   "why": "식품 매장 팬덤이 뷰티 구매로 넘어가는 흐름이라 유통 채널 확장 전략에 참고할 만해요",
+   "pick": 4
+  },
+  {
+   "id": "vogue-06fd63da41",
+   "title": "Inside the New La Perla",
+   "url": "https://www.vogue.com/article/inside-the-new-la-perla",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "brand",
+   "headline": "라 페를라, 3년 휴면 끝내고 새 CEO 체제로 재출발",
+   "tag": "브랜드재건",
+   "detail": {
+    "points": [
+     "Vogue Business는 라 페를라가 새 CEO 알레시오 반네티 아래 3년 휴면 뒤 재도약을 준비한다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-17T03:51:59Z",
+   "why": "휴면 브랜드가 새 컬렉션·이커머스·해외 확장으로 되살아나는 사례라 참고할 만해요",
+   "brief": true
+  },
+  {
+   "id": "gnews-9b26dff734",
+   "title": "Gucci to Stage Cruise Show in Shanghai",
+   "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPSGhRVEpfTFJhcEpoNEprTzBkVkptMmNCTi11VHRhR0sxbThxeHNiZ0xHd2NhZkVyVFlSM1VSMjdkamZqMzhmNjVSd0hPVUlhRlNZamNCamlLaDJ5dmF4SDRMX1ZsNEh4WjZ0OWVxRElBS1JUVlRjM0Nnb0hOdFI3RzUtNXpCUQ?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "The Business of Fashion",
+   "cat": "market",
+   "headline": "구찌, 상하이서 크루즈 쇼 연다",
+   "tag": "쇼",
+   "detail": {
+    "points": [
+     "The Business of Fashion은 구찌가 상하이에서 크루즈 쇼를 연다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-17T03:51:59Z",
+   "why": "구찌가 중국에서 크루즈 쇼를 여는 것이라 럭셔리의 중국 공략 흐름을 볼 수 있어요",
+   "brief": true
   }
  ]
 }
