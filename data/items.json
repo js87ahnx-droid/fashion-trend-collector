@@ -2042,6 +2042,84 @@
    "collected_at": "2026-11-18T20:29:22Z",
    "why": "연말 대형 할인 시즌을 앞둔 슈즈 유통의 움직임이라 행사 기획 때 참고가 돼요.",
    "brief": true
+  },
+  {
+   "id": "pambianco-9245bfa03f",
+   "title": "Aeffe, spunta il nome del partner cinese della cordata: è Septwolves",
+   "url": "https://www.pambianconews.com/2026/11/18/aeffe-spunta-il-nome-del-partner-cinese-della-cordata-e-septwolves-501208/",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Pambianco (IT)",
+   "cat": "brand",
+   "headline": "伊 애프페 구원투수로 中 셉트울브스 거론",
+   "tag": "인수",
+   "detail": {
+    "points": [
+     "중국 셉트울브스 그룹이 애프페의 구원투수(백기사)로 거론돼요.",
+     "이름은 월요일 이탈리아 기업·메이드인이탈리아부 회의에서 나왔어요.",
+     "언론 보도로는 중국 측 대표단이 처음 참석했고, Oxy Capital 측과 함께였어요."
+    ],
+    "so_what": [
+     "애프페 지분이나 운영 구조가 바뀔 수 있어요. 라이선스·협업·납품 관계가 있다면 진행 상황을 지켜볼 수 있어요."
+    ],
+    "extra": "원문 접속이 막혀 기사 앞부분만 확인했어요. 거래 조건, 금액, 지분 규모는 확인하지 못했고, 보도에 근거한 거론 단계예요.",
+    "figure": null,
+    "terms": [
+     {
+      "term": "백기사",
+      "meaning": "어려운 회사를 도와 인수나 투자에 나서는 우호적인 제3자예요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-19T02:33:36Z",
+   "why": "중국 자본이 이탈리아 패션 그룹 구조조정에 들어오는 흐름이에요",
+   "pick": 5
+  },
+  {
+   "id": "vogue-102462b362",
+   "title": "Kering Hires Group Pricing Director: Why It Matters",
+   "url": "https://www.vogue.com/article/vogue-business-member-template",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "brand",
+   "headline": "케링, 그룹 가격 총괄 자리 새로 만들고 오찬도 선임",
+   "tag": "인사",
+   "detail": {
+    "points": [
+     "Vogue Business는 케링이 새로 만든 그룹 가격 총괄 자리에 Francisco Ochando를 선임했다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-19T02:33:36Z",
+   "why": "럭셔리 그룹이 가격 전략을 따로 맡기는 흐름을 볼 수 있어요",
+   "brief": true
+  },
+  {
+   "id": "gnews-6bf72d7e6d",
+   "title": "헤지스, 외국인 고객 공략",
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9iYkxMRHF6NGFiNUZYbWstR3pGZzZnWXh0dDIyRk9aRWJhTHYtNHBXaUE0aUtBWl9tQ1psaE80aHRfR29YMkxuZzZJUzNYQ3NhX0F3RUdmMEdiSXZneW1TQ2IxR051enp0SWJYc1haTmI4czA?oc=5",
+   "source": "gnews",
+   "region": "kr",
+   "outlet": "어패럴뉴스",
+   "cat": "market",
+   "headline": "헤지스, 외국인 고객 공략 나서",
+   "tag": "외국인",
+   "detail": {
+    "points": [
+     "헤지스가 외국인 고객을 공략하고 나섰어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-19T02:33:36Z",
+   "why": "국내 브랜드의 외국인 관광객 수요 공략 흐름을 볼 수 있어요",
+   "brief": true
   }
  ]
 }

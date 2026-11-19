@@ -1,31 +1,31 @@
 {
- "last_run": "2026-11-18T20:29:22Z",
+ "last_run": "2026-11-19T02:33:36Z",
  "sources": {
   "feeds": {
-   "fetched": 38,
+   "fetched": 36,
    "outlets": {
     "WWD": {
      "fetched": 5
     },
     "Glossy": {
-     "fetched": 5
+     "fetched": 4
     },
     "Fashionista": {
      "fetched": 5
     },
     "Vogue Business": {
      "fetched": 1,
-     "before_filter": 30
+     "before_filter": 29
     },
     "Pambianco (IT)": {
      "fetched": 5
     },
     "FashionUnited (IT)": {
      "fetched": 5,
-     "before_filter": 10
+     "before_filter": 26
     },
     "Il Sole 24 Ore (IT)": {
-     "fetched": 1
+     "fetched": 0
     },
     "Hypebeast": {
      "fetched": 3,
@@ -40,20 +40,20 @@
     },
     "W코리아": {
      "fetched": 0,
-     "before_filter": 9
+     "before_filter": 10
     },
     "바자코리아": {
      "fetched": 0,
-     "before_filter": 8
+     "before_filter": 7
     }
    },
-   "kept": 4
+   "kept": 2
   },
   "krsite": {
-   "fetched": 12,
+   "fetched": 13,
    "outlets": {
     "패션엔": {
-     "fetched": 5
+     "fetched": 6
     },
     "패션비즈": {
      "fetched": 6
@@ -88,14 +88,14 @@
   }
  },
  "run": {
-  "candidates": 73,
-  "ad_filtered": 73,
+  "candidates": 72,
+  "ad_filtered": 72,
   "new": 25,
-  "labeled": 19,
-  "deferred": 14,
-  "added": 5,
-  "total": 65,
-  "skip_memory": 151,
+  "labeled": 21,
+  "deferred": 16,
+  "added": 3,
+  "total": 68,
+  "skip_memory": 157,
   "usage": {
    "classify_calls": 1,
    "detail_items": 5,
@@ -103,23 +103,18 @@
    "web_fetches": 0,
    "by_model": {
     "claude-opus-5-5": {
-     "input_tokens": 10020,
-     "output_tokens": 5236
+     "input_tokens": 10337,
+     "output_tokens": 4468
     },
     "claude-sonnet-5-5": {
-     "input_tokens": 31242,
-     "output_tokens": 4611
+     "input_tokens": 35004,
+     "output_tokens": 3465
     }
    },
-   "cost_usd": 0.2958
+   "cost_usd": 0.2747
   }
  },
  "detail_calls": [
-  "2026-11-18T00:57:07Z",
-  "2026-11-18T00:57:07Z",
-  "2026-11-18T00:57:07Z",
-  "2026-11-18T00:57:07Z",
-  "2026-11-18T00:57:07Z",
   "2026-11-18T11:39:22Z",
   "2026-11-18T11:39:22Z",
   "2026-11-18T11:39:22Z",
@@ -129,29 +124,14 @@
   "2026-11-18T20:29:22Z",
   "2026-11-18T20:29:22Z",
   "2026-11-18T20:29:22Z",
-  "2026-11-18T20:29:22Z"
+  "2026-11-18T20:29:22Z",
+  "2026-11-19T02:33:36Z",
+  "2026-11-19T02:33:36Z",
+  "2026-11-19T02:33:36Z",
+  "2026-11-19T02:33:36Z",
+  "2026-11-19T02:33:36Z"
  ],
  "usage_24h": [
-  {
-   "at": "2026-11-18T00:57:07Z",
-   "usage": {
-    "classify_calls": 1,
-    "detail_items": 5,
-    "api_requests": 6,
-    "web_fetches": 0,
-    "by_model": {
-     "claude-opus-5-5": {
-      "input_tokens": 9919,
-      "output_tokens": 5551
-     },
-     "claude-sonnet-5-5": {
-      "input_tokens": 48917,
-      "output_tokens": 5417
-     }
-    },
-    "cost_usd": 0.333
-   }
-  },
   {
    "at": "2026-11-18T11:39:22Z",
    "usage": {
@@ -190,6 +170,26 @@
      }
     },
     "cost_usd": 0.2958
+   }
+  },
+  {
+   "at": "2026-11-19T02:33:36Z",
+   "usage": {
+    "classify_calls": 1,
+    "detail_items": 5,
+    "api_requests": 6,
+    "web_fetches": 0,
+    "by_model": {
+     "claude-opus-5-5": {
+      "input_tokens": 10337,
+      "output_tokens": 4468
+     },
+     "claude-sonnet-5-5": {
+      "input_tokens": 35004,
+      "output_tokens": 3465
+     }
+    },
+    "cost_usd": 0.2747
    }
   }
  ]
