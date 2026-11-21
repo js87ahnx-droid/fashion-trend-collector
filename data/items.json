@@ -2972,6 +2972,159 @@
    "collected_at": "2026-11-21T02:12:45Z",
    "why": "아울렛을 찾는 동남아 단체 관광 수요라 외국인 대상 영업에 참고할 만해요.",
    "brief": true
+  },
+  {
+   "id": "fashionunited_it-77177c50d2",
+   "title": "Pelletteria italiana, primo semestre 2026 ancora in flessione: ricavi a -2,5% ed export a -2,1%",
+   "url": "https://fashionunited.it/news/business/pelletteria-italiana-primo-semestre-2026-ancora-in-flessione-ricavi-a-2-5-ed-export-a-2-1/2026112032294",
+   "source": "feed",
+   "region": "global",
+   "outlet": "FashionUnited (IT)",
+   "cat": "material",
+   "headline": "이탈리아 가죽잡화 상반기 매출 2.5%↓, 수출 2.1%↓",
+   "tag": "생산",
+   "detail": {
+    "points": [
+     "2026년 상반기 이탈리아 가죽잡화 협회 회원사 매출이 2.5% 줄고, 산업생산지수는 4.6% 내렸어요.",
+     "수출은 47억 5,000만 유로로 2.1% 줄었어요. 물량은 8.8% 줄었지만 kg당 단가는 7.3% 올랐어요.",
+     "중동 수출이 45.4% 급감했고, 고용은 4% 줄었으며 기업 58%가 올해 매출 감소를 예상해요."
+    ],
+    "so_what": [
+     "이탈리아는 물량이 줄어도 단가를 올려 버티는 모습이라, 이탈리아산 가죽잡화를 들여오는 곳은 원가 인상 압박을 받을 수 있어요.",
+     "대체소재 제품은 수출 금액이 4.1% 늘고 가죽 제품은 4.7% 줄어, 소재 전환 수요를 가늠하는 참고가 될 수 있어요.",
+     "이탈리아 가죽 공급망의 기업 폐업과 숙련 인력 감소가 이어지면, 협력 공방의 납기나 생산 여력에 영향이 갈 수 있어요."
+    ],
+    "extra": "이탈리아 가죽잡화 업계는 2023년 중반부터 침체가 이어지고 있어요. 2023년 대비 2026년 매출은 약 15.5% 줄고 일자리는 약 5,000개 사라질 것으로 추정돼요. 협회는 브랜드와 공급망 기업이 함께하는 협약을 제안했어요.",
+    "figure": {
+     "type": "bars",
+     "title": "이탈리아 가죽잡화 수출 지역별 증감률(상반기)",
+     "unit": "%",
+     "bars": [
+      {
+       "label": "스페인",
+       "value": 7.4
+      },
+      {
+       "label": "미국",
+       "value": 2
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "산업생산지수",
+      "meaning": "이탈리아 통계청(Istat)이 내는 제조업 생산량 지표예요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-21T10:58:55Z",
+   "why": "생산지수도 4.6% 떨어졌어요. 이탈리아 가죽 제조 기반이 약해지는 걸 소싱 때 따져 봐야 합니다.",
+   "pick": 5
+  },
+  {
+   "id": "fashionunited_it-8d30efd8b9",
+   "title": "Piquadro spa: fatturato consolidato pari a 86 milioni nel semestre (-3%)",
+   "url": "https://fashionunited.it/news/business/piquadro-spa-fatturato-consolidato-pari-a-86-milioni-nel-semestre-3/2026112032295",
+   "source": "feed",
+   "region": "global",
+   "outlet": "FashionUnited (IT)",
+   "cat": "brand",
+   "headline": "伊 피콰드로, 상반기 매출 8,560만유로로 3.1% 감소",
+   "tag": "실적",
+   "detail": {
+    "points": [
+     "피콰드로의 9월 30일 마감 반기 연결 매출은 8,560만유로로 3.1% 줄었어요.",
+     "EBITDA는 1,370만유로로, 1년 전 1,600만유로보다 줄었어요.",
+     "순이익은 220만유로로, 전년 510만유로에서 크게 줄었어요."
+    ],
+    "so_what": [
+     "홀세일 유통망을 정리하면 단기 매출은 눌릴 수 있어요. 피콰드로는 Piquadro와 The Bridge에서 그 영향을 받았어요.",
+     "이탈리아 매출은 7.8% 줄었고 유럽은 0.2% 감소에 그쳤어요. 시장별로 수요 차이가 있을 수 있어요."
+    ],
+    "extra": "회장 겸 CEO 마르코 팔메리는 홀세일 정리의 부담이 최근 분기에 컸다고 봤어요. 2분기엔 감소폭이 뚜렷이 줄었고, 현 분기는 소폭 성장 회복을 가리킨다고 밝혔어요.",
+    "figure": {
+     "type": "bars",
+     "title": "피콰드로 반기 실적 (전년 동기 대비)",
+     "unit": "백만유로",
+     "bars": [
+      {
+       "label": "EBITDA 전년",
+       "value": 16
+      },
+      {
+       "label": "EBITDA 올해",
+       "value": 13.7
+      },
+      {
+       "label": "순이익 전년",
+       "value": 5.1
+      },
+      {
+       "label": "순이익 올해",
+       "value": 2.2
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "EBITDA",
+      "meaning": "이자·세금·감가상각 전 영업이익으로, 본업의 벌이를 보여주는 지표예요."
+     },
+     {
+      "term": "홀세일",
+      "meaning": "브랜드가 매장·유통업체에 상품을 도매로 공급하는 방식이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-21T10:58:55Z",
+   "why": "EBITDA도 1,600만에서 1,370만유로로 줄었어요. 중가 가죽잡화 시장이 얼마나 약한지 보여 줍니다.",
+   "pick": 4
+  },
+  {
+   "id": "gnews-d917f7e9c5",
+   "title": "Fashion’s ‘Grand Theft Auto VI’ Opportunity",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPU1k4QjR4SHJXNjVzYWhzMm9JR1FtbkRxd1pWeGMyMnY0Qk01OEZOR3BfV2ljYWxEa2JwRXc3X2l6MWN0Yk9jRUdNVFZvNnI3SE5rTVEyT2ppaXp3d2ZUVWVxRGctcHpzYXgyQzFtdVhJNkJRdEU3QmNPNVkxOUFIN0dlWHdvRzZYbk5SZ3J3LUo?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "The Business of Fashion",
+   "cat": "market",
+   "headline": "패션 업계에 'GTA 6'가 주는 기회",
+   "tag": "게임",
+   "detail": {
+    "points": [
+     "The Business of Fashion은 'Grand Theft Auto VI'가 패션에 기회가 된다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-21T10:58:55Z",
+   "why": "대형 게임 출시를 패션 마케팅 기회로 보는 시각이에요. 게임 협업 흐름을 볼 수 있습니다.",
+   "brief": true
+  },
+  {
+   "id": "gnews-0aab710a42",
+   "title": "Zara rouvre son flagship de Fifth Avenue, à New York",
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQc3NQZFdSRFVpanlrRG03VEdGLThjckU5Tk05XzRwaEQ4NkVURzJTNi1FdmM4NkZtTVVaV243QnlaWXpyVmFMTmdPdFhhN1Zzd0FiVElDMzZtS2xnTk8tbVE5bldnTGVabU1CWjN3b21waW1aZGN2THQxdm9IZG05ay1leS1sUkdkT01JYWZfSmF1WFZ6RWpxcjlQMHBNZ0sz?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "retail",
+   "headline": "자라, 뉴욕 5번가 플래그십 다시 열어",
+   "tag": "매장",
+   "detail": {
+    "points": [
+     "FashionNetwork(프랑스어판)는 자라가 뉴욕 5번가 플래그십 매장을 다시 열었다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-21T10:58:55Z",
+   "why": "인디텍스가 핵심 상권의 플래그십을 어떻게 운영하는지 볼 수 있는 사례예요.",
+   "brief": true
   }
  ]
 }
