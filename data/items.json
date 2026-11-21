@@ -2849,6 +2849,129 @@
    "collected_at": "2026-11-20T20:15:51Z",
    "why": "리치몬트 산하 주얼리 브랜드의 매장 전략이라 럭셔리 주얼리 리테일 흐름을 볼 수 있어요.",
    "brief": true
+  },
+  {
+   "id": "ktnews-2e057b3c53",
+   "title": "손앤박, 다이소·GS25 넘어 노브랜드까지 '유통망 전방위 확장'",
+   "url": "https://www.ktnews.com/news/articleView.html?idxno=150368",
+   "source": "feed",
+   "region": "kr",
+   "outlet": "한국섬유신문",
+   "cat": "retail",
+   "headline": "손앤박, 다이소·GS25 이어 노브랜드까지 유통망 확대",
+   "tag": "유통채널",
+   "detail": {
+    "points": [
+     "손앤박이 다이소에서 치크밤으로 인기를 얻은 뒤 GS25에 이어 노브랜드에도 들어가요.",
+     "다이소 한 곳에 기대던 판매 구조에서 벗어나 편의점·대형마트로 채널을 넓혀요.",
+     "채널마다 소비자 특성에 맞춘 전용 상품을 내놓아 고객 접점을 늘릴 계획이에요."
+    ],
+    "so_what": [
+     "저가 색조 브랜드가 다이소를 발판으로 편의점·마트까지 빠르게 퍼질 수 있어요. 비슷한 가격대 상품을 파는 곳은 경쟁 채널을 다시 살펴볼 수 있어요.",
+     "채널별 전용 상품 전략은 유통사별로 상품 구성과 가격대를 달리하는 방식의 참고가 될 수 있어요."
+    ],
+    "extra": "원문 페이지가 열리지 않아 수집된 본문 일부만 바탕으로 정리했어요. 본문이 중간에 끊겨 있어 전용 상품의 구체적 구성과 수치는 확인하지 못했어요.",
+    "figure": {
+     "type": "flow",
+     "title": "손앤박 유통 채널 확장 순서",
+     "steps": [
+      "다이소 흥행",
+      "GS25 진출",
+      "노브랜드 진출",
+      "채널별 전용 상품"
+     ]
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-21T02:12:45Z",
+   "why": "다이소에서 뜬 브랜드가 편의점·마트로 채널을 넓히는 저가 시장 전략이라 볼 만해요.",
+   "pick": 6
+  },
+  {
+   "id": "pambianco-733707c33a",
+   "title": "Stone Island, a Milano il flagship più grande al mondo. Il CEO Triefus: “L’obiettivo è valorizzare i negozi che abbiamo”",
+   "url": "https://www.pambianconews.com/2026/11/20/stone-island-a-milano-il-flagship-piu-grande-al-mondo-il-ceo-triefus-lobiettivo-e-valorizzare-i-negozi-che-abbiamo-501345/",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Pambianco (IT)",
+   "cat": "retail",
+   "headline": "스톤아일랜드, 밀라노에 세계 최대 플래그십 재개장",
+   "tag": "플래그십",
+   "detail": {
+    "points": [
+     "스톤아일랜드가 밀라노 중심가 코르소 마테오티 18번지 플래그십을 다시 열었어요.",
+     "새 매장은 600㎡로, 이전 매장보다 훨씬 넓어졌어요.",
+     "몬클레르 그룹 소속인 이 브랜드는 이번 재개장을 리테일 전략의 이정표로 꼽아요."
+    ],
+    "so_what": [
+     "신규 출점보다 기존 매장을 키우고 다듬는 방향이 강조돼요. 국내 브랜드도 매장 효율을 점검할 때 참고할 수 있어요."
+    ],
+    "extra": "스톤아일랜드는 몬클레르 그룹 브랜드예요. 원문 본문을 전부 읽지 못해 CEO 발언의 세부 내용과 다른 수치는 담지 않았어요. 제목에는 CEO Triefus가 가진 매장을 더 가치 있게 만드는 것이 목표라고 말한 점이 나와요.",
+    "figure": {
+     "type": "compare",
+     "title": "밀라노 플래그십 변화",
+     "before": "이전 부티크: 규모가 더 작았어요(정확한 면적은 확인하지 못했어요).",
+     "after": "새 플래그십: 600㎡, 브랜드 매장 중 세계 최대로 소개돼요.",
+     "before_label": "이전 매장",
+     "after_label": "재개장 매장"
+    },
+    "terms": [
+     {
+      "term": "플래그십",
+      "meaning": "브랜드를 대표하는 가장 크고 상징적인 매장이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-21T02:12:45Z",
+   "why": "몽클레르 그룹 브랜드가 새 매장을 늘리기보다 기존 매장 효율을 높이는 리테일 전략이라 참고할 만해요.",
+   "pick": 5,
+   "buzz": true
+  },
+  {
+   "id": "vogue-0a1f451b59",
+   "title": "Wig Business Is Big Business",
+   "url": "https://www.vogue.com/article/wig-business-is-big-business",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "market",
+   "headline": "가발·익스텐션, 객단가 높은 헤어 시장의 기회와 함정",
+   "tag": "헤어",
+   "detail": {
+    "points": [
+     "Vogue Business는 가발 사업이 단가 높은 헤어 시장의 기회지만 창업자가 피해야 할 함정도 있다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-21T02:12:45Z",
+   "why": "커지는 헤어 시장에서 객단가 높은 품목으로 들어가려는 기업이 참고할 만해요.",
+   "brief": true
+  },
+  {
+   "id": "gnews-8707ab474d",
+   "title": "신세계사이먼 파주 아울렛, 말레이시아 관광객 1,600명 방문",
+   "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9hbmd0eWFsTDZLbTVqc0NaYWFJQXFWTmx0X0lNc09rd0FmbWl0OW5VaHhqeFFZbmJicDNLWmdNVFFvdzVKTUc2Z1lYTGpHeU8tcV9NS0NFTTU0TVBnVkFKRzk0UFdMcWhwaG1iazB0Z0FMZw?oc=5",
+   "source": "gnews",
+   "region": "kr",
+   "outlet": "어패럴뉴스",
+   "cat": "retail",
+   "headline": "신세계사이먼 파주 아울렛, 말레이시아 관광객 1,600명 방문",
+   "tag": "관광객",
+   "detail": {
+    "points": [
+     "어패럴뉴스는 신세계사이먼 파주 아울렛에 말레이시아 관광객 1,600명이 방문했다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-21T02:12:45Z",
+   "why": "아울렛을 찾는 동남아 단체 관광 수요라 외국인 대상 영업에 참고할 만해요.",
+   "brief": true
   }
  ]
 }
