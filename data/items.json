@@ -2,188 +2,6 @@
  "schema": 2,
  "items": [
   {
-   "id": "glossy-aed80123d8",
-   "title": "Was Dior’s hand-drawn holiday campaign a case of AI-powered ‘craftwashing’?",
-   "url": "https://www.glossy.co/podcasts/glossy-podcast-was-diors-hand-drawn-holiday-campaign-a-case-of-ai-powered-craftwashing/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Glossy",
-   "cat": "market",
-   "headline": "디올 손그림 캠페인, AI 사용 의혹 속 '크래프트워싱' 논란",
-   "tag": "캠페인",
-   "detail": {
-    "points": [
-     "Levi's, 프라다, 디올이 생성형 AI에 맞서듯 옛 기법을 내세운 홀리데이 애니메이션을 냈어요.",
-     "디올 광고는 실뱅 쇼메와 만들었는데, 소셜에서 프레임 단위로 뜯어보며 AI 사용 의혹이 번졌어요.",
-     "제작 측은 AI 생성은 아니고 중간 프레임에 자동 보간을 썼다고 밝혔어요."
-    ],
-    "so_what": [
-     "'수작업'을 내세우는 캠페인은 소비자가 제작 과정을 직접 검증할 수 있어요. 표현 수위를 신중히 정해야 할 수 있어요.",
-     "제작 비하인드를 공개하면 신뢰를 높일 수도 있지만 의혹이 커질 수도 있어요. 쓴 도구를 정확히 밝혀 두는 편이 안전할 수 있어요."
-    ],
-    "extra": "크래프트워싱은 실제보다 더 수공예인 것처럼 포장하는 마케팅을 뜻해요. 보간은 두 프레임 사이를 채우는 기법이에요. 단순 계산 방식도 있고, 생성형 AI로 새 프레임을 만드는 방식도 있어요. 디올이 어느 쪽을 썼는지는 기사에서 확인되지 않아요.",
-    "figure": {
-     "type": "flow",
-     "title": "디올 논란 흐름",
-     "steps": [
-      "손그림 광고 공개",
-      "프레임별 분석",
-      "AI 의혹 확산",
-      "보간 사용 인정"
-     ]
-    },
-    "terms": [
-     {
-      "term": "크래프트워싱",
-      "meaning": "실제보다 수작업·장인정신을 강조해 포장하는 마케팅을 뜻해요."
-     },
-     {
-      "term": "보간",
-      "meaning": "두 장면 사이의 중간 프레임을 자동으로 채워 만드는 기법이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-14T22:23:22Z",
-   "why": "수작업 감성을 내세운 캠페인이 AI 의혹을 받으면 어떤 역풍이 오는지 확인할 수 있어요",
-   "pick": 5
-  },
-  {
-   "id": "pambianco-ea6c6a4c4b",
-   "title": "Pavanello (Macron): “In Borsa quando varremo almeno un miliardo”",
-   "url": "https://www.pambianconews.com/2026/11/13/pavanello-macron-in-borsa-quando-varremo-almeno-un-miliardo-500538/",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Pambianco (IT)",
-   "cat": "brand",
-   "headline": "伊 마크론 CEO \"기업가치 10억 넘으면 상장 검토\"",
-   "tag": "상장",
-   "detail": {
-    "points": [
-     "마크론 CEO 파바넬로는 현재 회사 가치를 6~7억 정도로 봐요.",
-     "기업가치가 최소 10억에 이르면 상장하겠다는 입장이에요.",
-     "앞으로 5년간 미국을 크게 키울 핵심 시장으로 꼽았어요."
-    ],
-    "so_what": [
-     "스포츠웨어 팀웨어 브랜드가 미국을 성장축으로 삼는 만큼, 해외 진출 전략을 점검할 때 참고할 수 있어요."
-    ],
-    "extra": "볼로냐에 본사를 둔 마크론의 CEO가 제31회 Pambianco-PwC 패션 서밋에서 밝힌 내용이에요. 원문 본문을 다 읽지 못해 제품 확대 등 세부 내용은 확인하지 못했어요. 가치 금액의 통화도 확인하지 못했어요.",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-14T22:23:22Z",
-   "why": "현재 6~7억유로로 평가받는 중견 브랜드가 미국 시장을 키워 상장하려는 전략을 볼 수 있어요",
-   "pick": 4
-  },
-  {
-   "id": "fashionunited_it-8149c20722",
-   "title": "Delta Galil registra vendite record e utili in crescita nel terzo trimestre",
-   "url": "https://fashionunited.it/news/business/delta-galil-registra-vendite-record-e-utili-in-crescita-nel-terzo-trimestre/2026111332238",
-   "source": "feed",
-   "region": "global",
-   "outlet": "FashionUnited (IT)",
-   "cat": "brand",
-   "headline": "이스라엘 델타 갈릴, 3분기 매출 5.99억달러 사상 최대",
-   "tag": "실적",
-   "detail": {
-    "points": [
-     "3분기(7~9월) 매출은 5억 9,960만 달러로 11% 늘었고, 환율 효과를 빼면 9% 늘었어요.",
-     "영업이익(일회성 항목 제외)은 6,310만 달러로 23%, 순이익은 4,020만 달러로 23% 늘었어요.",
-     "자체 브랜드 직접판매(D2C) 매출이 16% 늘었고, 매출총이익률은 44.7%로 1.4%p 올랐어요."
-    ],
-    "so_what": [
-     "직접판매 비중이 커지면 이익률이 좋아질 수 있어요. 자사몰·직영 채널의 수익 구조를 다시 점검해 볼 만해요.",
-     "Nike, Lululemon, Calvin Klein 등과 거래하는 제조사가 잘 나가고 있어요. 이런 브랜드의 주문 흐름이 괜찮을 수 있어요."
-    ],
-    "extra": "델타 갈릴은 이스라엘 기반의 속옷·액티브웨어 제조사예요. Schiesser, Eminence, Splendid 같은 자체 브랜드와 Seven for All Mankind도 갖고 있어요. 1~9월 누적 매출은 16억 8,000만 달러로 12% 늘었어요. 올해 매출 전망은 22억 9,000만~23억 3,000만 달러예요.",
-    "figure": {
-     "type": "bars",
-     "title": "델타 갈릴 3분기 주요 지표 증가율",
-     "unit": "%",
-     "bars": [
-      {
-       "label": "매출",
-       "value": 11
-      },
-      {
-       "label": "매출총이익",
-       "value": 15
-      },
-      {
-       "label": "영업이익(조정)",
-       "value": 23
-      },
-      {
-       "label": "순이익(조정)",
-       "value": 23
-      },
-      {
-       "label": "D2C 매출",
-       "value": 16
-      }
-     ]
-    },
-    "terms": [
-     {
-      "term": "D2C",
-      "meaning": "브랜드가 중간 유통 없이 소비자에게 직접 파는 방식이에요."
-     },
-     {
-      "term": "영업이익(EBIT)",
-      "meaning": "본업으로 번 이익으로, 이자와 세금을 빼기 전 금액이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-14T22:23:22Z",
-   "why": "이너웨어·OEM 제조사가 사상 최대 분기 매출을 낸 배경에서 수요 흐름을 읽을 수 있어요",
-   "pick": 4
-  },
-  {
-   "id": "sole24ore-5bb128d901",
-   "title": "Lusso in Cina, la sfida continua e si gioca anche su second hand e marchi locali",
-   "url": "https://www.ilsole24ore.com/art/lusso-cina-sfida-continua-e-si-gioca-anche-second-hand-e-marchi-locali-AJiVfTBC",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Il Sole 24 Ore (IT)",
-   "cat": "market",
-   "headline": "중국 럭셔리 시장, 중고·현지 브랜드로 경쟁 무대 이동",
-   "tag": "중국",
-   "detail": {
-    "points": [
-     "Il Sole 24 Ore는 중국 럭셔리 시장의 경쟁이 중고 제품과 현지 브랜드로도 이어지고 있다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-14T22:23:22Z",
-   "why": "중국 소비자 신뢰 하락과 구매 행태 변화는 중국 진출 브랜드가 챙겨 볼 흐름이에요",
-   "brief": true
-  },
-  {
-   "id": "gnews-81f1c7a23b",
-   "title": "코이세이오, 오래된 일본 가옥에서 영감 얻은 교토 팝업 선보여",
-   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42YUZGU3hJVXJna0R4ZmtYdUVydTlRUWs4Q0EwWDNtMktpLW9KRTdISm9pZGdRbXpLczh3NzFLMzUwcUozUU9qVUUzR0Y3Y212blNzeGkxSVl0OGMyS3oyRkdFMXkxb2pTSjRRalJqSnNrZFIzblE?oc=5",
-   "source": "gnews",
-   "region": "kr",
-   "outlet": "어패럴뉴스",
-   "cat": "retail",
-   "headline": "코이세이오, 일본 옛 가옥 모티프로 교토 팝업 열어",
-   "tag": "팝업",
-   "detail": {
-    "points": [
-     "어패럴뉴스는 코이세이오가 오래된 일본 가옥에서 영감을 얻은 교토 팝업을 선보였다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-14T22:23:22Z",
-   "why": "국내 브랜드의 일본 팝업 사례로 해외 진출 방식을 참고할 수 있어요",
-   "brief": true
-  },
-  {
    "id": "pambianco-5b1974f578",
    "title": "Norbert Stumpfl è il primo direttore creativo di Pal Zileri in 7 anni",
    "url": "https://www.pambianconews.com/2026/11/13/norbert-stumpfl-e-il-primo-direttore-creativo-di-pal-zileri-in-7-anni-500659/",
@@ -1176,31 +994,6 @@
    "pick": 5
   },
   {
-   "id": "vogue-9b0549b82f",
-   "title": "LuxExperience Reports 8.5% Sales Growth Amid Turnaround",
-   "url": "https://www.vogue.com/article/luxexperience-reports-85-sales-growth-amid-turnaround",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Vogue Business",
-   "cat": "brand",
-   "headline": "럭스익스피리언스, 1분기 순매출 8.5% 늘고 연간 전망 좁혀",
-   "tag": "실적",
-   "detail": {
-    "points": [
-     "Vogue Business는 독일 기업 LuxExperience가 2027년 1분기 순매출 8.5% 성장을 발표하고 연간 전망 범위를 좁혔다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-17T15:58:28Z",
-   "why": "회생을 추진 중인 독일 기업의 성장세로 글로벌 업계 흐름을 가늠할 수 있어요.",
-   "brief": true,
-   "superseded_by": "pambianco-a241f848a4",
-   "superseded_at": "2026-11-18T20:29:22Z"
-  },
-  {
    "id": "gnews-4291064d35",
    "title": "中 광군제, 4.8% 증가한 1조7,800억 위안",
    "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9fYmpta1hHd3VfeEtXQnpuV0NpSXpZSDdwMjNhWmJyaHFiaDVKVWtUYjBfMmxEZGNBcmZpclhXcGY3bnpGZGZtZjlGMTBqMlFqUHFhN0wzemVPUEtfZE5pUmFkV0pHNTZTMWRNWWJYWGIyZmxV?oc=5",
@@ -1542,8 +1335,7 @@
    "collected_at": "2026-11-18T20:29:22Z",
    "why": "마이테레사 등을 거느린 럭셔리 이커머스의 회복세를 보여 줘 온라인 럭셔리 채널 전략에 참고가 돼요.",
    "pick": 5,
-   "buzz": true,
-   "replaces": "vogue-9b0549b82f"
+   "buzz": true
   },
   {
    "id": "sole24ore-4a3b926ea7",
@@ -2832,6 +2624,188 @@
    "collected_at": "2026-11-21T19:14:20Z",
    "why": "불가리를 오래 이끈 핵심 인물이 세상을 떠난 소식이라 럭셔리 업계 흐름을 볼 때 알아 둘 만해요.",
    "buzz": true,
+   "brief": true
+  },
+  {
+   "id": "fashionunited_it-280cb55977",
+   "title": "Gap chiude in positivo il terzo trimestre ma taglia le stime sugli utili",
+   "url": "https://fashionunited.it/news/business/gap-chiude-in-positivo-il-terzo-trimestre-ma-taglia-le-stime-sugli-utili/2026112032297",
+   "source": "feed",
+   "region": "global",
+   "outlet": "FashionUnited (IT)",
+   "cat": "brand",
+   "headline": "갭, 3분기 이익 늘었지만 연간 이익 전망 낮춰…애슬레타 14%↓",
+   "tag": "실적",
+   "detail": {
+    "points": [
+     "Gap Inc.의 3분기 순매출은 2% 늘어 40억 1,000만 달러, 영업이익은 3억 9,600만 달러였어요.",
+     "브랜드별로 Gap은 매출 11% 증가, Banana Republic은 3% 감소, Athleta는 14% 감소했어요.",
+     "연간 조정 주당순이익 전망은 2.35~2.45달러에서 2.29~2.34달러로 낮췄어요."
+    ],
+    "so_what": [
+     "Gap 브랜드는 동일매장 매출이 12분기 연속 늘었어요. 남성·여성·아동이 고르게 성장해 기본 캐주얼 수요가 탄탄할 수 있어요.",
+     "10~11월 따뜻한 날씨로 수요가 둔화됐다고 해요. 가을·겨울 아우터와 니트 판매에 날씨 변수가 클 수 있어요.",
+     "Athleta가 부진해 Vuori·Fabletics 출신 CEO를 영입했어요. 애슬레저 경쟁이 치열하다는 신호로 볼 수 있어요."
+    ],
+    "extra": "Athleta 신임 CEO 애슐리 케크터는 12월 14일 취임해요. Vuori, Fabletics, RH를 거쳤고 Gap Inc.에서 Banana Republic도 맡은 적이 있어요. 이번 이익에는 관세 환급 효과도 일부 들어 있어요.",
+    "figure": {
+     "type": "bars",
+     "title": "3분기 브랜드별 순매출",
+     "unit": "백만 달러",
+     "bars": [
+      {
+       "label": "Old Navy",
+       "value": 2270
+      },
+      {
+       "label": "Gap",
+       "value": 1060
+      },
+      {
+       "label": "Banana Republic",
+       "value": 449
+      },
+      {
+       "label": "Athleta",
+       "value": 220
+      }
+     ]
+    },
+    "terms": [
+     {
+      "term": "동일매장 매출",
+      "meaning": "1년 전과 같은 조건의 매장·채널만 비교한 매출 증감이에요."
+     },
+     {
+      "term": "조정 주당순이익",
+      "meaning": "일회성 항목을 빼고 계산한, 주식 1주당 순이익이에요."
+     },
+     {
+      "term": "IEEPA 관세 환급",
+      "meaning": "미국 IEEPA 근거 관세가 환급되며 생긴 일회성 수익이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-22T01:17:18Z",
+   "why": "美 대형 SPA의 실적 둔화와 애슬레타 CEO 교체로 애슬레저 시장 경쟁 흐름을 읽을 수 있어요",
+   "pick": 6,
+   "buzz": true
+  },
+  {
+   "id": "kr-fashionbiz-231259",
+   "title": "[현장] 아식스 x 준태킴 ‘젤 키네틱 FR' 출시… 웍스아웃 압구정서 팝업 진행",
+   "url": "https://fashionbiz.co.kr/article/231259",
+   "source": "krsite",
+   "region": "kr",
+   "outlet": "패션비즈",
+   "cat": "market",
+   "headline": "아식스·준태킴 '젤 키네틱 FR' 출시…압구정서 팝업",
+   "tag": "협업",
+   "detail": {
+    "points": [
+     "아식스와 준태킴이 협업한 '젤 키네틱 FR'이 11월 20일 출시됐어요.",
+     "드레스 슈즈의 분위기에 스니커즈 실루엣을 더한 하이브리드 구동화로, 색은 블랙·네이비·레드예요.",
+     "웍스아웃 압구정점 2층에서 11월 21일~12월 4일 팝업을 열고, 아트워크도 함께 전시해요."
+    ],
+    "so_what": [
+     "디자이너 브랜드와 스포츠 브랜드의 협업이 론칭 기념 제품과 팝업 전시로 이어졌어요. 신규 브랜드의 알리기 방식으로 참고할 수 있어요.",
+     "드레스 슈즈와 스니커즈를 섞은 하이브리드 콘셉트가 나왔어요. 신발 기획에서 비슷한 흐름을 살펴볼 수 있어요."
+    ],
+    "extra": "이번 협업은 준태킴의 공식 론칭을 기념해 나왔어요. 아식스와 준태킴 공식 온·오프라인 스토어에서 판매하며, 기사에는 가격이 나와 있지 않아요.",
+    "figure": null,
+    "terms": [
+     {
+      "term": "하이브리드 구동화",
+      "meaning": "드레스 슈즈와 스니커즈의 특징을 섞어 만든 신발이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-22T01:17:18Z",
+   "why": "글로벌 스포츠 브랜드와 국내 디자이너가 협업하는 흐름을 보여줘 협업 기획에 참고할 만해요",
+   "pick": 4
+  },
+  {
+   "id": "hypebeast-f33068b617",
+   "title": "UNIQLO x Studio Ghibli \"LIVE FOR TODAY, MY DEAR\" UT Collection",
+   "url": "https://hypebeast.com/2026/11/uniqlo-studio-ghibli-live-for-today-my-dear-ut-collection-release-info",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Hypebeast",
+   "cat": "market",
+   "headline": "유니클로x지브리 UT 9종, 12월 아시아 먼저·미국은 1월",
+   "tag": "협업",
+   "detail": {
+    "points": [
+     "유니클로와 스튜디오 지브리가 'LIVE FOR TODAY, MY DEAR' 테마의 UT 9종을 공개했어요.",
+     "성인용 5종, 아동용 4종이고 토토로·하울·천공의 성 라퓨타·센과 치히로 이미지를 써요.",
+     "2026년 12월 태국·말레이시아·대만에서 먼저 나오고, 미국은 2027년 1월 말에 출시돼요."
+    ],
+    "so_what": [
+     "IP 협업 티셔츠를 아시아에서 먼저 내고 미국으로 넓히는 순서예요. 협업 상품의 출시 시점을 지역별로 나누는 참고가 될 수 있어요.",
+     "부모와 아이가 맞춰 입는 구성이 들어갔어요. 키즈와 성인 라인을 함께 기획하는 방식을 눈여겨볼 수 있어요.",
+     "약 $13~$30 가격대의 그래픽 티셔츠예요. 캐릭터 협업 티셔츠의 가격 기준으로 비교해 볼 수 있어요."
+    ],
+    "extra": "UT는 유니클로의 그래픽 티셔츠 라인이에요. 이번 컬렉션에는 지브리 공동 창립자 스즈키 도시오의 손글씨와 일러스트, 태국 아티스트 Kanyada의 꽃 사진과 지브리 미술관 전시 포스터 아트도 들어가요. 원문에는 한국 출시 정보가 없어요.",
+    "figure": {
+     "type": "flow",
+     "title": "지역별 출시 순서",
+     "steps": [
+      "2026.12 태국",
+      "2026.12 말레이시아",
+      "2026.12 대만",
+      "2027.1월 말 미국"
+     ]
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-22T01:17:18Z",
+   "why": "유니클로의 IP 협업 UT 전략이 계속되는 사례로, 캐릭터 협업 기획에 참고할 만해요",
+   "pick": 3
+  },
+  {
+   "id": "gnews-5df8b83b94",
+   "title": "Et si l'IA imposait en réalité davantage de décisions aux dirigeants de la mode?",
+   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOSElacVdQM0g1Rm1HLWJQUkRURWxDMlM1T21wbTJEaHJnQ3NweFVfMHVEYmpWOUZqSU5Vem9MNjh2QmE3U3ppQldnQVBtQXNHblJOdk44dUhnYUsxV1N2VHp2bWp6MF9ocWU5ME4wWGhyRDlVRGYwMmh2LTJCaEh2YWY3czBqT190Y1RDaldveEtYcm0xNGR1RllNdjhMSG1QeFd5azMxeEd4Q3ZBS2hUWkVrOUw2RFJ5bnpzclhjWUZ0RnVRZngw?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "brand",
+   "headline": "AI가 오히려 패션 경영진의 결정을 늘린다면?",
+   "tag": "AI",
+   "detail": {
+    "points": [
+     "FashionNetwork 프랑스판은 AI가 사실은 패션 경영진에게 더 많은 결정을 요구하는 것은 아닌지 물었어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-22T01:17:18Z",
+   "why": "AI 도입이 패션 경영 의사결정에 미치는 영향을 짚는 글로, 도입을 검토하는 회사가 볼 만해요",
+   "brief": true
+  },
+  {
+   "id": "gnews-3361449497",
+   "title": "Interparfums toujours plus confiant pour la fin de l'année, la dynamique relancée",
+   "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQWHZObmFfcUVOdk44UHlYbzRiOFhIRjFhdXNHRmZNRTI1b3JJQXB2eTBTZHpEZEdYRlA1bkw3ZkYtaVlYSTMtcGFnb28xa2VWQUJtcVlmTUhiTzEwTW1heHVsdW9hYkpQQmthWjUzX01oZVZsRGZ2SnVKdV8tdzRTemJzRVVseUJFNXNhYTNGUmtycmxhaVBvVVJmY3pzRjgtNXFnZWJfRDd6RFUtRlBCUml4QjJPT05Mb0QtNmpmeFNTQ0tFa1FjaXlMZ2pzbFltM3dLYkViNnk5QUVxTkFGU2ZfRTc1aDg?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "Les Echos (FR)",
+   "cat": "brand",
+   "headline": "인터파팡, 연말 실적 자신감 키워…성장세 다시 붙어",
+   "tag": "실적",
+   "detail": {
+    "points": [
+     "Les Echos는 인터파팡이 연말을 앞두고 더 자신감을 보이고 있고 성장 동력이 다시 살아났다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-22T01:17:18Z",
+   "why": "라이선스 향수 기업의 성장 흐름으로 뷰티·향수 라이선스 사업 동향을 가늠할 수 있어요",
    "brief": true
   }
  ]
