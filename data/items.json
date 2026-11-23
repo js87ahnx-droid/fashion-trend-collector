@@ -2,132 +2,6 @@
  "schema": 2,
  "items": [
   {
-   "id": "kr-fashionn-63176",
-   "title": "명품백 판매부진 장기화 결국 항복?...구찌 30% 가격인하, 루이비통은 버티기",
-   "url": "https://www.fashionn.com/board/read_new.php?table=1004&number=63176",
-   "source": "krsite",
-   "region": "kr",
-   "outlet": "패션엔",
-   "cat": "brand",
-   "headline": "구찌 일부 제품 최대 30% 인하…루이비통은 신중",
-   "tag": "가격",
-   "detail": {
-    "points": [
-     "구찌가 올여름부터 가방·신발·의류 일부를 20~30%가량 내렸다고 WSJ가 전했어요.",
-     "2,000달러 미만 핸드백 16종의 새 라인 'Generation Gucci'도 선보였어요.",
-     "루이비통은 인하를 내부에서 논의했지만, 브랜드 가치를 우려해 신중한 입장이에요."
-    ],
-    "so_what": [
-     "명품이 가격을 내리기 시작하면 중가 컨템포러리·프리미엄 브랜드의 가격 매력이 줄 수 있어요. 가격 포지셔닝을 점검해 볼 만해요.",
-     "중산층 소비자가 명품 이탈의 핵심이라고 해요. 국내에서도 이 고객층의 구매 여력과 가격 저항을 살펴볼 수 있어요."
-    ],
-    "extra": "구찌는 13개 분기 연속 매출이 줄었고, 르노 출신 루카 데 메오가 CEO가 된 뒤 쇄신을 이어가고 있어요. 모기업 케어링은 수년간 올린 가격이 소비자 여력을 넘었다고 보면서도, 인하가 회복 전략의 핵심은 아니라고 했어요. 골드만삭스는 루이비통 3분기 매출이 전년보다 8% 줄었을 것으로 추정해요.",
-    "figure": {
-     "type": "compare",
-     "title": "Gucci Padlock 스몰 톱 핸들백(프랑스 기준)",
-     "before": "7월 3,500유로",
-     "after": "2,450유로 (30% 인하)",
-     "before_label": "인하 전",
-     "after_label": "인하 후"
-    },
-    "terms": [
-     {
-      "term": "캐리오버",
-      "meaning": "시즌이 바뀌어도 이어서 생산하는 기본 스타일이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-16T06:25:40Z",
-   "why": "명품 가격 인상 흐름이 바뀌는 신호예요. 국내 가격 정책과 수입 브랜드 MD에 영향을 줄 수 있습니다.",
-   "pick": 7
-  },
-  {
-   "id": "ktnews-5e305a169e",
-   "title": "아이패밀리에스씨, 3분기 매출 556억원…영업이익 70% 감소",
-   "url": "https://www.ktnews.com/news/articleView.html?idxno=150219",
-   "source": "feed",
-   "region": "kr",
-   "outlet": "한국섬유신문",
-   "cat": "brand",
-   "headline": "롬앤 아이패밀리에스씨, 3분기 매출 556억…영업이익 70% 줄어",
-   "tag": "실적",
-   "detail": {
-    "points": [
-     "아이패밀리에스씨의 2026년 3분기 매출은 556억원으로 전년 같은 기간보다 4% 늘었어요.",
-     "영업이익은 19억원으로 전년 같은 기간보다 70% 줄어 수익성이 크게 나빠졌어요.",
-     "회사는 미국·유럽 등 해외 시장 확대 투자와 유통 구조 개선에 든 일회성 비용을 이유로 들었어요."
-    ],
-    "so_what": [
-     "매출이 늘어도 해외 진출 투자와 유통 정비 비용 때문에 이익이 줄 수 있어요. 해외 확장 계획을 짤 때 초기 비용을 따로 봐야 할 수 있어요.",
-     "회사는 2024년 하반기 해외 수요 급증 때 생긴 일부 제품의 과잉 공급 문제도 언급했어요. 수요가 몰릴 때 물량 조절이 중요할 수 있어요."
-    ],
-    "extra": "롬앤은 아이패밀리에스씨가 운영하는 색조 화장품 브랜드예요. 이 내용은 16일 공시를 바탕으로 한 기사예요. 수집된 본문이 중간에 끊겨 있어, 과잉 공급 해소 등 이후 내용은 확인하지 못했어요.",
-    "figure": {
-     "type": "compare",
-     "title": "3분기 실적 변화(전년 동기 대비)",
-     "before": "매출 556억원으로 4% 증가",
-     "after": "영업이익 19억원으로 70% 감소",
-     "before_label": "매출",
-     "after_label": "영업이익"
-    },
-    "terms": [
-     {
-      "term": "일회성 비용",
-      "meaning": "반복되지 않고 한 번만 나가는 비용이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-16T06:25:40Z",
-   "why": "해외 확장 투자와 과잉 공급 정리 비용이 이익을 깎았어요. K뷰티 해외 진출의 비용 부담을 보여 줍니다.",
-   "pick": 4
-  },
-  {
-   "id": "vogue-96bd5f1ec2",
-   "title": "Key Takeaways From Luxury’s Q3 Earnings",
-   "url": "https://www.vogue.com/article/key-takeaways-from-luxurys-q3-earnings",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Vogue Business",
-   "cat": "brand",
-   "headline": "럭셔리 3분기 실적 정리…중국 회복·미국 둔화가 관건",
-   "tag": "실적",
-   "detail": {
-    "points": [
-     "Vogue Business는 럭셔리 업계 3분기 실적의 핵심 내용을 정리했다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-16T06:25:40Z",
-   "why": "애널리스트들이 본 럭셔리 실적과 앞으로의 전망이에요. 수입 브랜드 전략을 세울 때 참고할 만합니다.",
-   "brief": true
-  },
-  {
-   "id": "gnews-20efbbb3c3",
-   "title": "롯데쇼핑, '2027년 임원인사' 단행",
-   "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1RQnN1LWFvVkFQSFUtYW5qRWtMcVpkdlBCYXY4VjlaVHJ6SkVBOVZxQUMybk9XQ1VKc25qM21DNlVVUDB0RVpCSmRpbmNRLVBTc1VKd190VmtGaUdKVVdKMktCVk5VZmFrWUdScFRXY1JrclZV?oc=5",
-   "source": "gnews",
-   "region": "kr",
-   "outlet": "어패럴뉴스",
-   "cat": "brand",
-   "headline": "롯데쇼핑, 2027년 임원인사 단행",
-   "tag": "인사",
-   "detail": {
-    "points": [
-     "어패럴뉴스는 롯데쇼핑이 '2027년 임원인사'를 단행했다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-16T06:25:40Z",
-   "why": "백화점 등 주요 유통사의 인사예요. 입점·영업 담당자가 상대할 조직이 어떻게 바뀌는지 살펴볼 만합니다.",
-   "brief": true
-  },
-  {
    "id": "glossy-5cd739583c",
    "title": "AI visibility may not be a KPI yet, but creator content is already driving it",
    "url": "https://www.glossy.co/sponsored/ai-visibility-may-not-be-a-kpi-yet-but-creator-content-is-already-driving-it/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
@@ -2741,6 +2615,124 @@
    "collected_at": "2026-11-23T01:41:11Z",
    "why": "LVMH 지배구조와 관련된 변화라 럭셔리 업계 흐름을 볼 때 챙겨볼 만해요",
    "buzz": true,
+   "brief": true
+  },
+  {
+   "id": "ktnews-cb733be2d1",
+   "title": "2027년 글로벌 패션산업 “성장보다 생존”…수익성이 승부 가른다",
+   "url": "https://www.ktnews.com/news/articleView.html?idxno=150400",
+   "source": "feed",
+   "region": "kr",
+   "outlet": "한국섬유신문",
+   "cat": "market",
+   "headline": "2027 글로벌 패션산업 전망, 성장보다 수익성이 관건",
+   "tag": "전망",
+   "detail": {
+    "points": [
+     "2027년 글로벌 패션산업은 경기가 완만히 회복돼도 수익성 확보가 최대 과제가 될 전망이에요.",
+     "경제와 교역이 나아져도 패션 수요는 같은 속도로 늘기 어렵고, 관세·물류비·에너지·환경규제 비용 부담이 이어질 것으로 봐요.",
+     "소비자는 가격 대비 가치를 중시하고, AI가 기획·생산·유통·소비 전반의 운영 방식을 바꾸고 있어요."
+    ],
+    "so_what": [
+     "매출 확대보다 재고와 운영비용을 관리해 이익을 지키는 쪽으로 목표를 잡아야 할 수 있어요.",
+     "가격 대비 가치가 구매 기준이 되는 만큼, 상품 가격 설정과 가치 전달 방식을 점검해 볼 수 있어요.",
+     "기획부터 유통까지 AI를 쓰는 업무 방식 변화에 대비할 필요가 있을 수 있어요."
+    ],
+    "extra": "수집된 본문이 중간에 끝나 있어 원문 전체는 확인하지 못했어요. 구체적인 수치나 전망 기관은 확인되지 않아 적지 않았어요.",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-23T12:35:02Z",
+   "why": "내년 사업계획을 짤 때 재고·비용 통제와 AI 활용 방향을 점검할 수 있어요.",
+   "pick": 7
+  },
+  {
+   "id": "glossy-2cf7eedc77",
+   "title": "Why On gave running shops first dibs on the Cloudsurfer 3",
+   "url": "https://www.glossy.co/fashion/on-cloudsurfer-3-specialty-running-retail/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Glossy",
+   "cat": "retail",
+   "headline": "온, 클라우드서퍼3를 러닝 전문점에 3개월 먼저 풀어 첫 주 25% 판매",
+   "tag": "선출시",
+   "detail": {
+    "points": [
+     "온이 10월 1일부터 3개월간 클라우드서퍼3를 러닝 전문점에만 먼저 팔고, 자사몰과 직영점은 뺐어요.",
+     "출시 전 현장 마케팅팀이 매장 직원을 교육하고 무료 착용 신발을 주며, 지역 러닝 모임에서 시착도 열었어요.",
+     "네이퍼빌 러닝 컴퍼니는 첫 주에 초도 물량의 약 4분의 1을 팔았고, 이후 매주 재주문하고 있어요."
+    ],
+    "so_what": [
+     "신제품을 전문 채널에 먼저 풀고 직원 교육·직접 착용 체험을 붙이면, 추천 판매로 초기 수요를 만들 수 있어요.",
+     "색상 한정판 수준이 아니라 주력급 신제품을 선공개하면 매장이 제품·판매 전략에 의견을 내는 파트너가 될 수 있어요.",
+     "전문점 선공개 기간이 끝나면 자사몰 판매가 시작돼요. 매장의 경쟁 우위는 시간이 지나며 줄 수 있다는 점을 고려해야 해요."
+    ],
+    "extra": "온은 11월 10일 실적 발표에서 첫 주 소진율이 전작의 4배 이상이었고, 대형 리테일러들이 2027년 봄 주문을 늘렸다고 밝혔어요. 나이키도 11월 17일 투자자 행사에서 러닝을 우선 종목으로 두고 전문 러닝 매장 전담팀을 두겠다고 했어요. 미국 온라인 스토어 판매는 2027년 초 예정이에요.",
+    "figure": {
+     "type": "flow",
+     "title": "클라우드서퍼3 출시 일정",
+     "steps": [
+      "직원 교육·체험",
+      "10/1 전문점 선공개",
+      "첫 주 25% 소진",
+      "2027 초 온라인 판매"
+     ]
+    },
+    "terms": [
+     {
+      "term": "소진율(sell-through)",
+      "meaning": "입고한 물량 중 실제로 팔린 비율이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-23T12:35:02Z",
+   "why": "전문점 피팅·직원 추천으로 출시 전 수요를 만드는 채널 전략을 참고할 만해요.",
+   "pick": 5
+  },
+  {
+   "id": "vogue-9d15887cba",
+   "title": "Western Brands Need a New China Playbook",
+   "url": "https://www.vogue.com/article/western-brands-need-a-new-china-playbook",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "market",
+   "headline": "中 럭셔리 시장 회복 조짐…서구 브랜드에 새 전략 필요",
+   "tag": "중국",
+   "detail": {
+    "points": [
+     "Vogue Business는 서구 브랜드에 새로운 중국 전략이 필요하다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-23T12:35:02Z",
+   "why": "중국 진출 브랜드라면 유통 정리·현지화 방향을 점검할 시점이에요.",
+   "brief": true
+  },
+  {
+   "id": "gnews-ac1604366a",
+   "title": "La croissance d'Alibaba portée par l'IA au troisième trimestre",
+   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOUHlHWXlQTGV2ZmxKWkNKNEphRWZMeV9WQktIdVZJX3BUV3JuMEhkOVo1VTY1MnRfTndpbldWal9WWE1DbFVPVVFpZEVBLVRQNzQ0V0hhRnBLd01hZDVrOE1DNnNVSmc0T3p1V3F4VS1zTERTd0NYX19RWjA4bXFJMkJoN0pNUzlqTWt4ZHBQMGltazhTVm9ESGRGVDc4VkM1Nmd4VkhYSmJ5cDFhd2xF?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "retail",
+   "headline": "알리바바, AI 덕에 3분기 성장",
+   "tag": "실적",
+   "detail": {
+    "points": [
+     "FashionNetwork(프랑스어판)는 알리바바의 3분기 성장이 AI에 힘입었다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-23T12:35:02Z",
+   "why": "중국 최대 커머스의 AI 활용 성과로 온라인 유통 흐름을 가늠할 수 있어요.",
    "brief": true
   }
  ]
