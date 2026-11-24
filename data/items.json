@@ -2,103 +2,6 @@
  "schema": 2,
  "items": [
   {
-   "id": "glossy-5cd739583c",
-   "title": "AI visibility may not be a KPI yet, but creator content is already driving it",
-   "url": "https://www.glossy.co/sponsored/ai-visibility-may-not-be-a-kpi-yet-but-creator-content-is-already-driving-it/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Glossy",
-   "cat": "market",
-   "headline": "AI 검색 답변에 인용되는 크리에이터 콘텐츠, 지금부터 측정해야",
-   "tag": "AI마케팅",
-   "detail": {
-    "points": [
-     "eMarketer는 2026년 미국 인터넷 이용자 34%가 월 1회 이상 생성형 AI로 검색한다고 봤어요.",
-     "Semrush 분석에서 AI 인용 상위 10개 도메인 중 5개가 Reddit, YouTube 같은 크리에이터 플랫폼이었어요.",
-     "AI에 인용된 YouTube 영상의 41%는 조회수가 1,000회도 안 됐어요(OtterlyAI, 2026년 3월)."
-    ],
-    "so_what": [
-     "조회수가 낮아도 AI 답변에 인용될 수 있어서, 크리에이터 협업 성과를 도달·반응 지표만으로 보면 놓치는 부분이 생길 수 있어요.",
-     "구매자가 브랜드를 모를 때 던지는 질문 20~30개를 정해 경쟁사와 인용 비중을 추적해 볼 수 있어요.",
-     "이미 인용되는 영상의 설명과 챕터를 질문형으로 고치는 일은 비용이 적은 첫 시도가 될 수 있어요."
-    ],
-    "extra": "이 글은 Trevant(Fluent) 임원이 쓴 협찬(스폰서) 콘텐츠예요. 수치는 글쓴이가 인용한 외부 조사이고, 미국 시장 기준이에요. 자사 서비스 홍보 성격이 있다는 점을 감안해 읽는 게 좋아요.",
-    "figure": {
-     "type": "flow",
-     "title": "AI 가시성 측정 4단계",
-     "steps": [
-      "질문 20~30개 선정",
-      "인용 비중 추적",
-      "영상·글별 기록",
-      "수요 데이터와 비교"
-     ]
-    },
-    "terms": [
-     {
-      "term": "AI 가시성",
-      "meaning": "ChatGPT 같은 AI 검색 답변에 우리 브랜드가 얼마나 언급·인용되는지를 뜻해요."
-     },
-     {
-      "term": "인용 비중(citation share",
-      "meaning": "AI 답변이 근거로 든 출처 중 우리 브랜드 콘텐츠가 차지하는 비율이에요."
-     },
-     {
-      "term": "AEO",
-      "meaning": "AI 답변에 잘 노출되도록 콘텐츠를 다듬는 최적화 작업이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-16T19:35:57Z",
-   "why": "AI 검색이 늘면서 크리에이터 콘텐츠가 브랜드 노출을 좌우해요. 마케팅 예산을 짤 때 참고할 만합니다.",
-   "pick": 5
-  },
-  {
-   "id": "sole24ore-4c58c232e3",
-   "title": "Loro Piana a New York per l’undicesima edizione del Cashmere of the Year Award",
-   "url": "https://www.ilsole24ore.com/art/loro-piana-new-york-l-undicesima-edizione-cashmere-of-the-year-award-AJntK8HC",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Il Sole 24 Ore (IT)",
-   "cat": "material",
-   "headline": "로로피아나, 뉴욕서 '올해의 캐시미어' 시상…내몽골 목축가 수상",
-   "tag": "소재",
-   "detail": {
-    "points": [
-     "Il Sole 24 Ore는 로로피아나가 뉴욕에서 열린 제11회 캐시미어 오브 더 이어 어워드에서 내몽골 목축가 3쌍에게 상을 줬다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-16T19:35:57Z",
-   "why": "럭셔리 브랜드가 원료 산지와 관계를 다지는 방식을 볼 수 있어요.",
-   "brief": true
-  },
-  {
-   "id": "wkorea-eec888bbe7",
-   "title": "일본 주얼리 브랜드 아가트, 신세계 사우스시티에 국내 첫 매장 오픈",
-   "url": "https://www.wkorea.com/2026/11/16/%ec%9d%bc%eb%b3%b8-%ec%a3%bc%ec%96%bc%eb%a6%ac-%eb%b8%8c%eb%9e%9c%eb%93%9c-%ec%95%84%ea%b0%80%ed%8a%b8-%ec%8b%a0%ec%84%b8%ea%b3%84-%ec%82%ac%ec%9a%b0%ec%8a%a4%ec%8b%9c%ed%8b%b0%ec%97%90-%ea%b5%ad/",
-   "source": "feed",
-   "region": "kr",
-   "outlet": "W코리아",
-   "cat": "retail",
-   "headline": "日 주얼리 아가트, 신세계 사우스시티에 국내 첫 매장",
-   "tag": "입점",
-   "detail": {
-    "points": [
-     "W코리아는 일본 주얼리 브랜드 아가트가 신세계 사우스시티에 국내 첫 매장을 열었다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-16T19:35:57Z",
-   "why": "일본 주얼리 브랜드가 백화점을 통해 국내에 들어오는 흐름을 확인할 수 있어요.",
-   "brief": true
-  },
-  {
    "id": "kr-fashionbiz-231158",
    "title": "나이키, 새 '에어' 기술부터 상품군 전반에 혁신... 새로운 미래 제안",
    "url": "https://fashionbiz.co.kr/article/231158",
@@ -2733,6 +2636,135 @@
    },
    "collected_at": "2026-11-23T12:35:02Z",
    "why": "중국 최대 커머스의 AI 활용 성과로 온라인 유통 흐름을 가늠할 수 있어요.",
+   "brief": true
+  },
+  {
+   "id": "ktnews-4709626826",
+   "title": "뉴발란스, 겨울 시즌화 브리즈 시리즈 호조세",
+   "url": "https://www.ktnews.com/news/articleView.html?idxno=150405",
+   "source": "feed",
+   "region": "kr",
+   "outlet": "한국섬유신문",
+   "cat": "brand",
+   "headline": "뉴발란스 겨울 시즌화 매출 전년比 24% 증가",
+   "tag": "판매호조",
+   "detail": {
+    "points": [
+     "이랜드월드는 뉴발란스 겨울 시즌화가 잘 팔리고 있다고 24일 밝혔어요.",
+     "11월 1일~23일 겨울 시즌화 매출이 전년 같은 기간보다 24% 늘었어요.",
+     "올해는 '윈터 브리즈'와 '윈터 로버' 시리즈가 겨울 라인의 중심이에요."
+    ],
+    "so_what": [
+     "겨울 신발도 시즌 전용 소재와 디자인으로 차별화하면 수요를 만들 수 있어요.",
+     "코트 디테일을 신발에 옮긴 메리제인 같은 패션 감성 제품이 시즌화 경쟁 포인트가 될 수 있어요."
+    ],
+    "extra": "윈터 브리즈는 무스탕 코트에서 영감받은 시어링 디테일과 부드러운 퍼 안감을 쓴 겨울용 메리제인 슈즈예요. 갑피 전체에 천연가죽을 썼다고 해요. 수집된 본문이 일부여서 윈터 로버의 세부 내용과 판매량은 확인하지 못했어요.",
+    "figure": null,
+    "terms": [
+     {
+      "term": "메리제인",
+      "meaning": "발등을 가로지르는 스트랩이 달린, 앞코가 둥근 여성 구두 스타일이에요."
+     },
+     {
+      "term": "시어링",
+      "meaning": "양털처럼 보송한 안감이나 장식에 쓰는 소재예요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-24T02:12:46Z",
+   "why": "메리제인을 겨울용으로 바꾼 시즌화가 잘 팔린 사례라, 겨울 신발 기획에 참고할 만해요",
+   "pick": 5,
+   "buzz": true
+  },
+  {
+   "id": "glossy-5083eb7918",
+   "title": "As gifting to creators gains traction, brands worry about ROI and expectations",
+   "url": "https://www.glossy.co/fashion/as-gifting-to-creators-gains-traction-brands-worry-about-roi-and-expectations/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Glossy",
+   "cat": "market",
+   "headline": "크리에이터 선물 마케팅 확산, 브랜드는 성과·기대치 고민",
+   "tag": "인플루언서",
+   "detail": {
+    "points": [
+     "Glossy 조사에서 광고 표기 게시물은 도달이, 선물받은 비광고 게시물은 참여율이 더 높았어요.",
+     "좋은 선물은 제품·포장·배송비까지 합쳐 수백 달러가 들 수 있어요.",
+     "Modash 조사상 일부 브랜드는 마케팅 예산의 최대 10%를 인플루언서 선물에 써요."
+    ],
+    "so_what": [
+     "도달이 목표면 유료 협찬, 제품 시연 콘텐츠와 참여율이 목표면 선물이 맞을 수 있어요. 목적별로 나눠 설계해 볼 만해요.",
+     "선물이 게시물로 이어지지 않을 수도 있어요. 고가 선물을 늘리기 전에 콘텐츠 전환율을 따져 볼 수 있어요.",
+     "크리에이터 눈높이가 올라가고 있어요. 발송 수와 선물 수준 사이에서 균형을 잡아야 할 수 있어요."
+    ],
+    "extra": "Glossy와 Modern Retail이 11월 19일 연 크리에이터 마케팅 가상 행사 내용이에요. 참석자 중 한 곳은 시딩 예산을 더 큰 협찬 행사로 돌리고 있다고 해요. Skims의 148달러 어드벤트 캘린더는 가격 값을 못 한다는 크리에이터 비판을 받았어요.",
+    "figure": {
+     "type": "compare",
+     "title": "협찬 vs 선물 게시물",
+     "before": "도달이 더 큼. 유료 광고 지원 덕이 커요.",
+     "after": "참여율이 훨씬 높음. 시연 콘텐츠에 잘 맞아요.",
+     "before_label": "유료 협찬",
+     "after_label": "선물(비광고)"
+    },
+    "terms": [
+     {
+      "term": "ROI",
+      "meaning": "쓴 비용 대비 얻은 성과예요."
+     },
+     {
+      "term": "시딩",
+      "meaning": "제품을 무료로 보내 자발적 게시를 유도하는 일이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-24T02:12:46Z",
+   "why": "인플루언서 시딩 비용 대비 효과를 따지는 해외 고민이라, 국내 시딩 예산을 짤 때 참고할 만해요",
+   "pick": 5
+  },
+  {
+   "id": "gnews-8fb0acdb26",
+   "title": "Tiffany ouvre une nouvelle boutique sur Old Bond Street à Londres",
+   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZ2FvOVBZUTVsVzRNOEJ2SVVWTTN1M3Jybzg1TlFRLUF1YWJrZmFIZVhxNUlDM2pYU2lDRzhKeDNLNzFYNWNBNUFXSzZ2Z3g0N2ItbFZoV2NRcmsxQlVJQVN2VnZqX3pxTlJ3ekRLZ0h6VGhzeUphVXF4aGY3cnhTYk1UNG1zV1FPX05Gd1ZLVDJ3eWdjRFhLUmdxYndYT0NoNnc4bjZuRi1VaW5VM0Vkb01Ubw?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "retail",
+   "headline": "티파니, 런던 올드 본드 스트리트에 새 매장 열어",
+   "tag": "매장",
+   "detail": {
+    "points": [
+     "티파니가 런던 올드 본드 스트리트에 새 부티크를 열었어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-24T02:12:46Z",
+   "why": "럭셔리 주얼리가 핵심 상권에 매장을 늘리는 흐름을 보여줘요",
+   "brief": true
+  },
+  {
+   "id": "gnews-5addbf2a2e",
+   "title": "디젤, 스타필드 하남 매장 오픈",
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5lc1lMc1hsbkkySW5sOWZ1V1RkSmhaVG5ib3ZJelNWXzJKUVR0VndKWk1JY0hUSXhNTEYtRTlRQlRRSXduMm9iaDloXzRLaUNNVElFZmx6YnN0MWVRUEM4dVI3c1NHTEJfc0pXbERRTm9FbnM?oc=5",
+   "source": "gnews",
+   "region": "kr",
+   "outlet": "어패럴뉴스",
+   "cat": "retail",
+   "headline": "디젤, 스타필드 하남에 매장 열어",
+   "tag": "매장",
+   "detail": {
+    "points": [
+     "어패럴뉴스는 디젤이 스타필드 하남에 매장을 오픈했다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-24T02:12:46Z",
+   "why": "수입 브랜드의 국내 복합몰 출점 움직임을 보여줘요",
    "brief": true
   }
  ]
