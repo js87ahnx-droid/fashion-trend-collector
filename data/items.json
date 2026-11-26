@@ -2,227 +2,6 @@
  "schema": 2,
  "items": [
   {
-   "id": "ktnews-2b4f5cd740",
-   "title": "美관세가 흔든 섬유패션 무역망…베트남 뜨고 중국·인도 감소세 둔화",
-   "url": "https://www.ktnews.com/news/articleView.html?idxno=150298",
-   "source": "feed",
-   "region": "kr",
-   "outlet": "한국섬유신문",
-   "cat": "material",
-   "headline": "美 관세 여파, 베트남이 중국 제치고 미국 최대 섬유·의류 공급국",
-   "tag": "관세",
-   "detail": {
-    "points": [
-     "2026년 1~9월 미국의 섬유·의류 수입액은 764억 달러였어요.",
-     "베트남이 142억 달러로 중국을 제치고 미국 최대 섬유·의류 공급국이 됐어요.",
-     "중국과 인도는 상반기 급감한 수출을 3분기에 일부 만회했어요."
-    ],
-    "so_what": [
-     "미국 수입시장이 베트남·아세안·유럽 등으로 나뉘는 흐름이라, 생산국 분산 전략을 점검해 볼 수 있어요.",
-     "중국·인도 수출이 일부 회복됐다고 하니, 관세 변수에 따라 소싱 구도가 다시 바뀔 수 있어요."
-    ],
-    "extra": "패션네트워크 보도를 인용한 기사예요. 원문 페이지가 열리지 않아, 확보한 본문 앞부분의 내용만 정리했어요. 국가별 세부 수치는 확인하지 못했어요.",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-18T20:29:22Z",
-   "why": "미국 수입 시장이 여러 나라로 나뉘고 있어 소싱 국가와 대미 수출 전략을 다시 살펴볼 때예요.",
-   "pick": 7
-  },
-  {
-   "id": "ktnews-c32ba737c8",
-   "title": "글로벌 스포츠웨어 시장 재편…브랜드 생존전략도 ‘제각각’",
-   "url": "https://www.ktnews.com/news/articleView.html?idxno=150299",
-   "source": "feed",
-   "region": "kr",
-   "outlet": "한국섬유신문",
-   "cat": "brand",
-   "headline": "나이키는 수익성, 아머스포츠는 프리미엄, 아식스는 중국…스포츠웨어 전략 갈려",
-   "tag": "시장재편",
-   "detail": {
-    "points": [
-     "나이키는 실적 부진을 벗어나려고 사업구조를 재편하고 수익성 회복에 집중해요.",
-     "아크테릭스·살로몬을 가진 아머스포츠는 프리미엄 아웃도어와 기능성 제품으로 고성장 중이에요.",
-     "아시아의 아식스는 중국을 핵심 성장시장으로 잡고 현지 유통망과 생산을 늘리고 있어요."
-    ],
-    "so_what": [
-     "러닝·아웃도어·고기능성 의류가 주요 브랜드의 공통 투자처라서, 국내 브랜드도 이 분야 경쟁이 더 치열해질 수 있어요.",
-     "제품 기술력, 지역별 시장 대응, 공급망 효율이 경쟁력을 가르는 변수로 꼽혀요. 기획·MD 단계에서 점검할 수 있어요."
-    ],
-    "extra": "원문 페이지가 열리지 않아 수집된 본문 일부만으로 정리했어요. 기업별 구체적인 실적 수치는 확인하지 못해 적지 않았어요.",
-    "figure": {
-     "type": "flow",
-     "title": "기업별 성장 전략",
-     "steps": [
-      "나이키: 수익성 회복",
-      "아머스포츠: 프리미엄",
-      "아식스: 중국 확대"
-     ]
-    },
-    "terms": []
-   },
-   "collected_at": "2026-11-18T20:29:22Z",
-   "why": "러닝·아웃도어 투자가 몰리는 가운데 글로벌 강자들의 전략 차이를 보면 국내 스포츠·아웃도어 전략 점검에 도움이 돼요.",
-   "pick": 6
-  },
-  {
-   "id": "pambianco-a241f848a4",
-   "title": "LuxExperience archivia il primo trimestre a 610,5 mln (+9,6%). E alza la guidance",
-   "url": "https://www.pambianconews.com/2026/11/18/luxexperience-archivia-il-primo-trimestre-a-6105-mln-96-e-alza-la-guidance-501215/",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Pambianco (IT)",
-   "cat": "brand",
-   "headline": "럭스익스피리언스, 1분기 매출 6.1억유로로 9.6% 늘고 전망 상향",
-   "tag": "실적",
-   "detail": {
-    "points": [
-     "럭스익스피리언스의 2027 회계연도 1분기(9월 30일 마감) 순매출은 6억 1,050만 유로예요.",
-     "환율 변동을 반영하면 9.6%, 환율을 고정하면 8.5% 늘었어요.",
-     "회사는 이번 실적과 함께 올해 전체 실적 전망치를 올렸어요."
-    ],
-    "so_what": [
-     "명품 온라인 유통 시장이 꾸준히 크고 있다는 신호일 수 있어요. 온라인 명품 채널 전략을 점검할 때 참고할 만해요."
-    ],
-    "extra": "럭스익스피리언스는 명품 이커머스 기업이에요. 회계연도가 달라서 2027 회계연도 1분기가 2026년 7~9월이에요. 원문을 열지 못해 수집된 앞부분만 정리했고, 조정 EBITDA와 상향된 전망치의 구체 수치는 확인하지 못했어요.",
-    "figure": null,
-    "terms": [
-     {
-      "term": "고정 환율 기준",
-      "meaning": "환율 변동 영향을 빼고 같은 환율로 계산한 성장률이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-18T20:29:22Z",
-   "why": "마이테레사 등을 거느린 럭셔리 이커머스의 회복세를 보여 줘 온라인 럭셔리 채널 전략에 참고가 돼요.",
-   "pick": 5,
-   "buzz": true
-  },
-  {
-   "id": "sole24ore-4a3b926ea7",
-   "title": "Aste, un mese record per gli orologi: a Ginevra ricavi per 203 milioni di dollari",
-   "url": "https://www.ilsole24ore.com/art/aste-mese-record-gli-orologi-ginevra-ricavi-203-milioni-dollari-AJhVe0KC",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Il Sole 24 Ore (IT)",
-   "cat": "market",
-   "headline": "제네바 시계 경매, 한 달 매출 2억300만달러로 사상 최대",
-   "tag": "시계",
-   "detail": {
-    "points": [
-     "Il Sole 24 Ore는 제네바 시계 경매의 한 달 매출이 2억300만달러로 기록을 세웠다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-18T20:29:22Z",
-   "why": "독립 메종과 희소 모델이 경매 수요를 끌고 있어 하이엔드 소비 흐름을 볼 수 있어요.",
-   "brief": true
-  },
-  {
-   "id": "gnews-2b21631f15",
-   "title": "ABC마트, '블랙ABC데이' 확 키웠다",
-   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1SOGJ5UG53WHdta0c3ZlhMU3BwYnNHSDdOWm42LXJ1VFg5MGYxdF81Znh3ZVR6WVk5V2JETjdHOWlYdUlJdU5SZTRHbWp2WTJYZ1dLel9JN3hlenhMNTM0b1g4RHJNSFltU0JaZk5tRFNPM2M?oc=5",
-   "source": "gnews",
-   "region": "kr",
-   "outlet": "어패럴뉴스",
-   "cat": "retail",
-   "headline": "ABC마트, '블랙ABC데이' 행사 규모 키워",
-   "tag": "프로모션",
-   "detail": {
-    "points": [
-     "어패럴뉴스는 ABC마트가 '블랙ABC데이' 행사를 크게 키웠다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-18T20:29:22Z",
-   "why": "연말 대형 할인 시즌을 앞둔 슈즈 유통의 움직임이라 행사 기획 때 참고가 돼요.",
-   "brief": true
-  },
-  {
-   "id": "pambianco-9245bfa03f",
-   "title": "Aeffe, spunta il nome del partner cinese della cordata: è Septwolves",
-   "url": "https://www.pambianconews.com/2026/11/18/aeffe-spunta-il-nome-del-partner-cinese-della-cordata-e-septwolves-501208/",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Pambianco (IT)",
-   "cat": "brand",
-   "headline": "伊 애프페 구원투수로 中 셉트울브스 거론",
-   "tag": "인수",
-   "detail": {
-    "points": [
-     "중국 셉트울브스 그룹이 애프페의 구원투수(백기사)로 거론돼요.",
-     "이름은 월요일 이탈리아 기업·메이드인이탈리아부 회의에서 나왔어요.",
-     "언론 보도로는 중국 측 대표단이 처음 참석했고, Oxy Capital 측과 함께였어요."
-    ],
-    "so_what": [
-     "애프페 지분이나 운영 구조가 바뀔 수 있어요. 라이선스·협업·납품 관계가 있다면 진행 상황을 지켜볼 수 있어요."
-    ],
-    "extra": "원문 접속이 막혀 기사 앞부분만 확인했어요. 거래 조건, 금액, 지분 규모는 확인하지 못했고, 보도에 근거한 거론 단계예요.",
-    "figure": null,
-    "terms": [
-     {
-      "term": "백기사",
-      "meaning": "어려운 회사를 도와 인수나 투자에 나서는 우호적인 제3자예요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-19T02:33:36Z",
-   "why": "중국 자본이 이탈리아 패션 그룹 구조조정에 들어오는 흐름이에요",
-   "pick": 5
-  },
-  {
-   "id": "vogue-102462b362",
-   "title": "Kering Hires Group Pricing Director: Why It Matters",
-   "url": "https://www.vogue.com/article/vogue-business-member-template",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Vogue Business",
-   "cat": "brand",
-   "headline": "케링, 그룹 가격 총괄 자리 새로 만들고 오찬도 선임",
-   "tag": "인사",
-   "detail": {
-    "points": [
-     "Vogue Business는 케링이 새로 만든 그룹 가격 총괄 자리에 Francisco Ochando를 선임했다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-19T02:33:36Z",
-   "why": "럭셔리 그룹이 가격 전략을 따로 맡기는 흐름을 볼 수 있어요",
-   "brief": true
-  },
-  {
-   "id": "gnews-6bf72d7e6d",
-   "title": "헤지스, 외국인 고객 공략",
-   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9iYkxMRHF6NGFiNUZYbWstR3pGZzZnWXh0dDIyRk9aRWJhTHYtNHBXaUE0aUtBWl9tQ1psaE80aHRfR29YMkxuZzZJUzNYQ3NhX0F3RUdmMEdiSXZneW1TQ2IxR051enp0SWJYc1haTmI4czA?oc=5",
-   "source": "gnews",
-   "region": "kr",
-   "outlet": "어패럴뉴스",
-   "cat": "market",
-   "headline": "헤지스, 외국인 고객 공략 나서",
-   "tag": "외국인",
-   "detail": {
-    "points": [
-     "헤지스가 외국인 고객을 공략하고 나섰어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-19T02:33:36Z",
-   "why": "국내 브랜드의 외국인 관광객 수요 공략 흐름을 볼 수 있어요",
-   "brief": true
-  },
-  {
    "id": "hypebeast-cd571f68ef",
    "title": "Gucci to Present Cruise 2028 Collection in Shanghai",
    "url": "https://hypebeast.com/2026/11/gucci-demna-present-cruise-2028-collection-shanghai-china-announcement",
@@ -2702,6 +2481,53 @@
    },
    "collected_at": "2026-11-25T19:14:51Z",
    "why": "고객 초청 행사로 커뮤니티를 다지는 마케팅 사례예요.",
+   "brief": true
+  },
+  {
+   "id": "gnews-81881a45f1",
+   "title": "Shein’s Europe Sales Sink as New Import Fees Bite",
+   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPakltYzJHYVN1ZlFZZ3dCWkJVTGl6MVFrVE81YTV1T1hsY2dZOHVZRXB1Um16MERZd3lQbVZBSENhUGRpczlWaDB3bEdnX3hSVk5mTDlRM1ktSGpPR3hDZC04LV9UUU9CRnZsZ2pOSUlZbzdNaHV2NEdzQ1VPMmxWSU9VUk0ybEFKMGFBZ29PWGdKbVBlMExINGNvOA?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "The Business of Fashion",
+   "cat": "material",
+   "headline": "쉬인, 새 수입 수수료 여파로 유럽 매출 감소",
+   "tag": "관세",
+   "detail": {
+    "points": [
+     "The Business of Fashion은 새 수입 수수료의 영향으로 쉬인의 유럽 매출이 줄었다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-26T03:33:17Z",
+   "why": "유럽의 저가 수입품 규제가 초저가 플랫폼에 미치는 영향을 볼 수 있어요",
+   "brief": true
+  },
+  {
+   "id": "gnews-a5543b5aab",
+   "title": "Bvlgari inaugurera à Rome un atelier de haute joaillerie",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNRS1mTU1lQU5xU194dWFJbDNkLXBNellCbjVJU3RNbzJ4cUhUdm5XQjNlcWx1WTJoZmh2cThkZE5xYVRwOXllbFdnd2RtdmM2YVk2cURnWjFJSGNWdm9HOFR2QWlLRFNKSVJUUk1PUnotczlRNXctY0lrR1pRRDNyYzdQRGJFTXpmeVhhazNkMUczX1UyVkh4cmUwRmVVSEJRNWpkTjJYUQ?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "FashionNetwork (FR)",
+   "cat": "brand",
+   "headline": "불가리, 로마에 하이주얼리 아틀리에 연다",
+   "tag": "아틀리에",
+   "detail": {
+    "points": [
+     "FashionNetwork(프랑스어판)는 불가리가 로마에 하이주얼리 아틀리에를 열 예정이라고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-26T03:33:17Z",
+   "why": "럭셔리 주얼리가 생산 역량을 직접 키우는 흐름을 보여 줘요",
+   "buzz": true,
    "brief": true
   }
  ]
