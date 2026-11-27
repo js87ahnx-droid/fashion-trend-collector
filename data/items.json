@@ -2,302 +2,6 @@
  "schema": 2,
  "items": [
   {
-   "id": "glossy-32186b9ec0",
-   "title": "Gap Inc. is betting on ‘fashiontainment’ to fuel growth",
-   "url": "https://www.glossy.co/fashion/gap-inc-is-betting-on-fashiontainment-to-fuel-growth/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Glossy",
-   "cat": "market",
-   "headline": "갭, 드라마·다큐로 화제성 키우는 '패션테인먼트' 추진",
-   "tag": "콘텐츠",
-   "detail": {
-    "points": [
-     "갭 Inc.는 브랜드를 이야기와 문화적 화제로 사게 만드는 '패션테인먼트' 전략을 내세웠어요.",
-     "1월에 Pam Kaufman을 엔터테인먼트 총괄 EVP로 임명했고, 보이밴드 JYT와 다년 제휴를 맺었어요.",
-     "바나나리퍼블릭용 단편 드라마 'The Agency'를 냈고, 다큐시리즈 공동 제작도 준비 중이에요."
-    ],
-    "so_what": [
-     "제품 광고 대신 드라마·다큐 같은 콘텐츠로 브랜드 화제성을 키우는 방식을 우리도 검토해 볼 수 있어요.",
-     "헤일리 비버·빅토리아 베컴 협업과 뷰티 재진출이 갭 브랜드 성장 요인으로 꼽혀, 협업과 콘텐츠를 묶는 전략도 참고할 수 있어요."
-    ],
-    "extra": "갭 Inc. 2026년 3분기 전체 순매출은 2% 늘어난 40억 달러예요. 갭 브랜드는 11% 늘었고, 애슬레타(-14%)와 바나나리퍼블릭(-3%)은 줄었어요. 뷰티·패션 업계 전반에서 엔터테인먼트 조직과 콘텐츠를 만드는 흐름이 보여요.",
-    "figure": {
-     "type": "bars",
-     "title": "2026년 3분기 브랜드별 순매출 증감률",
-     "unit": "%",
-     "bars": [
-      {
-       "label": "갭",
-       "value": 11
-      },
-      {
-       "label": "올드네이비",
-       "value": 1
-      }
-     ]
-    },
-    "terms": [
-     {
-      "term": "패션테인먼트",
-      "meaning": "패션과 엔터테인먼트를 합친 말로, 콘텐츠로 브랜드 팬을 만드는 전략이에요."
-     },
-     {
-      "term": "EVP",
-      "meaning": "임원급 직함인 부사장(Executive Vice President)이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-20T02:18:42Z",
-   "why": "브랜드가 직접 콘텐츠를 만들어 문화적 존재감을 키우는 방식이라 마케팅 기획에 참고가 돼요",
-   "pick": 5
-  },
-  {
-   "id": "ktnews-235d96fdbb",
-   "title": "브이티, 내년 中에 신제품 25종 투입…유통망 확대",
-   "url": "https://www.ktnews.com/news/articleView.html?idxno=150353",
-   "source": "feed",
-   "region": "kr",
-   "outlet": "한국섬유신문",
-   "cat": "brand",
-   "headline": "브이티, 내년 중국에 신제품 25종…유통망 확대",
-   "tag": "중국진출",
-   "detail": {
-    "points": [
-     "브이티코스메틱이 2027년 중국에서 신규 품목 25종을 선보여요.",
-     "온라인과 오프라인 유통망도 함께 넓힐 계획이에요.",
-     "신규 품목의 연간 매출은 47억 원 규모로 내다봤어요."
-    ],
-    "so_what": [
-     "한중 관계가 풀릴 것에 대비해 중국 재진출을 준비하는 K뷰티 업체가 늘 수 있어요. 중국 전략을 점검해 볼 시점일 수 있어요.",
-     "신제품 25종에 연매출 47억 원 전망은 중국 사업을 단계적으로 다시 키우려는 움직임으로 볼 수 있어요."
-    ],
-    "extra": "브이티는 18일 한중 정상회담에서 한중 FTA 서비스·투자 후속협상이 실질 타결됐다고 설명했어요. 회사는 산업통상부가 10년 전 같은 한국 화장품의 중국 시장 흐름이 다시 올 것으로 전망했다고 전했어요. 한한령 완화에 따른 사업 재확대에 대비하고 있다고 해요. 원문 전체는 열람하지 못해 수집된 본문만 반영했어요.",
-    "figure": null,
-    "terms": [
-     {
-      "term": "한한령",
-      "meaning": "중국이 한국 콘텐츠·상품 유통을 제한해 온 비공식 조치를 가리키는 말이에요."
-     },
-     {
-      "term": "FTA",
-      "meaning": "나라 사이 관세와 무역 장벽을 낮추는 자유무역협정이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-20T02:18:42Z",
-   "why": "한중 FTA 후속협상 타결로 중국 재진출 기대가 커지는 지금 흐름을 확인할 수 있어요",
-   "pick": 5
-  },
-  {
-   "id": "gnews-94d4c846d4",
-   "title": "A New Kind of Luxury Is Winning Back Aspirational Customers",
-   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSUNEczR1bldKdkJLSWpnUDlxQlZMZG5qOWNMRWxuU1BSWmctWXBqUkF4SlVrX1k2eENoREJ5dE45VXMwNm05Mk8wT0N6cmpBTDN0bzYtZG1IZmJlTmNiOUJ0bWZPZnNpNFZPVVhDMlhiOEZMY3V2Qk1EaXZocUEyU0lmUDFKdXdVMTcyZHE0cS1VelNyYl9FVW1mbmVyelBEdlgtWTJmcFNlTDcwNTg0?oc=5",
-   "source": "gnews",
-   "region": "global",
-   "outlet": "The Business of Fashion",
-   "cat": "market",
-   "headline": "열망 소비층을 다시 끌어오는 새로운 럭셔리 부상",
-   "tag": "소비동향",
-   "detail": {
-    "points": [
-     "The Business of Fashion은 새로운 방식의 럭셔리가 열망 소비층을 다시 끌어오고 있다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-20T02:18:42Z",
-   "why": "럭셔리를 떠났던 열망 소비층이 어디로 돌아오는지 짚는 글이라 볼 만해요",
-   "brief": true
-  },
-  {
-   "id": "gnews-d0ad9609bf",
-   "title": "Mulberry, encore en déficit, amorce sa reprise",
-   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQaDFVNkh6VEVPaU9pa2NBWHRHS3lYRGtUdXE0R0pkdDdYQnlTOXJzOFg3SWZhTmhCV09TUGhEUDdTRC1nMmxTbWhHbHhuUHB6SV9hT2UtejBCczkzcmFWX1dzaUNHbVR2R0VxU245WGVBY3RTSERDNDYzel84dUNMWHVaUTh4R2JXSmhzVzRnRHpWelJ3VVRr?oc=5",
-   "source": "gnews",
-   "region": "global",
-   "outlet": "FashionNetwork (FR)",
-   "cat": "brand",
-   "headline": "멀버리, 아직 적자지만 회복 조짐",
-   "tag": "실적",
-   "detail": {
-    "points": [
-     "FashionNetwork는 멀버리가 아직 적자이지만 회복을 시작했다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-20T02:18:42Z",
-   "why": "고전하던 영국 가죽 브랜드가 회복에 들어섰는지 확인할 수 있는 소식이에요",
-   "brief": true
-  },
-  {
-   "id": "glossy-99973788d6",
-   "title": "Get it while it’s hot: The bakeries snagging major beauty and fashion collaborations",
-   "url": "https://www.glossy.co/pop/get-it-while-its-hot-the-bakeries-snagging-major-beauty-and-fashion-collaborations/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Glossy",
-   "cat": "market",
-   "headline": "뷰티·패션 브랜드, 인기 베이커리와 협업 잇따라",
-   "tag": "협업",
-   "detail": {
-    "points": [
-     "Nike, Levi's, Glossier, Snif 등이 뉴욕·LA의 인기 베이커리와 손잡고 있어요.",
-     "Z세대의 '트릿 소비'가 커지며, 브랜드가 빵집에서 접점과 감성 연결을 찾고 있어요.",
-     "La Cabra는 2년간 약 60건 협업했지만 과포화를 우려해 요즘은 거절이 훨씬 많아요."
-    ],
-    "so_what": [
-     "빵 한 개 값 정도의 작은 소비로 브랜드를 경험시키는 협업은 가격 부담이 적은 접점이 될 수 있어요.",
-     "상품 자체보다 향·시식·굿즈로 감성을 전하는 팝업이나 이벤트 기획에 참고할 수 있어요.",
-     "협업이 너무 많아지면 피로감이 생길 수 있어서, 파트너 선별과 빈도 조절이 중요할 수 있어요."
-    ],
-    "extra": "빵집과 브랜드의 협업은 새롭지 않아요. 2013년 도미니크 앙셀의 크로넛, 2000년대 초 Bape의 도쿄 카페 같은 사례가 있어요. 다만 이번 기사는 프리미엄 베이커리가 협업 파트너로 크게 늘었다는 점을 짚어요.",
-    "figure": null,
-    "terms": [
-     {
-      "term": "트릿 소비",
-      "meaning": "커피·디저트처럼 작은 사치로 스스로에게 주는 소소한 소비예요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-20T11:36:38Z",
-   "why": "Z세대가 작은 사치에 돈을 쓰는 흐름이에요. F&B 협업을 기획할 때 참고하기 좋습니다.",
-   "pick": 5
-  },
-  {
-   "id": "kr-fashionn-63241",
-   "title": "스트레이 키즈 현진, 디올 패션 및 뷰티 부문 새로운 앰배서더 선정",
-   "url": "https://www.fashionn.com/board/read_new.php?table=1006&number=63241",
-   "source": "krsite",
-   "region": "kr",
-   "outlet": "패션엔",
-   "cat": "market",
-   "headline": "디올, 스트레이 키즈 현진을 패션·뷰티 앰배서더로 선정",
-   "tag": "모델",
-   "detail": {
-    "points": [
-     "프랑스 럭셔리 디올이 스트레이 키즈 현진을 새 앰배서더로 발탁했어요.",
-     "역할은 패션과 뷰티 두 부문을 함께 맡는 앰배서더예요.",
-     "기사는 현진을 디올의 세 크리에이티브 책임자와 결이 맞는 인물로 소개해요."
-    ],
-    "so_what": [
-     "럭셔리 브랜드가 K팝 아티스트 한 명에게 패션과 뷰티를 함께 맡길 수 있어요. 협업을 기획할 때 참고할 만해요.",
-     "글로벌 활동 중인 아티스트를 쓰는 흐름이 이어질 수 있어요. 앰배서더를 고를 때 해외 팬덤 규모도 살펴볼 수 있어요."
-    ],
-    "extra": "기사에는 계약 기간이나 구체적 활동 계획이 나오지 않아요. 현진이 속한 스트레이 키즈는 2026년 미니 앨범 'THIS & THAT'을 냈고, 월드 투어 'RUN IT'을 진행 중이에요.",
-    "figure": null,
-    "terms": [
-     {
-      "term": "앰배서더",
-      "meaning": "브랜드를 대표해 알리는 얼굴 역할을 맡는 인물이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-20T11:36:38Z",
-   "why": "럭셔리 브랜드의 K팝 앰배서더 기용이 이어지고 있어요. 모델 기용 전략을 세울 때 참고할 만해요.",
-   "pick": 5,
-   "buzz": true
-  },
-  {
-   "id": "glossy-4b5225a9cc",
-   "title": "Luxury Briefing: How do you measure loyalty when a customer buys once a decade?",
-   "url": "https://www.glossy.co/fashion/luxury/luxury-briefing-jewelry-customer-loyalty/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Glossy",
-   "cat": "market",
-   "headline": "10년에 한 번 사는 고객, 주얼리 업계는 충성도를 어떻게 재나",
-   "tag": "고객관리",
-   "detail": {
-    "points": [
-     "리슈몽 CEO는 반 클리프 아펠에서 신규 고객을 가르기 어렵다고 했어요. 10년 만에 다시 사는 단골이 있어서예요.",
-     "리슈몽 주얼리 하우스 매출은 9월 30일까지 6개월간 고정환율 기준 19% 늘었어요.",
-     "에르메스와 까르띠에는 수선·보증 같은 사후 서비스로 고객이 브랜드를 다시 찾게 해요."
-    ],
-    "so_what": [
-     "구매 횟수만 보면 충성도를 놓칠 수 있어요. 긴 공백 뒤 재구매와 휴면 고객 복귀를 따로 보는 방식을 고려할 수 있어요.",
-     "수선·AS 방문은 구매가 없어도 고객을 만나는 접점이에요. 중고·상속 제품 소유자도 미래 고객이 될 수 있어요.",
-     "상위 고객 비중이 커지는 흐름이라, 상위 고객 관리와 이탈 고객 되찾기에 힘을 실을 수 있어요."
-    ],
-    "extra": "베인·알타genza 보고서는 2026년 상위 고객이 개인 명품 소비의 약 48%를 차지할 것으로 봤어요(2019년 31%). 주얼리는 올해 8~10% 성장이 예상되는 가장 빠른 카테고리예요. 기사는 표준 충성도 지표가 있다고 하지는 않았어요.",
-    "figure": {
-     "type": "bars",
-     "title": "상위 고객이 개인 명품 소비에서 차지하는 비중",
-     "unit": "%",
-     "bars": [
-      {
-       "label": "2019년",
-       "value": 31
-      },
-      {
-       "label": "2026년(전망)",
-       "value": 48
-      }
-     ]
-    },
-    "terms": [
-     {
-      "term": "고정환율",
-      "meaning": "환율 변동 영향을 뺀 실제 판매 성장을 보려고 환율을 고정해 계산한 방식이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-20T11:36:38Z",
-   "why": "리치몬트·에르메스·까르띠에가 애프터서비스로 고객을 다시 부르는 방식이에요. 고객관리(CRM) 전략에 참고할 수 있어요.",
-   "pick": 5
-  },
-  {
-   "id": "vogue-5122c57ad0",
-   "title": "Is Merch Stealing Luxury’s Aspirational Consumer?",
-   "url": "https://www.vogue.com/article/is-merch-stealing-luxurys-aspirational-consumer",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Vogue Business",
-   "cat": "market",
-   "headline": "굿즈 열풍, 럭셔리의 열망 소비층을 빼앗고 있나",
-   "tag": "소비동향",
-   "detail": {
-    "points": [
-     "Vogue Business는 굿즈가 럭셔리의 열망 소비층을 빼앗고 있는지 짚는 기사를 냈다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-20T11:36:38Z",
-   "why": "로드·A24 같은 굿즈가 화제예요. 엔트리 럭셔리 수요가 어디로 옮겨 가는지 볼 수 있어요.",
-   "brief": true
-  },
-  {
-   "id": "gnews-446fc435f6",
-   "title": "게스, 롯데월드몰서 23일부터 'THE WINTER' 팝업 진행",
-   "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9qUWc5M0p0UzlvazU5d1FZV3c4SngyT2t2QUNkdERna0E2SFBZVlhDNm9raWRoUDNLRjQyQ0ZWcXdZZ2hnNkdKSjZyRFRWZzBpX1R1aWlkd3RuTjV2WEVidkU2bkl4b0hqdlJfVU95U2oxWjEt?oc=5",
-   "source": "gnews",
-   "region": "kr",
-   "outlet": "어패럴뉴스",
-   "cat": "retail",
-   "headline": "게스, 23일부터 롯데월드몰서 'THE WINTER' 팝업",
-   "tag": "팝업",
-   "detail": {
-    "points": [
-     "어패럴뉴스는 게스가 23일부터 롯데월드몰에서 'THE WINTER' 팝업을 진행한다고 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-20T11:36:38Z",
-   "why": "겨울 시즌을 겨냥한 쇼핑몰 팝업 사례예요. 연말 팝업 일정을 짤 때 참고할 수 있어요.",
-   "brief": true
-  },
-  {
    "id": "ktnews-67e3a3257c",
    "title": "럭셔리 회복 맞나? 매출 2% 늘었지만 구매자 1500만 명 감소",
    "url": "https://www.ktnews.com/news/articleView.html?idxno=150370",
@@ -2425,6 +2129,132 @@
    },
    "collected_at": "2026-11-27T01:43:59Z",
    "why": "표류하던 베르사체를 품은 프라다의 행보는 럭셔리 판도를 바꿀 수 있어 지켜볼 만해요",
+   "brief": true
+  },
+  {
+   "id": "pambianco-10d73cd21e",
+   "title": "Continua il “record” di Urban Outfitters: nel Q3 vendite a 1,67 mld $ (+8,9%)",
+   "url": "https://www.pambianconews.com/2026/11/27/continua-il-record-di-urban-outfitters-nel-q3-vendite-a-167-mld-89-502196/",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Pambianco (IT)",
+   "cat": "brand",
+   "headline": "어반아웃피터스, 3분기 순매출 16.7억달러로 8.9% 증가",
+   "tag": "실적",
+   "detail": {
+    "points": [
+     "어반아웃피터스의 2027 회계연도 3분기(10월 31일 마감) 순매출이 16.7억달러로 최대 기록이에요.",
+     "매출은 1년 전보다 8.9% 늘었어요.",
+     "순이익은 1억 3,410만달러로, 지난해 같은 분기 1억 1,640만달러보다 늘었어요."
+    ],
+    "so_what": [],
+    "extra": "확인된 내용은 수집된 본문 일부(매출과 순이익)뿐이에요. 원문을 읽지 못해 브랜드별 실적과 향후 전망은 정리하지 않았어요. 기사에는 매출이 약 15억 유로라고 나와요.",
+    "figure": {
+     "type": "bars",
+     "title": "어반아웃피터스 3분기 순이익",
+     "unit": "백만달러",
+     "bars": [
+      {
+       "label": "전년 3분기",
+       "value": 116.4
+      },
+      {
+       "label": "올해 3분기",
+       "value": 134.1
+      }
+     ]
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-27T12:15:16Z",
+   "why": "미국 캐주얼 리테일러의 최대 실적은 현지 소비 체력을 가늠할 지표예요.",
+   "pick": 5
+  },
+  {
+   "id": "glossy-f9a8d3b2bd",
+   "title": "Luxury Briefing: Why luxury retailers keep going back on sale",
+   "url": "https://www.glossy.co/fashion/luxury/luxury-briefing-black-friday-luxury-sales/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Glossy",
+   "cat": "retail",
+   "headline": "블프가 11월 내내 이어지고, 럭셔리도 할인에 기대요",
+   "tag": "할인",
+   "detail": {
+    "points": [
+     "Mytheresa, 넷아포르테 등 럭셔리 유통이 블프 전부터 할인과 프라이빗 세일을 열었어요.",
+     "온라인 의류 중 할인 상품 비중이 10월에 영국 53.2%, 미국 47.8%로 1년 전보다 올랐어요.",
+     "베인·알타가마는 2025년 럭셔리 상품의 35~40%가 할인 판매된 것으로 봤어요."
+    ],
+    "so_what": [
+     "세일이 길어지면 고객이 할인을 기다리는 습관이 생길 수 있어요. 정상가 판매 비중을 따로 챙겨볼 필요가 있어요.",
+     "할인 주말 실적이 좋아도 원래 정상가로 팔렸을 수요를 앞당긴 것일 수 있어요. 기간 전체의 소진율과 마진을 같이 보는 편이 좋아요.",
+     "올해 할인 성과가 내년 목표의 기준이 되면 부담이 커질 수 있어요. 목표를 세울 때 할인 효과를 나눠서 볼 수 있어요."
+    ],
+    "extra": "원문은 Glossy의 럭셔리 뉴스레터예요. 미국 프리미엄 소매의 블프 주간 할인 비중은 29%로 작년과 같았고, 평균 할인율은 10%에서 11%로 올랐어요. 공개 할인이 새로 급증한 신호는 크지 않다고 해요. 뉴스레터에는 Frasers가 인수한 Harvey Nichols의 주 5일 출근 방침 내용도 있어요.",
+    "figure": {
+     "type": "compare",
+     "title": "10월 온라인 의류 할인 상품 비중",
+     "before": "영국 50.7%, 미국 44.7%",
+     "after": "영국 53.2%, 미국 47.8%",
+     "before_label": "작년 10월",
+     "after_label": "올해 10월"
+    },
+    "terms": [
+     {
+      "term": "소진율",
+      "meaning": "들여온 물량 중 실제로 팔린 비율이에요."
+     }
+    ]
+   },
+   "collected_at": "2026-11-27T12:15:16Z",
+   "why": "길어진 할인 시즌이 정가 판매를 깎아 먹는 문제는 국내 가격 정책에도 시사점이 있어요.",
+   "pick": 5
+  },
+  {
+   "id": "vogue-203c78c514",
+   "title": "The Rise, Fall, and Future of Makeup Artist-Led Brands",
+   "url": "https://www.vogue.com/article/the-rise-fall-and-future-of-makeup-artist-led-brands",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "brand",
+   "headline": "메이크업 아티스트 브랜드, 한정판 대신 핵심 제품에 집중",
+   "tag": "뷰티전략",
+   "detail": {
+    "points": [
+     "Vogue Business는 메이크업 아티스트 브랜드의 흥망과 앞날을 다루며, Violette와 Katie Jane Hughes 같은 브랜드가 소수의 핵심 제품에 집중한다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-27T12:15:16Z",
+   "why": "몸값 키우기보다 잘 팔리는 핵심 제품에 집중하는 뷰티 브랜드 전략 흐름을 볼 수 있어요.",
+   "brief": true
+  },
+  {
+   "id": "wkorea-a1de48c861",
+   "title": "발렌시아가 르 시티, 25년의 기록",
+   "url": "https://www.wkorea.com/2026/11/27/%eb%b0%9c%eb%a0%8c%ec%8b%9c%ec%95%84%ea%b0%80-%eb%a5%b4-%ec%8b%9c%ed%8b%b0-25%eb%85%84%ec%9d%98-%ea%b8%b0%eb%a1%9d/",
+   "source": "feed",
+   "region": "kr",
+   "outlet": "W코리아",
+   "cat": "market",
+   "headline": "발렌시아가 '르 시티' 25주년, 전시·캠페인·데이미언 허스트 협업",
+   "tag": "아이콘백",
+   "detail": {
+    "points": [
+     "W코리아는 발렌시아가 '르 시티'의 25년 기록을 다룬 소식을 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-27T12:15:16Z",
+   "why": "오래된 아이콘 상품을 전시와 예술가 협업으로 다시 띄우는 방식을 참고할 수 있어요.",
    "brief": true
   }
  ]
