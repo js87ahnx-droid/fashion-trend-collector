@@ -2,90 +2,6 @@
  "schema": 2,
  "items": [
   {
-   "id": "glossy-47f32e1973",
-   "title": "Fashion Briefing: Humberto Leon is revitalizing St. John, but can St. John revitalize Lanvin Group?",
-   "url": "https://www.glossy.co/fashion/fashion-briefing-humberto-leon-is-revitalizing-st-john-but-can-st-john-revitalize-lanvin-group/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Glossy",
-   "cat": "brand",
-   "headline": "세인트존은 반등 중, 랑방그룹 구원은 역부족 시각",
-   "tag": "디렉터",
-   "detail": {
-    "points": [
-     "세인트존이 올해 움베르토 레온을 크리에이티브 디렉터로 영입해 밝은 색과 과감한 프린트로 이미지를 바꾸고 있어요.",
-     "올해 상반기 세인트존 온라인 매출은 31% 늘었고, 랑방그룹 매출의 약 3분의 1을 차지해요.",
-     "랑방그룹은 상반기 매출이 13% 줄었고 뉴욕증권거래소에서 주가 1달러 미만 경고까지 받았어요."
-    ],
-    "so_what": [
-     "오래된 단골 브랜드도 파격적인 캡슐 컬렉션으로 화제를 만든 뒤 균형을 맞추는 방식을 쓸 수 있어요.",
-     "디자이너의 개인 네트워크와 캠페인 연출이 신규 고객 유입에 도움이 될 수 있어요.",
-     "그룹 안에서 한 브랜드의 호조만으로 전체 실적을 되돌리기는 어려울 수 있어요."
-    ],
-    "extra": "움베르토 레온은 오프닝 세레모니 창립자이고, 2011년부터 2019년까지 겐조를 이끌었어요. 세인트존은 북미 중심으로 직영점 20곳과 아울렛 15곳을 운영해요. 2027년 1분기에는 디즈니 협업 컬렉션도 낼 예정이에요.",
-    "figure": null,
-    "terms": [
-     {
-      "term": "캡슐 컬렉션",
-      "meaning": "적은 수의 아이템으로 짧게 내놓는 소규모 컬렉션이에요."
-     },
-     {
-      "term": "리버스 스톡 스플릿",
-      "meaning": "주식 여러 주를 한 주로 합쳐 주가를 높이는 방법이에요."
-     }
-    ]
-   },
-   "collected_at": "2026-11-19T20:34:17Z",
-   "why": "새 디렉터를 영입해 기존 고객층을 과감히 바꾸려는 브랜드 리뉴얼 사례예요. 그룹 재건 전략도 함께 볼 수 있어요.",
-   "pick": 5
-  },
-  {
-   "id": "sole24ore-7b3b89bb4b",
-   "title": "La storia di Pisa 1940 fra tradizione e innovazione",
-   "url": "https://www.ilsole24ore.com/art/la-storia-pisa-1940-tradizione-e-innovazione-AJRyc4LC",
-   "source": "feed",
-   "region": "global",
-   "outlet": "Il Sole 24 Ore (IT)",
-   "cat": "retail",
-   "headline": "시계 수리점에서 국제적 리테일러로 큰 피사 1940",
-   "tag": "리테일러",
-   "detail": {
-    "points": [
-     "Il Sole 24 Ore는 작은 시계 수리 공방에서 출발한 피사 1940이 전통과 혁신 사이에서 성장해 온 이야기를 전했어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-19T20:34:17Z",
-   "why": "작은 수리점이 고급 시계 리테일러로 성장한 이야기예요. 전문 편집숍 운영을 고민할 때 참고할 수 있어요.",
-   "brief": true
-  },
-  {
-   "id": "gnews-74793d9d42",
-   "title": "Áslaug Magnúsdóttir Relaunches Tinker Tailor as AI Creator Platform",
-   "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOcGp4M01PeG9qV1ljTHVBdG9GUUlVT21UVVUtdWd2a2d2YzdoRzlxN0RDdDVBaDNVX3BOcWVHTDRXNC1qUktoSFJIQ0NqRTBTMDVPMDZwblNBZThwV2hBOTRyQUl6bTlrbU5CeXhLdUpOWldQWXhadkJYZGNOOExiVDBjQQ?oc=5",
-   "source": "gnews",
-   "region": "global",
-   "outlet": "The Business of Fashion",
-   "cat": "brand",
-   "headline": "아슬라우그 마그누스도티르, 팅커 테일러를 AI 크리에이터 플랫폼으로 재출시",
-   "tag": "AI",
-   "detail": {
-    "points": [
-     "아슬라우그 마그누스도티르가 팅커 테일러를 AI 크리에이터 플랫폼으로 다시 선보였어요."
-    ],
-    "so_what": [],
-    "extra": "",
-    "figure": null,
-    "terms": []
-   },
-   "collected_at": "2026-11-19T20:34:17Z",
-   "why": "패션 플랫폼이 AI 크리에이터 모델로 방향을 바꾼 사례라 AI 활용 흐름을 살피는 데 참고할 만해요.",
-   "brief": true
-  },
-  {
    "id": "glossy-32186b9ec0",
    "title": "Gap Inc. is betting on ‘fashiontainment’ to fuel growth",
    "url": "https://www.glossy.co/fashion/gap-inc-is-betting-on-fashiontainment-to-fuel-growth/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
@@ -2346,6 +2262,169 @@
    "collected_at": "2026-11-26T03:33:17Z",
    "why": "럭셔리 주얼리가 생산 역량을 직접 키우는 흐름을 보여 줘요",
    "buzz": true,
+   "brief": true
+  },
+  {
+   "id": "ktnews-ce16d2fdde",
+   "title": "무신사 ‘무진장’에 6일간 136만명 몰렸다",
+   "url": "https://www.ktnews.com/news/articleView.html?idxno=150493",
+   "source": "feed",
+   "region": "kr",
+   "outlet": "한국섬유신문",
+   "cat": "retail",
+   "headline": "무신사 '무진장' 겨울 블프, 엿새간 매장 136만명 방문",
+   "tag": "블프",
+   "detail": {
+    "points": [
+     "무신사 겨울 블랙프라이데이 '무진장 26 겨울 블프'가 20일 오프라인 매장에서 먼저 시작됐어요.",
+     "행사 나흘 만에 매장 방문객이 100만명을 넘었고, 25일까지 엿새간 136만여명이 찾았어요.",
+     "같은 기간 매장 판매액은 직전 주 같은 요일보다 36% 늘었어요."
+    ],
+    "so_what": [
+     "온라인 행사 전에 매장 행사를 먼저 여는 방식이 방문객을 모으는 데 효과가 있었을 수 있어요.",
+     "블프 같은 대형 할인 시즌에 오프라인 매장이 트래픽과 매출을 키우는 역할을 할 수 있어요."
+    ],
+    "extra": "무신사는 온라인 본 행사보다 이틀 앞서 매장 행사를 시작했어요. 첫 주말인 21~22일에는 70만명 가까이 방문했고, 22일에는 매장 역대 최대 일 판매액을 기록했어요. 원문 전문은 열람하지 못해 수집된 본문 기준으로 정리했어요.",
+    "figure": {
+     "type": "bars",
+     "title": "무진장 오프라인 매장 방문객 (누적)",
+     "unit": "만명",
+     "bars": [
+      {
+       "label": "첫 주말(21~22일)",
+       "value": 70
+      },
+      {
+       "label": "4일째",
+       "value": 100
+      },
+      {
+       "label": "6일간(~25일)",
+       "value": 136
+      }
+     ]
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-27T01:43:59Z",
+   "why": "플랫폼 할인 행사가 오프라인 매장 매출까지 끌어올린 사례라, 입점 브랜드의 시즌 운영에 참고가 돼요",
+   "pick": 8
+  },
+  {
+   "id": "glossy-076dc7e8a9",
+   "title": "Fashion Briefing: Luxury brands are mythologizing their founders in cartoons, comics and video games",
+   "url": "https://www.glossy.co/fashion/fashion-briefing-luxury-brands-are-mythologizing-their-founders-in-cartoons-comics-and-video-games/?utm_campaign=glossydis&utm_medium=rss&utm_source=general-rss",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Glossy",
+   "cat": "market",
+   "headline": "럭셔리 브랜드, 창업자 이야기를 애니·만화·게임으로 풀어",
+   "tag": "캠페인",
+   "detail": {
+    "points": [
+     "디올, 예거 르쿨트르, 제냐, 까르띠에가 창업자 서사를 담은 캠페인을 잇달아 냈어요.",
+     "형식은 애니메이션, 웹툰, 무료 게임, 배우가 창업자를 따라가는 영상 등으로 다양해요.",
+     "디올 애니 광고는 인스타그램 좋아요 약 23만 개로, 평소 2만~3만 개보다 크게 높았어요."
+    ],
+    "so_what": [
+     "창업자 이야기는 경쟁사가 따라 하기 어려워서, 제품이 비슷한 브랜드의 차별화 소재가 될 수 있어요.",
+     "애니·웹툰·게임처럼 새로운 형식으로 풀면 브랜드 역사가 더 기억에 남고 반응도 커질 수 있어요.",
+     "역사에 각색을 더할 땐 사실 확인이 필요해요. 빠뜨리거나 지어낸 부분이 공개적으로 지적받을 수 있어요."
+    ],
+    "extra": "기사는 럭셔리가 신화를 파는 산업이라는 업계 시각을 소개해요. 다만 과장이 사실에 근거하지 않으면 금방 드러나고, 지나치게 가벼우면 브랜드 이미지가 만화처럼 소비될 수 있다고 전문가들이 경고해요. 디올은 드레스 모델 관련 누락이 지적됐고, AI 사용 논란도 있었어요.",
+    "figure": {
+     "type": "compare",
+     "title": "디올 애니 광고 인스타그램 반응",
+     "before": "평소 게시물 좋아요 약 2만~3만 개",
+     "after": "창업자 애니 광고 좋아요 약 23만 개",
+     "before_label": "평소",
+     "after_label": "애니 광고"
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-27T01:43:59Z",
+   "why": "창업자 이야기를 콘텐츠로 만드는 흐름이라, 브랜드 헤리티지를 활용하는 마케팅에 참고할 만해요",
+   "pick": 5
+  },
+  {
+   "id": "pambianco-4bdcd3517b",
+   "title": "Michele Rafferty è la nuova direttrice creativa di Peuterey",
+   "url": "https://www.pambianconews.com/2026/11/26/michele-rafferty-e-la-nuova-direttrice-creativa-di-peuterey-502268/",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Pambianco (IT)",
+   "cat": "brand",
+   "headline": "푸테리, 새 크리에이티브 디렉터에 미셸 라퍼티 선임",
+   "tag": "인사",
+   "detail": {
+    "points": [
+     "이탈리아 브랜드 푸테리(Peuterey)가 미셸 라퍼티(Michele Rafferty)에게 크리에이티브 디렉션을 맡겼어요.",
+     "라퍼티는 페데리코 쿠라디(Federico Curradi)의 후임이에요.",
+     "라퍼티는 럭셔리, 스트리트웨어, 라이프스타일을 두루 거친 디자이너예요."
+    ],
+    "so_what": [
+     "푸테리가 이번 선임을 브랜드의 새 장으로 내세우고 있어요. 앞으로 컬렉션 방향이 달라질 수 있는지 지켜볼 만해요."
+    ],
+    "extra": "푸테리는 기능성, 소재 연구, 현대적인 미감을 내세우는 이탈리아 브랜드로 알려져 있어요. 원문 본문을 일부만 확인해서 첫 컬렉션 시점 같은 세부 내용은 다루지 않았어요.",
+    "figure": {
+     "type": "compare",
+     "title": "푸테리 크리에이티브 디렉터 교체",
+     "before": "페데리코 쿠라디",
+     "after": "미셸 라퍼티",
+     "before_label": "전임",
+     "after_label": "신임"
+    },
+    "terms": []
+   },
+   "collected_at": "2026-11-27T01:43:59Z",
+   "why": "아우터 브랜드의 디렉터 교체로 디자인 방향이 바뀔 수 있어 아우터 기획에 참고할 만해요",
+   "pick": 5,
+   "buzz": true
+  },
+  {
+   "id": "vogue-28d9097855",
+   "title": "The Body and The Teen Drama Fashion Machine",
+   "url": "https://www.vogue.com/article/the-body-and-the-teen-drama-fashion-machine",
+   "source": "feed",
+   "region": "global",
+   "outlet": "Vogue Business",
+   "cat": "market",
+   "headline": "하이틴 드라마, 패션 브랜드의 포지셔닝 전략으로 부상",
+   "tag": "콘텐츠",
+   "detail": {
+    "points": [
+     "Vogue Business는 성장 드라마가 패션 브랜드와 리세일 플랫폼에 더는 마케팅 축이 아니라 포지셔닝 전략이라고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-27T01:43:59Z",
+   "why": "성장 드라마가 패션·리세일 플랫폼의 포지셔닝 전략이 되고 있어 콘텐츠 협업을 검토할 때 참고할 만해요",
+   "brief": true
+  },
+  {
+   "id": "gnews-1b34045e77",
+   "title": "« C'est un pari audacieux car Versace est à la dérive depuis la mort de son créateur » : comment Prada veut réinventer le luxe italien",
+   "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNZzdnSV93NWFPbVBaQnFUc1dVbDI1WGMzbEg3TDB4cXFFdlZfMmFUZEtoV1dSaE9HMkRjdjR5UFVHMWNmRW1pa0drLXBBQlkwLVBnZ3NwdUdsSG10RTA1UmNVUkJlb3M1MndCOE9hU3IyNnh2anhsUWJZWkZ6NTZHblVtRXNITk5oZ0lkQm82SGw1N3NjQ3hmNGxqSk5HcG5HSHJsVVV6VnRDUmw3S0YzaTAwTTNoVHZIUzkxalR3Qm9IdlNqUHd3cGlZbEY3djhsTjNUSXlJNDQzN1BCX3hnaUZUT1FRQWtfODg3WmpXTU1sMDZVazFsR0ZTck5Xd240QWhSQ0hNS01HMEFRR3hn?oc=5",
+   "source": "gnews",
+   "region": "global",
+   "outlet": "Les Echos (FR)",
+   "cat": "brand",
+   "headline": "프라다, 베르사체로 이탈리아 럭셔리 재편 노린다",
+   "tag": "전략",
+   "detail": {
+    "points": [
+     "Les Echos는 프라다가 이탈리아 럭셔리를 새로 만들려 하며, 창립자 사후 흔들린 베르사체를 두고 과감한 도박이라는 말이 나온다고 전했어요."
+    ],
+    "so_what": [],
+    "extra": "",
+    "figure": null,
+    "terms": []
+   },
+   "collected_at": "2026-11-27T01:43:59Z",
+   "why": "표류하던 베르사체를 품은 프라다의 행보는 럭셔리 판도를 바꿀 수 있어 지켜볼 만해요",
    "brief": true
   }
  ]
